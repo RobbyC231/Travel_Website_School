@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Contact Us</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- this is the link to the deafult css file which is normilize css -->
-    <link rel="stylesheet" type="text/css" src="css/default.css" >
-    <link rel="stylesheet" type="text/css" src="css/contact_us.css">
+    <link rel="stylesheet" type="text/css" href="css/default.css" />
+    <link rel="stylesheet" type="text/css" href="css/contactUs.css" />
     <!-- this is a script to run the link that connects google maps to my API key -->
   </head>
   <body>
-    <p id="contactInfo">Travel Experts <br> address <br> city <br> country <br> phone number <br> email(genartic email)
-    </p>
-
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10034.224704395281!2d-114.09479415!3d51.04281745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sca!4v1527387123411" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-
+    <div class="jumbotron">
+      <img src="images\mountains1.jpeg" class="img-fluid" alt="Responsive image">
+    </div>
+    <!-- <p id="contactInfo">Travel Experts <br> address <br> city <br> country <br> phone number <br> email(genartic email) -->
+    <!-- </p> -->
+    <form class=".form-horizontal needs-validation" novalidate>
+      <div class="form-group">
+        <label for="fname" class=".control-label">First Name</label>
+        <input class="form-control" type="text" id="fname" name="firstname" placeholder="Your name..">
+      </div>
+      <div class="form-group">
+        <label for="lname" class=".control-label">Last Name</label>
+        <input class="form-control" type="text" id="lname" name="lastname" placeholder="Your last name..">
+      </div>
+      <div class="form-group has-error has-feedback">
+        <label for="email" class=".control-label">Email</label>
+        <input class="form-control" type="email" id="email" name="email" placeholder="Your email..">
+        <div class="invalid-feedback">
+        Please enter an email using @
+      </div>
+        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10034.224704395281!2d-114.09479415!3d51.04281745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sca!4v1527387123411" class="embed-responsive-item"></iframe>
+    <script type="text/javascript" src="js/contactUs.js"></script>
   </body>
 </html>
