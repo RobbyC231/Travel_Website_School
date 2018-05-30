@@ -39,7 +39,7 @@
 					<div class="formline">
 						<!--country drop down goes here will change province/state and postalcode/zip, only for US and Canada-->
 						<label class="field" for="country">Country:</label>
-						<select id="country" class="sizing" name="country" onchange="country_onchange()" onfocus="country_focus()" onblur="country_blur()">
+						<select id="country" class="sizing" name="country" onchange="country_onchange()">
 							<option value=""></option>
 							<option value="Canada">Canada</option>
 							<option value="United States">United States</option>
@@ -47,22 +47,36 @@
 						<img id="country_pass"  style="display:none" src="icons/checked.png">
 
 					</div>
-					<div class="formline">
-						<label class="field" for="province">Province:</label>
-						<input id="province" type="text" name="province" oninput="province_oninput()" onfocus="province_focus()" onblur="province_blur()"/>
-						<img id="province_pass"  style="display:none" src="icons/checked.png">
-						<div id="province_note" style="display:inline;display:none">please enter the two letter provincial symbol</div>
+
+					<div class="formline" id=province_toggle>
+							<label class="field" for="province">Province:</label>
+							<input id="province" type="text" name="province" oninput="province_oninput()" onfocus="province_focus()" onblur="province_blur()"/>
+							<img id="province_pass"  style="display:none" src="icons/checked.png">
+							<div id="province_note" style="display:inline;display:none">please enter the two letter provincial symbol</div>
 					</div>
+					<div class="formline" id=state_toggle style="display:none">
+						<label class="field" for="state">State:</label>
+						<input id="state" type="text" name="state" oninput="state_oninput()" onfocus="state_focus()" onblur="state_blur()"/>
+						<img id="state_pass"  style="display:none" src="icons/checked.png">
+						<div id="state_note" style="display:inline;display:none">please enter the two letter state symbol</div>
+					</div>
+
 					<div class="formline">
 						<label class="field" for="city">City:</label>
 						<input id="city" type="text" name="city" oninput="city_oninput()" onfocus="city_focus()" onblur="city_blur()"/>
 						<img id="city_pass"  style="display:none" src="icons/checked.png">
 					</div>
-					<div class="formline">
+					<div class="formline" id="pcode_toggle">
 						<label class="field" for="postal_code">Postal Code:</label>
 						<input id="postal_code" type="text" name="postal_code" oninput="pcode_oninput()" onfocus="pcode_focus()" onblur="pcode_blur()"/>
 						<img id="pcode_pass"  style="display:none" src="icons/checked.png">
 						<div id="pcode_note" style="display:inline;display:none">A1B 2C3</div>
+					</div>
+					<div class="formline" id="zip_toggle" style="display:none">
+						<label class="field" for="zip_code">Zip Code:</label>
+						<input id="zip_code" type="text" name="zip_code" oninput="zip_code_oninput()" onfocus="zip_code_focus()" onblur="zip_code_blur()"/>
+						<img id="zip_code_pass"  style="display:none" src="icons/checked.png">
+						<div id="zip_code_note" style="display:inline;display:none">12345</div>
 					</div>
 					<div class="formline">
 						<label class="field" for="address">Address:</label>
@@ -79,7 +93,7 @@
 						<label class="field" for="bus_phone">Business Phone:</label>
 						<input id="bus_phone" type="text" name="bus_phone" oninput="bus_phone_oninput()" onfocus="bus_phone_focus()" onblur="bus_phone_blur()"/>
 						<img id="bus_phone_pass"  style="display:none" src="icons/checked.png">
-						<div id="bus_phone_note" style="display:inline;display:none">123-456-7890 area code included</div>
+						<div id="bus_phone_note" style="display:inline;display:none">if the same as your home phone, enter home phone</div>
 					</div>
 				</div>
 				<div class="form_column">
@@ -101,12 +115,12 @@
 					</div>
 					<div class="formline">
 						<label class="field" for="password">Password:</label>
-						<input id="password" type="text" name="password" oninput="password_oninput()" onfocus="password_focus()" onblur="password_blur()"/>
+						<input id="password" type="password" name="password" oninput="password_oninput()" onfocus="password_focus()" onblur="password_blur()"/>
 						<img id="password_pass"  style="display:none" src="icons/checked.png">
 					</div>
 					<div class="formline">
 						<label class="field" for="conf_password">Confirm Password:</label>
-						<input id="conf_password" type="text" name="conf_password" oninput="conf_password_oninput()" onfocus="conf_password_focus()" onblur="conf_password_blur()"/>
+						<input id="conf_password" type="password" name="conf_password" oninput="conf_password_oninput()" onfocus="conf_password_focus()" onblur="conf_password_blur()"/>
 						<img id="conf_password_pass"  style="display:none" src="icons/checked.png">
 					</div>
 				</div>

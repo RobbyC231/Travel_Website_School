@@ -1,10 +1,76 @@
 //this is the .js for the userdata form
-//registered expressions used for postal code and phone number formats
+//registered expressions used for postal code and bus_phone number formats
 //Chris Earle OOSD 5/26/2018
 var postal_code_code = /^[a-zA-Z]\d[a-zA-Z] ?\d[a-zA-Z]\d$/;
 var phone_code = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
+var email_code = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+var zip_code_code = /^\d{5}(?:[-\s]\d{4})?$/;
+
+//	/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 //this array is the acceptable two letter provincial symbols
 var province_codes = ["AB", "BC", "NL", "PE", "NS", "NB", "QC", "MB", "SK", "YT", "NT", "NU"];
+var state_codes = [
+    "AL",
+    "AK",
+    "AS",
+    "AZ",
+    "AR",
+    "CA",
+    "CO",
+    "CT",
+    "DE",
+    "DC",
+    "FM",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "ID",
+    "IL",
+    "IN",
+    "IA",
+    "KS",
+    "KY",
+    "LA",
+    "ME",
+    "MH",
+    "MD",
+    "MA",
+    "MI",
+    "MN",
+    "MS",
+    "MO",
+    "MT",
+    "NE",
+    "NV",
+    "NH",
+    "NJ",
+    "NM",
+    "NY",
+    "NC",
+    "ND",
+    "MP",
+    "OH",
+    "OK",
+    "OR",
+    "PW",
+    "PA",
+    "PR",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VT",
+    "VI",
+    "VA",
+    "WA",
+    "WV",
+    "WI",
+    "WY"
+];
 
 //when the userdata form is submitted
 var submitScript = document.getElementById('submit');
@@ -82,6 +148,23 @@ resetScript.onclick = function(){
 		}
 	}
 
+	function zip_code_oninput(){
+	//	var zip_code = document.getElementById('zip_code').value;
+		if (zip_code.value.match(zip_code_code))
+		{
+			document.getElementById("zip_code_pass").src="icons/checked.png";
+			zip_code_pass.style.display="block";
+			zip_code_pass.style.display = "inline";
+		}
+		else
+		{
+			document.getElementById("zip_code_pass").src="icons/fail.png";
+			zip_code_pass.style.display="block";
+			zip_code_pass.style.display = "inline";
+		}
+	}
+
+
 	//Phone
 	function phone_focus(){
 		var phone_note = document.getElementById('phone_note');
@@ -107,6 +190,34 @@ resetScript.onclick = function(){
 			phone_pass.style.display = "inline";
 		}
 	}
+
+	//business phone
+	function bus_phone_focus(){
+		var bus_phone_note = document.getElementById('bus_phone_note');
+		bus_phone_note.style.display = "block";
+		bus_phone_note.style.display = "inline";
+	}
+	function bus_phone_blur(){
+		bus_phone_note.style.display = "none";
+	}
+	function bus_phone_oninput(){
+		var bus_phone = document.getElementById('bus_phone');
+		var postal_code = document.getElementById('bus_phone').value;
+		if (bus_phone.value.match(phone_code))
+		{
+			document.getElementById("bus_phone_pass").src="icons/checked.png";
+			bus_phone_pass.style.display="block";
+			bus_phone_pass.style.display = "inline";
+		}
+		else
+		{
+			document.getElementById("bus_phone_pass").src="icons/fail.png";
+			bus_phone_pass.style.display="block";
+			bus_phone_pass.style.display = "inline";
+		}
+	}
+
+
 
 	//Province
 	function province_focus(){
@@ -136,16 +247,94 @@ resetScript.onclick = function(){
 	}
 
 
+	function state_oninput(){
+		var state = document.getElementById('state');
+		var state = document.getElementById('state').value;
+		var state = state.toUpperCase();
+		if (state_codes.indexOf(state)>=0)
+		{
+			document.getElementById("state_pass").src="icons/checked.png";
+			state_pass.style.display="block";
+			state_pass.style.display = "inline";
+		}
+		else
+		{
+			document.getElementById("state_pass").src="icons/fail.png";
+			state_pass.style.display="block";
+			state_pass.style.display = "inline";
+		}
+	}
+
+
+
+
+	/*function country_onchange() {
+    var e = document.getElementById("country");
+	var strUser = e.options[e].text;
+	document.getElementById("demo").innerHTML = "You selected: " + strUser;
+	}*/
+
+	function state_focus(){
+		var state_note = document.getElementById('state_note');
+		state_note.style.display = "block";
+		state_note.style.display = "inline";
+	}
+	function state_blur(){
+		state_note.style.display = "none";
+	}
+
+
+	function zip_code_focus(){
+		var state_note = document.getElementById('state_note');
+		zip_code_note.style.display = "block";
+		zip_code_note.style.display = "inline";
+	}
+	function zip_code_blur(){
+		zip_code_note.style.display = "none";
+	}
+
 	function country_onchange(){
 		var country = document.getElementById("country").value;
 		if(country=="Canada"){
 			document.getElementById("country_pass").src="icons/checked.png";
 			country_pass.style.display="block";
 			country_pass.style.display="inline";
+			//document.getElementById("province").setAttribute("id", "paad");
+			var province_toggle = document.getElementById("province_toggle");
+			var state_toggle = document.getElementById("state_toggle");
+			province_toggle.style.display="block";
+			state_toggle.style.display="none";
+			var province_toggle = document.getElementById("pcode_toggle");
+			var state_toggle = document.getElementById("zip_toggle");
+			pcode_toggle.style.display="block";
+			zip_toggle.style.display="none";
+
+		/*	prov_or_state.innerHTML =
+				'<label class="field" for="province">Province:</label>'+
+				'<input id="province" type="text" name="province" oninput="province_oninput()" onfocus="province_focus()" onblur="province_blur()"/>'+
+				'<img id="province_pass"  style="display:none" src="icons/checked.png">'+
+				'<div id="province_note" style="display:inline;display:none">please enter the two letter province symbol</div>';*/
+
 		}else if(country=="United States"){
 			document.getElementById("country_pass").src="icons/checked.png";
 			country_pass.style.display="block";
 			country_pass.style.display="inline";
+			//var prov_or_state = document.getElementById("prov_or_state");
+			var province_toggle = document.getElementById("province_toggle");
+			var state_toggle = document.getElementById("state_toggle");
+			province_toggle.style.display="none";
+			state_toggle.style.display="block";
+			var province_toggle = document.getElementById("pcode_toggle");
+			var state_toggle = document.getElementById("zip_toggle");
+			pcode_toggle.style.display="none";
+			zip_toggle.style.display="block";
+
+
+		/*	prov_or_state.innerHTML =
+				'<label class="field" for="state">State:</label>'+
+				'<input id="state" type="text" name="state" oninput="state_oninput()" onfocus="state_focus()" onblur="state_blur()"/>'+
+				'<img id="state_pass"  style="display:none" src="icons/checked.png">'+
+				'<div id="province_note" style="display:inline;display:none">please enter the two letter state symbol</div>';*/
 		}else{
 			document.getElementById("country_pass").src="icons/fail.png";
 			country_pass.style.display="block";
@@ -227,9 +416,8 @@ resetScript.onclick = function(){
 
 	//email
 	function email_oninput(){
-		var email = document.getElementById('email');
 		var email = document.getElementById('email').value;
-		if (email.length>0)
+		if (email.match(email_code))
 		{
 			document.getElementById("email_pass").src="icons/checked.png";
 			email_pass.style.display="block";
@@ -325,4 +513,4 @@ resetScript.onclick = function(){
     var e = document.getElementById("country");
 	var strUser = e.options[e].text;
 	document.getElementById("demo").innerHTML = "You selected: " + strUser;
-}*/
+	}*/
