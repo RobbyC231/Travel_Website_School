@@ -39,12 +39,13 @@
 					<div class="formline">
 						<!--country drop down goes here will change province/state and postalcode/zip, only for US and Canada-->
 						<label class="field" for="country">Country:</label>
-						<select class="sizing" name="country">
+						<select id="country" class="sizing" name="country" onchange="country_onchange()" onfocus="country_focus()" onblur="country_blur()">
 							<option value=""></option>
 							<option value="Canada">Canada</option>
 							<option value="United States">United States</option>
 						</select>
 						<img id="country_pass"  style="display:none" src="icons/checked.png">
+
 					</div>
 					<div class="formline">
 						<label class="field" for="province">Province:</label>
@@ -116,6 +117,8 @@
 				<button id="submit" value="submit">Submit</button>
 				<button id="clear" value="clear">Reset</button>
 			</div>
+
+
 		</form>
 
 
@@ -130,6 +133,11 @@
     	<div id="modal_creator">
 		</div>
 		<!--also put in a modal creator script here-->
+		<script>
+
+		</script>
 		<script type="text/javascript" src="js/customer_registration.js"></script>
+
+
 	</body>
 </html>

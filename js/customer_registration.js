@@ -17,6 +17,7 @@ submitScript.onclick = function(){
 	var province = document.getElementById('province').value;
 	var postal_code = document.getElementById('postal_code').value;
 	var phone = document.getElementById('phone').value;
+	var email = document.getElementById('phone').value;
 
 	//this is the final validation on submit
 	if (first_name.length>0 && last_name.length>0 && address.length>0 && city.length>0 && province.length>0 && postal_code.match(postal_code_code) && phone.match(phone_code))
@@ -134,6 +135,25 @@ resetScript.onclick = function(){
 		}
 	}
 
+
+	function country_onchange(){
+		var country = document.getElementById("country").value;
+		if(country=="Canada"){
+			document.getElementById("country_pass").src="icons/checked.png";
+			country_pass.style.display="block";
+			country_pass.style.display="inline";
+		}else if(country=="United States"){
+			document.getElementById("country_pass").src="icons/checked.png";
+			country_pass.style.display="block";
+			country_pass.style.display="inline";
+		}else{
+			document.getElementById("country_pass").src="icons/fail.png";
+			country_pass.style.display="block";
+			country_pass.style.display="inline";
+		}
+	}
+
+
 	//First Name
 	function fname_oninput(){
 		var fname = document.getElementById('first_name');
@@ -190,7 +210,6 @@ resetScript.onclick = function(){
 
 	//City
 	function city_oninput(){
-		var city = document.getElementById('city');
 		var city = document.getElementById('city').value;
 		if (city.length>0)
 		{
@@ -205,3 +224,105 @@ resetScript.onclick = function(){
 			city_pass.style.display = "inline";
 		}
 	}
+
+	//email
+	function email_oninput(){
+		var email = document.getElementById('email');
+		var email = document.getElementById('email').value;
+		if (email.length>0)
+		{
+			document.getElementById("email_pass").src="icons/checked.png";
+			email_pass.style.display="block";
+			email_pass.style.display = "inline";
+		}
+		else
+		{
+			document.getElementById("email_pass").src="icons/fail.png";
+			email_pass.style.display="block";
+			email_pass.style.display = "inline";
+		}
+	//calling the confirm email so if this field changes so does confirm email validation
+
+	//confirm email
+	conf_email_oninput()
+	}
+
+	function conf_email_oninput(){
+		var conf_email = document.getElementById('conf_email').value;
+		if (conf_email.length>0 && conf_email==document.getElementById('email').value)
+		{
+			document.getElementById("conf_email_pass").src="icons/checked.png";
+			conf_email_pass.style.display="block";
+			conf_email_pass.style.display = "inline";
+		}
+		else
+		{
+			document.getElementById("conf_email_pass").src="icons/fail.png";
+			conf_email_pass.style.display="block";
+			conf_email_pass.style.display = "inline";
+		}
+	}
+
+
+	//Username
+	function username_oninput(){
+		var username = document.getElementById('username').value;
+		if (username.length>0)
+		{
+			document.getElementById("username_pass").src="icons/checked.png";
+			username_pass.style.display="block";
+			username_pass.style.display = "inline";
+		}
+		else
+		{
+			document.getElementById("username_pass").src="icons/fail.png";
+			username_pass.style.display="block";
+			username_pass.style.display = "inline";
+		}
+	}
+
+	//password
+	function password_oninput(){
+		var password = document.getElementById('password');
+		var password = document.getElementById('password').value;
+		if (password.length>0)
+		{
+			document.getElementById("password_pass").src="icons/checked.png";
+			password_pass.style.display="block";
+			password_pass.style.display = "inline";
+		}
+		else
+		{
+			document.getElementById("password_pass").src="icons/fail.png";
+			password_pass.style.display="block";
+			password_pass.style.display = "inline";
+		}
+	//calling the confirm password so if this field changes so does confirm password validation
+
+	//confirm password
+	conf_password_oninput()
+	}
+
+	function conf_password_oninput(){
+		var conf_password = document.getElementById('conf_password').value;
+		if (conf_password.length>0 && conf_password==document.getElementById('password').value)
+		{
+			document.getElementById("conf_password_pass").src="icons/checked.png";
+			conf_password_pass.style.display="block";
+			conf_password_pass.style.display = "inline";
+		}
+		else
+		{
+			document.getElementById("conf_password_pass").src="icons/fail.png";
+			conf_password_pass.style.display="block";
+			conf_password_pass.style.display = "inline";
+		}
+	}
+
+
+
+	/*function country_onchange() {
+    var e = document.getElementById("country");
+	var strUser = e.options[e].text;
+	document.getElementById("demo").innerHTML = "You selected: " + strUser;
+}*/
