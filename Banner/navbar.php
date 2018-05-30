@@ -7,7 +7,7 @@
 
   <div class="rightmenu">
         <ul>
-              <li id="firstlist"><a href="homepage.html"> HOME </a></li>
+              <li id="firstlist"><a href="homepage.php"> HOME </a></li>
               <li id="secondlist"><a href="TravPackages.html"> PACKAGE </a> </li>
               <li id="thirdlist"><a href="customer_registration.php"> REGISTER </li>
               <li id="fourthlist"><a href="contact_us.html"> CONTACT US </a></li>
