@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2018 at 11:16 PM
+-- Generation Time: Jun 01, 2018 at 05:36 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -127,15 +127,15 @@ CREATE TABLE `bookingdetails` (
   `ClassId` varchar(5) DEFAULT NULL,
   `FeeId` varchar(10) DEFAULT NULL,
   `ProductSupplierId` int(11) DEFAULT NULL,
-  `DeparturePlnNo` int(10) DEFAULT NULL,
-  `ReturnPlnNo` int(10) DEFAULT NULL
+  `DeparturePlnId` int(10) DEFAULT NULL,
+  `ReturnPlnId` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `bookingdetails`
 --
 
-INSERT INTO `bookingdetails` (`BookingDetailId`, `ItineraryNo`, `TripStart`, `TripEnd`, `Description`, `Destination`, `BasePrice`, `AgencyCommission`, `BookingId`, `RegionId`, `ClassId`, `FeeId`, `ProductSupplierId`, `DeparturePlnNo`, `ReturnPlnNo`) VALUES
+INSERT INTO `bookingdetails` (`BookingDetailId`, `ItineraryNo`, `TripStart`, `TripEnd`, `Description`, `Destination`, `BasePrice`, `AgencyCommission`, `BookingId`, `RegionId`, `ClassId`, `FeeId`, `ProductSupplierId`, `DeparturePlnId`, `ReturnPlnId`) VALUES
 (11, 168, '2016-03-17 00:00:00', '2016-04-01 00:00:00', 'Calgary/Vancouver/Calgary', 'Vancouver', '450.0000', '22.5000', 11, 'NA', 'FST', 'BK', 23, 0, 0),
 (15, 306, '2016-05-09 00:00:00', '2016-06-03 00:00:00', 'all-inclusive European tour', 'London, England', '3000.0000', '112.5000', 15, 'EU', 'ECN', 'GR', 14, 0, 0),
 (16, 306, '2016-05-09 00:00:00', '2016-06-03 00:00:00', 'all-inclusive European tour', 'London, England', '3000.0000', '112.5000', 15, 'EU', 'ECN', 'GR', 14, 0, 0),
@@ -631,6 +631,24 @@ INSERT INTO `fees` (`FeeId`, `FeeName`, `FeeAmt`, `FeeDesc`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `flightstable`
+--
+
+CREATE TABLE `flightstable` (
+  `FlightId` int(11) NOT NULL,
+  `FltPlaneNo` int(10) DEFAULT NULL,
+  `FltDepart` datetime DEFAULT NULL,
+  `FltReturn` datetime DEFAULT NULL,
+  `FltLocationAdd` text,
+  `FltLocation` text,
+  `FltDestination` text,
+  `RegionId` varchar(5) DEFAULT NULL,
+  `FltTicketPrice` decimal(19,4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `packages`
 --
 
@@ -642,15 +660,15 @@ CREATE TABLE `packages` (
   `PkgDesc` varchar(50) DEFAULT NULL,
   `PkgBasePrice` decimal(19,4) NOT NULL,
   `PkgAgencyCommission` decimal(19,4) DEFAULT NULL,
-  `DeparturePlnNo` int(10) DEFAULT NULL,
-  `ReturnPlnNo` int(10) DEFAULT NULL
+  `DeparturePlnId` int(11) DEFAULT NULL,
+  `ReturnPlnId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `packages`
 --
 
-INSERT INTO `packages` (`PackageId`, `PkgName`, `PkgStartDate`, `PkgEndDate`, `PkgDesc`, `PkgBasePrice`, `PkgAgencyCommission`, `DeparturePlnNo`, `ReturnPlnNo`) VALUES
+INSERT INTO `packages` (`PackageId`, `PkgName`, `PkgStartDate`, `PkgEndDate`, `PkgDesc`, `PkgBasePrice`, `PkgAgencyCommission`, `DeparturePlnId`, `ReturnPlnId`) VALUES
 (1, 'Caribbean New Year', '2017-12-25 00:00:00', '2017-01-04 00:00:00', 'Cruise the Caribbean & Celebrate the New Year.', '4800.0000', '400.0000', NULL, NULL),
 (2, 'Polynesian Paradise', '2016-12-12 00:00:00', '2016-12-20 00:00:00', '8 Day All Inclusive Hawaiian Vacation', '3000.0000', '310.0000', NULL, NULL),
 (3, 'Asian Expedition', '2016-05-14 00:00:00', '2016-05-28 00:00:00', 'Airfaire, Hotel and Eco Tour.', '2800.0000', '300.0000', NULL, NULL),
@@ -1379,7 +1397,9 @@ ALTER TABLE `bookingdetails`
   ADD KEY `DestinationsBookingDetails` (`RegionId`),
   ADD KEY `FeesBookingDetails` (`FeeId`),
   ADD KEY `Products_SuppliersBookingDetails` (`ProductSupplierId`),
-  ADD KEY `ProductSupplierId` (`ProductSupplierId`);
+  ADD KEY `ProductSupplierId` (`ProductSupplierId`),
+  ADD KEY `DeparturePlnNo` (`DeparturePlnId`),
+  ADD KEY `ReturnPlnNo` (`ReturnPlnId`);
 
 --
 -- Indexes for table `bookings`
@@ -1427,10 +1447,19 @@ ALTER TABLE `fees`
   ADD PRIMARY KEY (`FeeId`);
 
 --
+-- Indexes for table `flightstable`
+--
+ALTER TABLE `flightstable`
+  ADD PRIMARY KEY (`FlightId`),
+  ADD KEY `FltPlaneNo` (`FltPlaneNo`);
+
+--
 -- Indexes for table `packages`
 --
 ALTER TABLE `packages`
-  ADD PRIMARY KEY (`PackageId`);
+  ADD PRIMARY KEY (`PackageId`),
+  ADD KEY `DeparturePlnNo` (`DeparturePlnId`),
+  ADD KEY `ReturnPlnNo` (`ReturnPlnId`);
 
 --
 -- Indexes for table `packages_products_suppliers`
@@ -1595,6 +1624,15 @@ ALTER TABLE `customers`
 ALTER TABLE `customers_rewards`
   ADD CONSTRAINT `customers_rewards_ibfk_1` FOREIGN KEY (`CustomerId`) REFERENCES `customers` (`CustomerId`),
   ADD CONSTRAINT `customers_rewards_ibfk_2` FOREIGN KEY (`RewardId`) REFERENCES `rewards` (`RewardId`);
+
+--
+-- Constraints for table `flightstable`
+--
+ALTER TABLE `flightstable`
+  ADD CONSTRAINT `flight_bookingdetails_1` FOREIGN KEY (`FlightId`) REFERENCES `bookingdetails` (`DeparturePlnId`),
+  ADD CONSTRAINT `flight_bookingdetails_2` FOREIGN KEY (`FlightId`) REFERENCES `bookingdetails` (`ReturnPlnId`),
+  ADD CONSTRAINT `flight_packages_1` FOREIGN KEY (`FlightId`) REFERENCES `packages` (`DeparturePlnId`),
+  ADD CONSTRAINT `flight_packages_2` FOREIGN KEY (`FlightId`) REFERENCES `packages` (`ReturnPlnId`);
 
 --
 -- Constraints for table `packages_products_suppliers`
