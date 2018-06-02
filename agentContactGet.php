@@ -10,10 +10,29 @@
     else{
       // echo "Connection setup <br>";
     }
-    //query to grab items from database 
+    //query to grab items from database
     $grabAgency = mysqli_query($dbh, "SELECT * FROM agencies");
     // print_r($grabAgency); //this was to show if query was getting anything
     $array = mysqli_fetch_all($grabAgency, MYSQLI_ASSOC);
     // print_r($array); //this was used to see what was on the array
-    $num = mysqli_num_rows($grabAgency);
+
+    $grabAgentsCalgary = mysqli_query($dbh, "SELECT AgtFirstName, AgtLastName, AgtBusPhone, AgtEmail, AgtPosition FROM agents where AgencyId=1");
+    // print_r($grabAgentsCalgary); //used to test if query resturned results
+
+    $arrayCalgary = mysqli_fetch_all($grabAgentsCalgary, MYSQLI_ASSOC);
+    // print_r($arrayCalgary); //used to see if assosative array had correct values
+
+    foreach($arrayCalgary as $calgaryAgent){
+      echo "<p>";
+      foreach($calgaryAgent as $key =>$value){
+        echo $value;
+      }
+      echo "</p>";
+    }
+
+    $grabAgentsOkotoks = mysqli_query($dbh, "SELECT AgtFirstName, AgtLastName, AgtBusPhone, AgtEmail, AgtPosition FROM agents where AgencyId=2");
+
+    print_r($grabAgentsOkotoks); //used to test if query resturned results
+
+
      ?>
