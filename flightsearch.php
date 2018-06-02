@@ -12,24 +12,6 @@
     		margin: 0; padding: 0;clear: both;
     		background-image: url("images/bora_bora2.jpeg");
     	}
-		header{position: fixed; background-color:#3F3F3F;width: 100%;top: 0;z-index: 5;}
-		#navItems{
- 		   list-style-type: none;
-		   margin: 0;
-		   padding: 0;
-		   overflow: hidden;
-		   background-color:#242424;
-		   }
-		#tab1, #tab2, #tab3 {float: left;}
-		#tab4{float: right;}
-		li a {
-			display: block;
-			color: white;
-			text-align: center;
-			padding: 14px 16px;
-			text-decoration: none;
-			}
-		#tab1:hover,#tab2:hover,#tab3:hover,#tab4:hover {background-color: #333;}
 		#packageMenu {
 			width: 90vw;
 			height: 90vh;
@@ -59,6 +41,7 @@
 			background-color:#3F3F3F;
 		}
 		.dummyDesc{margin: 1vw;}
+		input{color: black;}
 	</style>
 </head>
 <body>
@@ -68,22 +51,18 @@
 		<h2 id="sectHead">Search for flight booking</h2>
 		<div id="searchBar">
 			<form action="include/flightdisplay.php" target="displayPort" method="post">
-				<a id="locations">
-					<label>From:
-						<input type="text" id="from" name="from" required="true" size="30vw"></label>
-					<label>Destination:
-						<input type="text" id="destination" name="destination" required="true" size="30vw">
-					</label>
-				</a>
-				<a id="timeframe">
-					<label>When:
-						<input type="date" name="date">
-					</label>
-					<label>Days
-						<input type="number" name="days">
-					</label>
-				</a>
-					<input type="submit" class="submit" name="submit" value="Search">
+				<label>From:
+					<input type="text" id="from" name="from" required="true" size="30vw"></label>
+				<label>Destination:
+					<input type="text" id="destination" name="destination" required="true" size="30vw">
+				</label>
+				<label>When:
+					<input type="date" name="date">
+				</label>
+				<label>Days
+					<input type="number" name="days">
+				</label>
+				<input type="submit" class="submit" value="Search">
 			</form>
 		</div>
 		<iframe name="displayPort" id="displayPackages" src="include/flightdisplay.php"></iframe>
