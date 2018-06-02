@@ -7,13 +7,15 @@
     <!-- normilize css file being lodaing in -->
     <link rel="stylesheet" type="text/css" href="css/default.css" />
     <!-- bootstrap being loading in -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- this is the css style for the webpage -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="css/contactUs.css" />
   </head>
   <body>
-    <?php include "agentContactGet.php" ?>
+    <?php include "banner/navbar.php" ?>
     <!-- jumbotron is holding the image and contact us wordds at top of page -->
       <div class="jumbotron rounded-0">
         <div id="jumboInfo">
@@ -79,38 +81,25 @@
   <!-- this is the container holding the address of the company and google maps -->
 
   <!-- this is a row to hold the contact info of each office -->
-  <div class="container">
+  <div class="container text-center">
     <div class="row">
-      <!-- this is the column for the calgary office -->
       <div class="col-sm-6">
-        <p>
-          <!-- i am calling the array of the arry and the key to give me the corisponding value  the code for this is in the agentContactGet.php-->
-          <div class="font-weight-bold">
-            Travel Experts Calgary<br>
-          </div>
-          <span class="glyphicons glyphicons-home"></span> <?php print $array[0]['AgncyAddress']; ?><br>
-          <?php print $array[0]['AgncyCity'] . "," . $array[0]['AgncyProv']; ?><br>
-          <?php print $array[0]['AgncyPostal']; ?><br>
-          <?php print $array[0]['AgncyPhone']; ?><br>
-          <?php print $array[0]['AgncyFax']; ?><br>
-        </p>
+        Travel Experts Calgary
       </div>
-      <!-- this is the column for the okotoks office -->
-    <div class="col-sm-6">
-      <p>
-        <!-- i am calling the array of the arry and the key to give me the corisponding value  -->
-        <div class="font-weight-bold">
-          Travel Experts Okotoks<br>
-        </div>
-        <?php print $array[1]['AgncyAddress']; ?><br>
-        <?php print $array[1]['AgncyCity'] . "," . $array[0]['AgncyProv']; ?><br>
-        <?php print $array[1]['AgncyPostal']; ?><br>
-        <?php print $array[1]['AgncyPhone']; ?><br>
-        <?php print $array[1]['AgncyFax']; ?><br>
-      </p>
+      <div class="col-sm-6">
+        Travel Experts Okotoks
+      </div>
+    </div>
+    <?php include "agenciesContact.php" ?>
+    <div class="row">
+      <div class="col-sm-6">
+        <?php include "calgaryAgents.php" ?>
+      </div>
+      <div class="col-sm-6">
+        <?php include "okotoksAgents.php" ?>
+      </div>
     </div>
   </div>
-</div>
     <!-- i inlcude the footer here which is a styled bootstrap footer, i will update that later -->
     <?php include "footer.php" ?>
     <script type="text/javascript" src="js/contactUs.js"></script>
