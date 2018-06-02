@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="css/contactUs.css" />
   </head>
   <body>
-    <?php include "agentContactGet.php" ?>
     <!-- jumbotron is holding the image and contact us wordds at top of page -->
       <div class="jumbotron rounded-0">
         <div id="jumboInfo">
@@ -79,38 +78,25 @@
   <!-- this is the container holding the address of the company and google maps -->
 
   <!-- this is a row to hold the contact info of each office -->
-  <div class="container">
+  <div class="container text-center">
     <div class="row">
-      <!-- this is the column for the calgary office -->
       <div class="col-sm-6">
-        <p>
-          <!-- i am calling the array of the arry and the key to give me the corisponding value  the code for this is in the agentContactGet.php-->
-          <div class="font-weight-bold">
-            Travel Experts Calgary<br>
-          </div>
-          <span class="glyphicons glyphicons-home"></span> <?php print $array[0]['AgncyAddress']; ?><br>
-          <?php print $array[0]['AgncyCity'] . "," . $array[0]['AgncyProv']; ?><br>
-          <?php print $array[0]['AgncyPostal']; ?><br>
-          <?php print $array[0]['AgncyPhone']; ?><br>
-          <?php print $array[0]['AgncyFax']; ?><br>
-        </p>
+        Travel Experts Calgary
       </div>
-      <!-- this is the column for the okotoks office -->
-    <div class="col-sm-6">
-      <p>
-        <!-- i am calling the array of the arry and the key to give me the corisponding value  -->
-        <div class="font-weight-bold">
-          Travel Experts Okotoks<br>
-        </div>
-        <?php print $array[1]['AgncyAddress']; ?><br>
-        <?php print $array[1]['AgncyCity'] . "," . $array[0]['AgncyProv']; ?><br>
-        <?php print $array[1]['AgncyPostal']; ?><br>
-        <?php print $array[1]['AgncyPhone']; ?><br>
-        <?php print $array[1]['AgncyFax']; ?><br>
-      </p>
+      <div class="col-sm-6">
+        Travel Experts Okotoks
+      </div>
+    </div>
+    <?php include "agenciesContact.php" ?>
+    <div class="row">
+      <div class="col-sm-6">
+        <?php include "calgaryAgents.php" ?>
+      </div>
+      <div class="col-sm-6">
+        <?php include "okotoksAgents.php" ?>
+      </div>
     </div>
   </div>
-</div>
     <!-- i inlcude the footer here which is a styled bootstrap footer, i will update that later -->
     <?php include "footer.php" ?>
     <script type="text/javascript" src="js/contactUs.js"></script>
