@@ -1,31 +1,20 @@
  <html>
 <head>
       <title>Travel Agency</title>
-      <link href="homestyle.css" rel="stylesheet" type="text/css">
-      <script type="text/javascript">
-                var cycle = 0;
-                var allBackgrounds = [ "images/background1.jpg",
-                     "images/background2.jpg",
-                     "images/background3.jpg",
-                     "images/background4.jpg",
-                     "images/background5.jpg" ];
+     <link href="home_style.css" rel="stylesheet" type="text/css">
+     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 
-                function myFunction()
-                {
-                  if (cycle < 5)
-                  {
-                      document.body.style.backgroundImage = "url('" + allBackgrounds[cycle] + "')";
-                      cycle += 1;
-                  }
-                  else
-                  {
-                      cycle = 0;
-                  }
-                }
-      </script>
-</head>      
-<body onload="setTimeout(myFunction, 3000);">
-          <div class="bgimage">
+
+</head>
+<body>
+
+    <!--   style="background: url(images/background1.jpg);background-repeat:no-repeat; background-size:100% 100%"  -->
+          <div class="bgimage" >
+            <video id="video-bg" preload="auto" autoplay="true" loop="loop" muted="muted"  >
+                <source src="video/background.mp4" type="video/mp4" >
+                  video not supported
+                  
+            </video>
                   <header>
                     <?php
                          include_once 'Banner/navbar.php';
@@ -35,13 +24,22 @@
                    <main>
                         <center><h1 id="offers_title"> Our Exciting Offers </h1> </center>
                         <div class="package1">
-                                <h3> Bora Bora </h3>
+                                <div class="package1_content">
+                                  <h3> Bora Bora </h3>
+                                  <h4> 3 Night 4 days... only $1200 </4>
+                                </div>
                         </div>
                         <div class="package2">
-                                <h3> San Francisco </h3>
+                                <div class="package2_content">
+                                  <h3> San Francisco </h3>
+                                  <h4> 5 Night 6 days... only $800 </4>
+                                </div>
                         </div>
                         <div class="package3">
-                                <h3> New York </h3>
+                                <div class="package3_content">
+                                  <h3> New York </h3>
+                                  <h4> 6 Night 7 days... only $1000 </4>
+                                </div>
                         </div>
                    </main>
           </div>
