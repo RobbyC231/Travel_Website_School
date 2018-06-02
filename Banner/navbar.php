@@ -6,7 +6,7 @@
 </head>
 <?php
     //this it the include php for the login modal
-    include '../include/login.php';
+    include 'include/login.php';
 ?>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
   <a class="navbar-brand" href="#">Travel Paradise</a>
