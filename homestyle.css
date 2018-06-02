@@ -5,13 +5,6 @@
 
 }
 
-.bgimage
-{
-  background-image:linear-gradient(rgba(0,0,0,0.1),rgba(0, 0, 0, 0.1)), url('images/background1.jpg');
-  background-size: 100% 200%;
-  width: 100% ;
-
-}
 
 .menu
 {
