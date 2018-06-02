@@ -1,4 +1,5 @@
 <?php
+// robert code
   //this is used to connect to the database
     $dbh = new mysqli("localhost","root","","travelexperts");
   //check if connection is succesful
@@ -27,27 +28,4 @@
             </div>";
     }
     echo "</div>";
-
-    // for($i=1; $i<=2; $i++){
-    //   $grabAgents = mysqli_query($dbh, "SELECT AgtFirstName, AgtLastName, AgtBusPhone, AgtEmail, AgtPosition FROM agents where AgencyId=$i");
-    //   print_r($grabAgents);
-    //   function testloop($i);
-    // }
-    // // print_r($grabAgents); //used to test if query resturned results
-    // // function testloop(){
-    // $arrayAgents = mysqli_fetch_all($grabAgents, MYSQLI_ASSOC);
-    // print_r($arrayAgents);
-    // //used to see if assosative array had correct values
-    // //
-    // // foreach($arrayCalgary as $calgaryAgent){
-    // //   echo "<p>";
-    // //   foreach($calgaryAgent as $key =>$value){
-    // //     echo $value . "<br>";
-    // //   }
-    // //   echo "</p>";
-    // // }
-    //
-    // // print_r($grabAgentsOkotoks); //used to test if query resturned results
-
-
      ?>

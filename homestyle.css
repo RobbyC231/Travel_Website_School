@@ -1,26 +1,25 @@
-*
+/* *
 {
   margin: 0px;
   padding: 0px;
 
-}
+} */
 
-
-.menu
+/* .menu
 {
   width: 100%;
   height: 100px;
   background-color: rgba(0,0,0,0.9);
-}
+} */
 
-.leftmenu
+/* .leftmenu
 {
   width: 30%;
   line-height: 100px;
   float: left;
   font-family: 'Montserrat', sans-serif;
-}
-
+} */
+/*
 .leftmenu h4
 {
   padding-left: 70px;
@@ -61,7 +60,7 @@
 .rightmenu ul li a:hover
 {
   color: orange;
-}
+} */
 .mainpart
 {
   width: 100%;

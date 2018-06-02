@@ -1,4 +1,5 @@
 <?php
+// robert code
 $dbh = new mysqli("localhost","root","","travelexperts");
 //check if connection is succesful
  if(!$dbh){
