@@ -1,3 +1,13 @@
+//need codes for db create associative arrays for this I think
+//Add all new fields to reset and submitted
+//create pass/fail variables for submit
+//check out type="email"
+//add password checklist
+//comparing to dm make max field lenghts
+//auto fill parenthesis and dashes where needed likely will make easier for php as always same character length
+//complete province select
+//username and password regular expressions
+
 //this is the .js for the userdata form
 //registered expressions used for postal code and bus_phone number formats
 //Chris Earle OOSD 5/26/2018
@@ -9,8 +19,9 @@ var zip_code_code = /^\d{5}(?:[-\s]\d{4})?$/;
 //	/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 //this array is the acceptable two letter provincial symbols
-var province_codes = ["AB", "BC", "NL", "PE", "NS", "NB", "QC", "MB", "SK", "YT", "NT", "NU"];
-var state_codes = [
+//var province_codes = ["AB", "BC", "NL", "PE", "NS", "NB", "QC", "MB", "SK", "YT", "NT", "NU"];
+var provinces = ["Alberta", "British Columbia", "Newfoundland and Labrador", "Prince Edward Island", "Nova Scotia", "New Brunswick", "Quebec", "Manatoba", "Saskatchewan", "Yukon", "Nunavut", "Northwest Territories"];
+/*var state_codes = [
     "AL",
     "AK",
     "AS",
@@ -70,7 +81,28 @@ var state_codes = [
     "WV",
     "WI",
     "WY"
-];
+];*/
+
+var states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine',
+'Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania',
+'Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+
+var total_states = states.length;
+var total_provinces = provinces.length;
+
+//	document.getElementById("test").innerHTML = "You selected:"+"<br/>"+
+//    "and more";
+//create all the selection options for the states
+for(var option=0; option<total_states; option++){
+    var new_option = document.getElementById('state');
+    new_option.insertAdjacentHTML("beforeend", "<option>"+states[option]+"</option>");
+}
+
+for(var option=0; option<total_provinces; option++){
+    var new_option = document.getElementById('province');
+    new_option.insertAdjacentHTML("beforeend", "<option>"+provinces[option]+"</option>");
+}
+
 
 //when the userdata form is submitted
 var submitScript = document.getElementById('submit');
@@ -89,7 +121,7 @@ submitScript.onclick = function(){
 	if (first_name.length>0 && last_name.length>0 && address.length>0 && city.length>0 && province.length>0 && postal_code.match(postal_code_code) && phone.match(phone_code))
 		{
 			if (confirm("Are you sure")){
-				document.getElementById('user_data').submit();
+				document.getElementById('customer_data').submit();
 			}return false; //needed to prevent form submit when conditions are not met
 		}
 		else {
@@ -101,23 +133,23 @@ submitScript.onclick = function(){
 var resetScript = document.getElementById('clear');
 resetScript.onclick = function(){
 	if(confirm("Are you sure?")){
-		document.getElementById('user_data').reset();
+		document.getElementById('customer_data').reset();
 		//resets fail-pass icons
-			document.getElementById("pcode_pass");
-			pcode_pass.style.display="none";
-			document.getElementById("phone_pass");
-			phone_pass.style.display="none";
-			document.getElementById("province_pass");
-			province_pass.style.display="none";
-			document.getElementById("fname_pass");
-			fname_pass.style.display="none";
-			document.getElementById("lname_pass");
-			lname_pass.style.display="none";
-			document.getElementById("address_pass");
-			address_pass.style.display="none";
-			document.getElementById("city_pass");
-			city_pass.style.display="none";
-			}return false;
+		document.getElementById("pcode_pass");
+		pcode_pass.style.display="none";
+		document.getElementById("phone_pass");
+		phone_pass.style.display="none";
+		document.getElementById("province_pass");
+		province_pass.style.display="none";
+		document.getElementById("fname_pass");
+		fname_pass.style.display="none";
+		document.getElementById("lname_pass");
+		lname_pass.style.display="none";
+		document.getElementById("address_pass");
+		address_pass.style.display="none";
+		document.getElementById("city_pass");
+		city_pass.style.display="none";
+		}return false;
 }
 
 //This is for data validation
@@ -147,6 +179,10 @@ resetScript.onclick = function(){
 			pcode_pass.style.display = "inline";
 		}
 	}
+
+
+
+
 
 	function zip_code_oninput(){
 	//	var zip_code = document.getElementById('zip_code').value;
@@ -247,7 +283,7 @@ resetScript.onclick = function(){
 	}
 
 
-	function state_oninput(){
+/*	function state_oninput(){
 		var state = document.getElementById('state');
 		var state = document.getElementById('state').value;
 		var state = state.toUpperCase();
@@ -264,7 +300,7 @@ resetScript.onclick = function(){
 			state_pass.style.display = "inline";
 		}
 	}
-
+*/
 
 
 
@@ -292,6 +328,23 @@ resetScript.onclick = function(){
 	function zip_code_blur(){
 		zip_code_note.style.display = "none";
 	}
+
+    function state_onchange(){
+    		var state = document.getElementById('state').value;
+    		if (states.indexOf(state)>=0)
+    		{
+    			document.getElementById("state_pass").src="icons/checked.png";
+    			state_pass.style.display="block";
+    			state_pass.style.display = "inline";
+    		}
+    		else
+    		{
+    			document.getElementById("state_pass").src="icons/fail.png";
+    			state_pass.style.display="block";
+    			state_pass.style.display = "inline";
+    		}
+    	}
+
 
 	function country_onchange(){
 		var country = document.getElementById("country").value;

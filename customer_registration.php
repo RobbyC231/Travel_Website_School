@@ -23,7 +23,7 @@
 
 		<!--need to get bouncer.php put in for project-->
 		<!--the img here is used for form validation check mark or an x-->
-        <form action="bouncer.php" id="customer_data">
+		<form id="customer_data">
 			<div>
 				<div class="form_column">
 					<div class="formline">
@@ -45,21 +45,27 @@
 							<option value="United States">United States</option>
 						</select>
 						<img id="country_pass"  style="display:none" src="icons/checked.png">
-
 					</div>
 
-					<div class="formline" id=province_toggle>
-							<label class="field" for="province">Province:</label>
-							<input id="province" type="text" name="province" oninput="province_oninput()" onfocus="province_focus()" onblur="province_blur()"/>
-							<img id="province_pass"  style="display:none" src="icons/checked.png">
-							<div id="province_note" style="display:inline;display:none">please enter the two letter provincial symbol</div>
-					</div>
-					<div class="formline" id=state_toggle style="display:none">
+
+
+					<div class="formline" id="state_toggle" style="display:none">
 						<label class="field" for="state">State:</label>
-						<input id="state" type="text" name="state" oninput="state_oninput()" onfocus="state_focus()" onblur="state_blur()"/>
+						<select id="state" class="sizing" name="test" onchange="state_onchange()">
+							<option></option>
+						</select>
 						<img id="state_pass"  style="display:none" src="icons/checked.png">
-						<div id="state_note" style="display:inline;display:none">please enter the two letter state symbol</div>
 					</div>
+
+
+					<div class="formline" id="province_toggle" style="display:none">
+						<label class="field" for="province">Province:</label>
+						<select id="province" class="sizing" name="test" onchange="province_onchange()">
+							<option></option>
+						</select>
+						<img id="province_pass"  style="display:none" src="icons/checked.png">
+					</div>
+
 
 					<div class="formline">
 						<label class="field" for="city">City:</label>
