@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Footer</title>
+    <link href="css/footer_style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <!-- Footer -->
     <footer class="page-footer font-small unique-color-dark mt-4">
-      <div style="background-color: #6351ce;">
+      <div style="background:rgba(247,60,13,.7)">
         <div class="container">
       <!-- Grid row-->
       <div class="row py-4 d-flex align-items-center">
@@ -38,6 +39,7 @@
   </div>
   <!-- Footer Links -->
   <div class="container text-center text-md-left mt-5">
+      <div style="background:rgba(247,60,13,.7)">
     <!-- Grid row -->
     <div class="row mt-3">
       <!-- Grid column -->

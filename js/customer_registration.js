@@ -12,7 +12,7 @@
 //registered expressions used for postal code and bus_phone number formats
 //Chris Earle OOSD 5/26/2018
 var postal_code_code = /^[a-zA-Z]\d[a-zA-Z] ?\d[a-zA-Z]\d$/;
-var phone_code = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
+var phone_code = /^\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
 var email_code = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 var zip_code_code = /^\d{5}(?:[-\s]\d{4})?$/;
 
@@ -212,20 +212,37 @@ resetScript.onclick = function(){
 	}
 	function phone_oninput(){
 		var phone = document.getElementById('phone');
-		var postal_code = document.getElementById('phone').value;
+		var phone_code = document.getElementById('phone').value;
+
 		if (phone.value.match(phone_code))
 		{
-			document.getElementById("phone_pass").src="icons/checked.png";
+            document.getElementById("phone_pass").src="icons/checked.png";
 			phone_pass.style.display="block";
 			phone_pass.style.display = "inline";
-		}
-		else
-		{
+		}else{
 			document.getElementById("phone_pass").src="icons/fail.png";
 			phone_pass.style.display="block";
 			phone_pass.style.display = "inline";
 		}
 	}
+
+
+    function autophone_format(event){
+        var phformat = document.getElementById('phone').value;
+        /*phformat.value=phformat.value.toUpperCase();
+        var part1 = phformat.substr(3,3);
+        var part2 = phformat.substr(3,4);
+        var part3 = phformat.substr(6,4);*/
+
+            if(phformat.length==1){
+                document.getElementById('phone').value = "("+phformat;
+            }else if(phformat.length==4){
+                document.getElementById('phone').value = phformat+")";
+            }
+
+    }
+
+
 
 	//business phone
 	function bus_phone_focus(){
@@ -238,7 +255,7 @@ resetScript.onclick = function(){
 	}
 	function bus_phone_oninput(){
 		var bus_phone = document.getElementById('bus_phone');
-		var postal_code = document.getElementById('bus_phone').value;
+		var phone_code = document.getElementById('bus_phone').value;
 		if (bus_phone.value.match(phone_code))
 		{
 			document.getElementById("bus_phone_pass").src="icons/checked.png";
@@ -398,7 +415,6 @@ resetScript.onclick = function(){
 
 	//First Name
 	function fname_oninput(){
-		var fname = document.getElementById('first_name');
 		var fname = document.getElementById('first_name').value;
 		if (fname.length>0)
 		{

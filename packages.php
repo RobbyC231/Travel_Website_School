@@ -3,21 +3,17 @@
 <head>
 	<title>Travel Experts - Vacation Packages</title>
 	<meta name="viewport" content="width=device-width">
+    <link href="homestyle.css" rel="stylesheet" type="text/css">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<script src="js/jquery-3.3.1.min.js"></script>
 	<style type="text/css">
 		body{color: white; border-top: 0;
     		margin: 0; padding: 0;clear: both;
+    		font-family: 'Montserrat', sans-serif;
     		background-image: url("images/bora_bora2.jpeg");
     	}
-		header{position: fixed; background-color:#3F3F3F;width: 100%;top: 0;z-index: 5;}
-		#navItems{
- 		   list-style-type: none;
-		   margin: 0;
-		   padding: 0;
-		   overflow: hidden;
-		   background-color:#242424;
-		   }
-		#tab1, #tab2, #tab3 {float: left;}
-		#tab4{float: right;}
 		li a {
 			display: block;
 			color: white;
@@ -25,83 +21,115 @@
 			padding: 14px 16px;
 			text-decoration: none;
 			}
-		#tab1:hover,#tab2:hover,#tab3:hover,#tab4:hover {background-color: #333;}
 		#packageMenu {
-			width: 90vw;
-			height: 90vh;
+			display: flex; flex-wrap: wrap;
 			background-color:#242424;
 			margin: 3vw;
 			opacity: 0.90;
 		}
-		#sectHead{margin: 1vw;}
-		#searchBar{
-			background-color:#3F3F3F;
-			width: 95%;
-			height: 15%;
-			margin: 1vw;
-		}
-		#locations, #timeframe{display: block; float: left;margin: 1vw;}
-		label{margin-right: 3vw;}
-		.submit{float: right; margin: 1vw;}
-		#displayPackages{
-			background-color:#BCBCBC;
-			width: 95%;height: 65vh;
-			margin: 1vw;
-			overflow: scroll;
-		}
-		.dummyItem{
-			width: 95%;height: 15vh;
-			margin: 1vw;
+		.sectHead{margin: 1vw;width: 100vw}
+		.packageStyling{
+			color: black; font-size: 250%;
+			text-align: left;
+			width: 40vw; height: 45vh;
+			margin: 1vw; float: left;
 			background-color:#3F3F3F;
 		}
-		.dummyDesc{margin: 1vw;}
+		#packageDisplay{
+			color: black;
+			width: 95vw;
+		}
 	</style>
 </head>
 <body>
-	<header>
-		<div><h2>Travel Experts (Placeholder Banner)</h2></div>		
-		<nav id="navMenu">
-			<ul id="navItems">
-				<li id="tab1"><a>(item1)</a></li>
-				<li id="tab2"><a>(item2)</a></li>
-				<li id="tab3"><a>(item1)</a></li>
-				<li id="tab4"><a>(item1)</a></li>
-			</ul>
-		</nav>
-	</header>
-	<br/><br/><br/><br/><br/><br/><br/>
+	<?php include "include/navbar.php"?>
+	<br/><br/>
 	<section id="packageMenu">
-		<h2 id="sectHead">Search for package</h2>
-		<div id="searchBar">
-			<form>
-				<a id="locations">
-					<label>From:
-						<input type="text" id="from" name="from" required="true" size="30vw"></label>
-					<label>Destination:
-						<input type="text" id="destination" name="destination" required="true" size="30vw">
-					</label>
-				</a>
-				<a id="timeframe">
-					<label>When:
-						<input type="date" name="date">
-					</label>
-					<label>Days
-						<input type="number" name="days">
-					</label>
-				</a>
-					<input type="submit" class="submit" name="submit" value="Search">
-			</form>
-		</div>
-		<div id="displayPackages">
-			<div class="dummyItem"><a class="dummyDesc">Dummy Item</a></div>
-			<div class="dummyItem"><a class="dummyDesc">Dummy Item</a></div>
-			<div class="dummyItem"><a class="dummyDesc">Dummy Item</a></div>
-			<div class="dummyItem"><a class="dummyDesc">Dummy Item</a></div>
-			<div class="dummyItem"><a class="dummyDesc">Dummy Item</a></div>
-			<div class="dummyItem"><a class="dummyDesc">Dummy Item</a></div>
-			<div class="dummyItem"><a class="dummyDesc">Dummy Item</a></div>
-			<div class="dummyItem"><a class="dummyDesc">Dummy Item</a></div>
-		</div>
+		<h2 class="sectHead">Our Travel Packages</h2>
+		<?php
+			$dbinst = mysqli_connect("localhost","root","","travelexperts");
+			if (mysqli_connect_errno()){echo "Failed to connect to MySQL: " . mysqli_connect_error();}
+			$result = mysqli_query($dbinst, "SELECT * FROM packages");
+			while ($row=mysqli_fetch_row($result)) 
+				{
+					$image;
+					//Change image according to package name
+					if($row[1]=="Caribbean Tour"){$image="carribean.jpg";}
+					else if($row[1]=="Polynesian Paradise"){$image="polynesia.jpg";}
+					else if($row[1]=="Asian Expedition"){$image="asianhiking.jpg";}
+					else if($row[1]=="European Vacation"){$image="europevac.jpg";}
+
+					//Create items for packages
+					echo 
+					"<div class='packageStyling' data-toggle='modal' data-target='#packageDisplay' onclick='popupTravel(\"".$image."\",\"".$row[1]."\")'
+					style='background-image:url(\"images/flightpackagepics/".$image."\");'>"
+					.$row[1]."</div>";
+					//$row[2].$row[3].$row[4].$row[5]
+				}
+		?>
 	</section>
+	<p id="demo"></p>
+	<?php include "include/footer.php"; ?>
+
+	<!--Screenpopup-->
+	<div class="modal fade" id="packageDisplay" role="dialog">
+    	<div class="modal-dialog modal-lg">
+    	
+      		<!-- Modal content-->
+      		<div class="modal-content" id="popupBox">
+        		<div class="modal-header" id="popupHead">
+        	  	<button type="button" class="close" data-dismiss="modal">&times;</button>
+        	  		<h4 class="modal-title" id="popupName">(Tourname)</h4>
+        		</div>
+        		<div class="modal-body" id="popupContent">
+        	  		<p>(Tourdescription)</p>
+        		</div>
+        		<div class="modal-footer">
+       	 	  		<h4 class="modal-title" id="popupPrice">(Price)</h4><button type="button" class="btn btn-default">Book</button>
+        	</div>
+      		</div>
+    	</div>
+  	</div>
+  	<script type="text/javascript">
+  		function popupTravel($packname){
+  			//console.log($packname);
+  			if($packname=="carribean.jpg"){
+  				$("#popupBox").css("backgroundImage", "url('images/flightpackagepics/carribean.jpg')");
+  				$("#popupName").html("Caribbean Tour");
+  				$("#popupContent").html(
+  					"2018-06-11<br/>"+
+  					"2018-06-20<br/>"+
+  					"Cruise the Caribbean & Celebrate the New Year.<br/>");
+  				$("#popupPrice").html("4800.00");
+  			}
+  			else if($packname=="polynesia.jpg"){
+  				$("#popupBox").css("backgroundImage", "url('images/flightpackagepics/polynesia.jpg')");
+  				$("#popupName").html("Polynesian Paradise");
+  				$("#popupContent").html(
+  					"2018-06-17<br/>"+
+  					"2018-06-26<br/>"+
+  					"9 Day All Inclusive Hawaiian Vacation.<br/>");
+  				$("#popupPrice").html("3000.00");
+  			}
+  			else if($packname=="asianhiking.jpg"){
+  				$("#popupBox").css("backgroundImage", "url('images/flightpackagepics/asianhiking.jpg')");
+  				$("#popupName").html("Asian Expedition");
+  				$("#popupContent").html(
+  					"2018-06-14<br/>"+
+  					"2018-06-29<br/>"+
+  					"Airfaire, Hotel and Eco Tour.<br/>");
+  				$("#popupPrice").html("2800.00");
+  			}
+  			else if($packname=="europevac.jpg"){
+  				$("#popupBox").css("backgroundImage", "url('images/flightpackagepics/europevac.jpg')");
+  				$("#popupName").html("European Vacation");
+  				$("#popupContent").html(
+  					"2018-06-02<br/>"+
+  					"2018-06-17<br/>"+
+  					"Euro Tour with Rail Pass and Travel Insurance.<br/>");
+  				$("#popupPrice").html("3000.00");
+  			}
+  		}
+  	</script>
 </body>
 </html>
