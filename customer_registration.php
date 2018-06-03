@@ -23,7 +23,7 @@
 
 		<!--need to get bouncer.php put in for project-->
 		<!--the img here is used for form validation check mark or an x-->
-		<form id="customer_data">
+		<form id="customer_data" method="post" action="ServerSideRegister\registerSever.php">
 			<div>
 				<div class="form_column">
 					<div class="formline">
@@ -51,7 +51,7 @@
 
 					<div class="formline" id="state_toggle" style="display:none">
 						<label class="field" for="state">State:</label>
-						<select id="state" class="sizing" name="test" onchange="state_onchange()">
+						<select id="state" class="sizing" name="state" onchange="state_onchange()">
 							<option></option>
 						</select>
 						<img id="state_pass"  style="display:none" src="icons/checked.png">
@@ -60,7 +60,7 @@
 
 					<div class="formline" id="province_toggle" style="display:none">
 						<label class="field" for="province">Province:</label>
-						<select id="province" class="sizing" name="test" onchange="province_onchange()">
+						<select id="province" class="sizing" name="province" onchange="province_onchange()">
 							<option></option>
 						</select>
 						<img id="province_pass"  style="display:none" src="icons/checked.png">
@@ -140,7 +140,6 @@
 
 
 		</form>
-
 
 		<!--copyrigth-->
 		<?php
