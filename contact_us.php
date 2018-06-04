@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="css/contactUs.css" />
   </head>
   <body>
-    <?php include "banner/navbar.php" ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . "/WebsiteProject/include/navbar.php" ?>
     <!-- jumbotron is holding the image and contact us wordds at top of page -->
       <div class="jumbotron rounded-0">
         <div id="jumboInfo">
@@ -101,7 +101,7 @@
     </div>
   </div>
     <!-- i inlcude the footer here which is a styled bootstrap footer, i will update that later -->
-    <?php include "footer.php" ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . "/WebsiteProject/include/footer.php" ?>
     <script type="text/javascript" src="js/contactUs.js"></script>
   </body>
 <!-- robert   -->
