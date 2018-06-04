@@ -14,7 +14,7 @@ $result = $mysqli->query("SELECT * FROM customers WHERE CustEmail='$email'");
 if ( $result->num_rows == 0 ){ // User doesn't exist
   $_SESSION['message'] = "User with that email doesn't exist!";
   // echo $_SESSION['message'];
-  // header("location: error.php");
+  header("location: ServerSideRegister/error.php");
 }
 else { // User exists
   $user = $result->fetch_assoc();
@@ -28,13 +28,13 @@ else { // User exists
 
       // This is how we'll know the user is logged in
       $_SESSION['logged_in'] = true;
-      // header("location:contact_us.php");
+      header("location:contact_us.php");
 
   }
   else {
       $_SESSION['message'] = "You have entered wrong password, try again!";
       // echo $_SESSION['message'];
-      // header("location: ServerSideReegister/error.php");
+      header("location: ServerSideRegister/error.php");
   }
 }
 // robert clements

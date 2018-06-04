@@ -171,7 +171,7 @@ var resetScript = document.getElementById('clear');
 resetScript.onclick = function(){
 	if(confirm("Are you sure?")){
 		//resets fail-pass icons
-        document.getElementsByClassName('checker')
+        document.getElementsByClassName('checker');
         checker.style.display="none";
 		}return false;
 }
