@@ -20,20 +20,19 @@
                 //include .php for banner
         	?>
 		</header>
-
 		<!--need to get bouncer.php put in for project-->
 		<!--the img here is used for form validation check mark or an x-->
-		<form id="customer_data">
+		<form id="customer_data" method="post" action="ServerSideRegister/registerSever.php">
 			<div>
 				<div class="form_column">
 					<div class="formline">
 						<label class="field" for="first_name">First Name:</label>
-						<input id="first_name" type="text" name="first_name" oninput="fname_oninput()" onfocus="fname_focus()" onblur="fname_blur()"/>
+						<input value="robert" id="first_name" type="text" name="first_name" oninput="fname_oninput()" onfocus="fname_focus()" onblur="fname_blur()"/>
 			            <img id="fname_pass"  style="display:none" src="icons/checked.png">
 					</div>
 					<div class="formline">
 						<label class="field" for="last_name">Last Name:</label>
-						<input id="last_name" type="text" name="last_name" oninput="lname_oninput()" onfocus="lname_focus()" onblur="lname_blur()"/>
+						<input value="clements" id="last_name" type="text" name="last_name" oninput="lname_oninput()" onfocus="lname_focus()" onblur="lname_blur()"/>
 						<img id="lname_pass"  style="display:none" src="icons/checked.png">
 					</div>
 					<div class="formline">
@@ -51,7 +50,7 @@
 
 					<div class="formline" id="state_toggle" style="display:none">
 						<label class="field" for="state">State:</label>
-						<select id="state" class="sizing" name="test" onchange="state_onchange()">
+						<select id="state" class="sizing" name="state" onchange="state_onchange()">
 							<option></option>
 						</select>
 						<img id="state_pass"  style="display:none" src="icons/checked.png">
@@ -60,7 +59,7 @@
 
 					<div class="formline" id="province_toggle" style="display:none">
 						<label class="field" for="province">Province:</label>
-						<select id="province" class="sizing" name="test" onchange="province_onchange()">
+						<select id="province" class="sizing" name="province" onchange="province_onchange()">
 							<option></option>
 						</select>
 						<img id="province_pass"  style="display:none" src="icons/checked.png">
@@ -69,12 +68,12 @@
 
 					<div class="formline">
 						<label class="field" for="city">City:</label>
-						<input id="city" type="text" name="city" oninput="city_oninput()" onfocus="city_focus()" onblur="city_blur()"/>
+						<input value="halifax" id="city" type="text" name="city" oninput="city_oninput()" onfocus="city_focus()" onblur="city_blur()"/>
 						<img id="city_pass"  style="display:none" src="icons/checked.png">
 					</div>
 					<div class="formline" id="pcode_toggle">
 						<label class="field" for="postal_code">Postal Code:</label>
-						<input id="postal_code" type="text" name="postal_code" oninput="pcode_oninput()" onfocus="pcode_focus()" onblur="pcode_blur()"/>
+						<input value="t3c0w5" id="postal_code" type="text" name="postal_code" oninput="pcode_oninput()" onfocus="pcode_focus()" onblur="pcode_blur()"/>
 						<img id="pcode_pass"  style="display:none" src="icons/checked.png">
 						<div id="pcode_note" style="display:inline;display:none">A1B 2C3</div>
 					</div>
@@ -86,18 +85,18 @@
 					</div>
 					<div class="formline">
 						<label class="field" for="address">Address:</label>
-						<input id="address" type="text" name="address" oninput="address_oninput()" onfocus="address_focus()" onblur="address_blur()"/>
+						<input value="23 summit st" id="address" type="text" name="address" oninput="address_oninput()" onfocus="address_focus()" onblur="address_blur()"/>
 						<img id="address_pass"  style="display:none" src="icons/checked.png">
 					</div>
 					<div class="formline">
 						<label class="field" for="phone">Phone Number:</label>
-						<input id="phone" type="text" name="phone" oninput="phone_oninput()" onfocus="phone_focus()" onblur="phone_blur()"/>
+						<input value="9024698280" id="phone" type="text" name="phone" oninput="phone_oninput()" onfocus="phone_focus()" onblur="phone_blur()"/>
 						<img id="phone_pass"  style="display:none" src="icons/checked.png">
 						<div id="phone_note" style="display:inline;display:none">123-456-7890 area code included</div>
 					</div>
 					<div class="formline">
 						<label class="field" for="bus_phone">Business Phone:</label>
-						<input id="bus_phone" type="text" name="bus_phone" oninput="bus_phone_oninput()" onfocus="bus_phone_focus()" onblur="bus_phone_blur()"/>
+						<input value="9024698280" id="bus_phone" type="text" name="bus_phone" oninput="bus_phone_oninput()" onfocus="bus_phone_focus()" onblur="bus_phone_blur()"/>
 						<img id="bus_phone_pass"  style="display:none" src="icons/checked.png">
 						<div id="bus_phone_note" style="display:inline;display:none">if the same as your home phone, enter home phone</div>
 					</div>
@@ -105,28 +104,28 @@
 				<div class="form_column">
 					<div class="formline">
 						<label class="field" for="email">Email:</label>
-						<input id="email" type="text" name="email" oninput="email_oninput()" onfocus="email_focus()" onblur="email_blur()"/>
+						<input value="clementsro.231@gmail.com" id="email" type="text" name="email" oninput="email_oninput()" onfocus="email_focus()" onblur="email_blur()"/>
 						<img id="email_pass"  style="display:none" src="icons/checked.png">
 						<div id="email_note" style="display:inline;display:none">123-456-7890 area code included</div>
 					</div>
 					<div class="formline">
 						<label class="field" for="conf_email">Confirm Email:</label>
-						<input id="conf_email" type="text" name="conf_email" oninput="conf_email_oninput()" onfocus="conf_email_focus()" onblur="conf_email_blur()"/>
+						<input value="clementsro.231@gmail.com" id="conf_email" type="text" name="convalue="clementsro.231@gmail.com" f_email" oninput="conf_email_oninput()" onfocus="conf_email_focus()" onblur="conf_email_blur()"/>
 						<img id="conf_email_pass"  style="display:none" src="icons/checked.png">
 					</div>
 					<div class="formline">
 						<label class="field" for="username">Username:</label>
-						<input id="username" type="text" name="username" oninput="username_oninput()" onfocus="username_focus()" onblur="username_blur()"/>
+						<input value="disco" id="username" type="text" name="username" oninput="username_oninput()" onfocus="username_focus()" onblur="username_blur()"/>
 						<img id="username_pass"  style="display:none" src="icons/checked.png">
 					</div>
 					<div class="formline">
 						<label class="field" for="password">Password:</label>
-						<input id="password" type="password" name="password" oninput="password_oninput()" onfocus="password_focus()" onblur="password_blur()"/>
+						<input value="millie2001" id="password" type="password" name="password" oninput="password_oninput()" onfocus="password_focus()" onblur="password_blur()"/>
 						<img id="password_pass"  style="display:none" src="icons/checked.png">
 					</div>
 					<div class="formline">
 						<label class="field" for="conf_password">Confirm Password:</label>
-						<input id="conf_password" type="password" name="conf_password" oninput="conf_password_oninput()" onfocus="conf_password_focus()" onblur="conf_password_blur()"/>
+						<input value="millie2001" id="conf_password" type="password" name="conf_password" oninput="conf_password_oninput()" onfocus="conf_password_focus()" onblur="conf_password_blur()"/>
 						<img id="conf_password_pass"  style="display:none" src="icons/checked.png">
 					</div>
 				</div>
@@ -140,7 +139,6 @@
 
 
 		</form>
-
 
 		<!--copyrigth-->
 		<?php
