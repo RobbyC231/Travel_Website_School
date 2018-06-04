@@ -1,3 +1,6 @@
+//Chris Earle OOSD 6/4/2018
+
+
 //need codes for db create associative arrays for this I think
 //create pass/fail variables for submit
 //Add all new fields to reset and submitted
