@@ -17,7 +17,7 @@
         <ul class="navbar-nav">
               <li class="nav-item"><a class="nav-link" href="homepage.php"> HOME <span class="sr-only">(current)</span></a></li>
               <li class="nav-item"><a class="nav-link" href="packages.php"> PACKAGE </a></li>
-              <li class="nav-item"><a class="nav-link" href="customer_registration"> REGISTER </li></a>
+              <li class="nav-item"><a class="nav-link" href="customer_registration.php"> REGISTER </li></a>
               <li class="nav-item"><a class="nav-link" href="contact_us.php"> CONTACT US </a></li>
               <li class="nav-item"><a class="nav-link" href="#loginModal.php" onclick="document.getElementById('loginModal').style.display='block'"> LOGIN </a></li>
         </ul>
