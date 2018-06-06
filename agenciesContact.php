@@ -7,16 +7,21 @@
     // print_r($grabAgency); //this was to show if query was getting anything
     $array = mysqli_fetch_all($grabAgency, MYSQLI_ASSOC);
     // print_r($array); //this was used to see what was on the array
-
-    echo "<div class='row'>";
+    // echo "<div class='row'>";
     foreach($array as $agencies){
-      echo "<div class='col-sm-6'>
-              <p>";
+      if($agencies==1){
+        echo "<h5>Travel Experts Calgary</h5>";
+      }
+      else{
+        echo "<h5>Travel Exprets Okotoks</h5>";
+      }
+      // echo "<div class='col-sm-6'>
+            echo  "<p>";
       foreach($agencies as $key =>$value){
         echo $value . "<br>";
       }
-      echo "   </p>
-            </div>";
+      echo "   </p>";
+            // </div>";
     }
-    echo "</div>";
+    // echo "</div>";
      ?>

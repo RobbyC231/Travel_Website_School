@@ -7,14 +7,11 @@
     <!-- normilize css file being lodaing in -->
     <link rel="stylesheet" type="text/css" href="css/default.css" />
     <!-- bootstrap being loading in -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <?php require("bootstrap.php"); ?>
     <link rel="stylesheet" type="text/css" href="css/contactUs.css" />
   </head>
   <body>
-    <?php include $_SERVER['DOCUMENT_ROOT'] . "/WebsiteProject/include/navbar.php" ?>
+    <?php include("include/navbar.php") ?>
     <!-- jumbotron is holding the image and contact us wordds at top of page -->
       <div class="jumbotron rounded-0">
         <div id="jumboInfo">
@@ -80,16 +77,18 @@
   <!-- this is the container holding the address of the company and google maps -->
 
   <!-- this is a row to hold the contact info of each office -->
-  <div class="container text-center">
-    <div class="row">
+  <div class="container">
+    <!-- <div class="row">
       <div class="col-sm-6">
         Travel Experts Calgary
       </div>
       <div class="col-sm-6">
         Travel Experts Okotoks
       </div>
-    </div>
+    </div> -->
+    <div class="d-flex flex-row">
     <?php include "agenciesContact.php" ?>
+  </div>
     <div class="row">
       <div class="col-sm-6">
         <?php include "calgaryAgents.php" ?>
@@ -100,7 +99,7 @@
     </div>
   </div>
     <!-- i inlcude the footer here which is a styled bootstrap footer, i will update that later -->
-    <?php include $_SERVER['DOCUMENT_ROOT'] . "/WebsiteProject/include/footer.php" ?>
+    <?php include("include/footer.php") ?>
     <script type="text/javascript" src="js/contactUs.js"></script>
   </body>
 <!-- robert   -->

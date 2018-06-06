@@ -1,6 +1,6 @@
 /*Chris Earle OOSD 5/26/2018*/
 /*this class is required so that inputs are aligned*/
-label.field{
+/* label.field{
     text-align: right;
     width: 125px;
     display: inline-block;
@@ -8,13 +8,13 @@ label.field{
 }
 
 /*aligns with input fields*/
-.buttons{
+/* .buttons{
     /*display: block;
     margin-left: 150px;*/
-    text-align: center;
-}
+    /* text-align: center;
+} */
 
-.formline{
+/* .formline{
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -28,6 +28,6 @@ select.sizing{
     top:0;
     display: inline-block;
     /*chrome does not like halving the window at %50*/
-    width: 49%;
+    /* width: 49%;
     vertical-align: top;
-}
+} */

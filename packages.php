@@ -43,7 +43,7 @@
 	</style>
 </head>
 <body>
-	<?php include "include/navbar.php"?>
+	<?php include("include/navbar.php")?>
 	<br/><br/>
 	<section id="packageMenu">
 		<h2 class="sectHead">Our Travel Packages</h2>
@@ -53,9 +53,9 @@
 			$result = mysqli_query($dbinst, "SELECT * FROM packages");
 			while ($row=mysqli_fetch_row($result))
 				{
-					$image;
+					$image = "";
 					//Change image according to package name
-					if($row[1]=="Caribbean Tour"){$image="carribean.jpg";}
+					if($row[1]=="Carribean Tour"){$image="carribean.jpg";}
 					else if($row[1]=="Polynesian Paradise"){$image="polynesia.jpg";}
 					else if($row[1]=="Asian Expedition"){$image="asianhiking.jpg";}
 					else if($row[1]=="European Vacation"){$image="europevac.jpg";}
@@ -70,7 +70,6 @@
 		?>
 	</section>
 	<p id="demo"></p>
-	<?php include "include/footer.php"; ?>
 
 	<!--Screenpopup-->
 	<div class="modal fade" id="packageDisplay" role="dialog">
@@ -132,5 +131,6 @@
   			}
   		}
   	</script>
+		<?php include("include/footer.php") ?>
 </body>
 </html>
