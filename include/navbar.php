@@ -1,5 +1,11 @@
 <!-- robert and brji and Chris -->
-
+<?php
+    session_start();
+    $_SESSION['logged_in']=false; //this should change under loginVerify.php to true if login successful
+    $_x=1;
+    //not sure if we need a include for loginVerify.php
+    //include("ServerSideRegister/loginVerify.php");
+?>
 <head>
     <!--this css is for styling the login modal-->
     <link rel="stylesheet" type="text/css" href="../css/modal.css">
@@ -19,7 +25,19 @@
               <li class="nav-item"><a class="nav-link" href="packages.php"> PACKAGE </a></li>
               <li class="nav-item"><a class="nav-link" href="customer_registration.php"> REGISTER </li></a>
               <li class="nav-item"><a class="nav-link" href="contact_us.php"> CONTACT US </a></li>
-              <li class="nav-item"><a class="nav-link" href="#loginModal.php" onclick="document.getElementById('loginModal').style.display='block'"> LOGIN </a></li>
+
+              </li>
+              <?php if($_SESSION['logged_in']){?>
+                <li class='nav-item'>
+                   <a class='nav-link' href='accountinfo.php'> ACCOUNT </a>
+                </li>
+            <?php }else{?>
+                <li class='nav-item'>
+                   <a class='nav-link' href='#loginModal.php' onclick='document.getElementById("loginModal").style.display="block"'> LOGIN </a>
+                </li>
+            <?php }?><!--Chris:end-->
+
+            <?php?>
         </ul>
   </div>
 </nav>
