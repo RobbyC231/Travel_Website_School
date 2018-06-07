@@ -15,7 +15,6 @@
           echo $row["AgncyPostal"] . "<br>";
           echo $row["AgncyPhone"] . "<br>";
           echo $row["Agncyfax"] . "<br>";
-
           getAgentInfo($row["AgencyId"]);
         // print_r ($row); used to see if row is making array for each row
       }
@@ -27,7 +26,7 @@
 
        $grabAgents = "SELECT AgtFirstName, AgtLastName, AgtBusPhone, AgtEmail, AgtPosition FROM agents where AgencyId=$agencyId";
 
-         $count=0;
+         $count=3;
 
       if($result = mysqli_query($mysqli, $grabAgents)){
         // print_r($result);//used to see if query worked
@@ -35,12 +34,17 @@
           if($count%2==1){
             echo '<div class="row">';
           }
+
           echo '<div class="col-sm-6">';
           echo $row["AgtFirstName"] . " " . $row["AgtLastName"] . "<br>";
           echo $row["AgtBusPhone"] . "<br>";
           echo $row["AgtEmail"] . "<br>";
           // print_r($row); //used to see if array for each row was made
           echo "</div>";
+
+          if($count%2==0){
+            echo '</div>';
+          }
           // print_r($count);
           $count++;
         }
