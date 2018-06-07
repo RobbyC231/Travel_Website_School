@@ -8,6 +8,7 @@ require "dbconnect.php"; //connect to database
 $email = $mysqli->escape_string($_POST['username']);
 $result = $mysqli->query("SELECT * FROM customers WHERE CustEmail='$email'");
 
+
 // echo $email;
 // print_r($result); //use this to see what user email doesnt exist message wasnt coming up. it is beucase some customers dont have emails
 
