@@ -39,9 +39,6 @@ var username_passed=false;
 var password_passed=false;
 var conf_password_passed=false;
 
-
-
-
 //this is the .js for the userdata form
 //registered expressions used for postal code and bus_phone number formats
 //Chris Earle OOSD 5/26/2018

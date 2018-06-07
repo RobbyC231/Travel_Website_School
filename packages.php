@@ -4,9 +4,10 @@
 	<title>Travel Experts - Vacation Packages</title>
 	<meta name="viewport" content="width=device-width">
     <link href="homestyle.css" rel="stylesheet" type="text/css">
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   	<script src="js/jquery-3.3.1.min.js"></script>
 	<style type="text/css">
 		body{color: white; border-top: 0;
@@ -42,7 +43,7 @@
 	</style>
 </head>
 <body>
-	<?php include "include/navbar.php"?>
+	<?php include("include/navbar.php")?>
 	<br/><br/>
 	<section id="packageMenu">
 		<h2 class="sectHead">Our Travel Packages</h2>
@@ -50,17 +51,17 @@
 			$dbinst = mysqli_connect("localhost","root","","travelexperts");
 			if (mysqli_connect_errno()){echo "Failed to connect to MySQL: " . mysqli_connect_error();}
 			$result = mysqli_query($dbinst, "SELECT * FROM packages");
-			while ($row=mysqli_fetch_row($result)) 
+			while ($row=mysqli_fetch_row($result))
 				{
-					$image;
+					$image = "";
 					//Change image according to package name
-					if($row[1]=="Caribbean Tour"){$image="carribean.jpg";}
+					if($row[1]=="Carribean Tour"){$image="carribean.jpg";}
 					else if($row[1]=="Polynesian Paradise"){$image="polynesia.jpg";}
 					else if($row[1]=="Asian Expedition"){$image="asianhiking.jpg";}
 					else if($row[1]=="European Vacation"){$image="europevac.jpg";}
 
 					//Create items for packages
-					echo 
+					echo
 					"<div class='packageStyling' data-toggle='modal' data-target='#packageDisplay' onclick='popupTravel(\"".$image."\",\"".$row[1]."\")'
 					style='background-image:url(\"images/flightpackagepics/".$image."\");'>"
 					.$row[1]."</div>";
@@ -69,12 +70,11 @@
 		?>
 	</section>
 	<p id="demo"></p>
-	<?php include "include/footer.php"; ?>
 
 	<!--Screenpopup-->
 	<div class="modal fade" id="packageDisplay" role="dialog">
     	<div class="modal-dialog modal-lg">
-    	
+
       		<!-- Modal content-->
       		<div class="modal-content" id="popupBox">
         		<div class="modal-header" id="popupHead">
@@ -131,5 +131,6 @@
   			}
   		}
   	</script>
+		<?php include("include/footer.php") ?>
 </body>
 </html>
