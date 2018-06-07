@@ -57,7 +57,7 @@
 									</tr>
 									<tr>
 												<td> City : </td>
-												<td>				</td>
+												<td><?php echo $_SESSION['city']; ?></td>
 									</tr>
 									<tr>
 												<td> Cell Phone : </td>
