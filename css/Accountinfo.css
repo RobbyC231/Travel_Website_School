@@ -1,0 +1,57 @@
+*
+{
+  margin: 0px;
+  padding: 0px;
+
+}
+
+
+
+
+
+#main
+{
+
+  min-height: 700px;
+  background-image: url("../images/airplane_clouds.jpg");
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+
+
+
+ #leftcolumn
+{
+  width: 45%;
+  height: 700px;
+  float: left;
+  background-color: rgba(0,0,0,0.6);
+}
+
+#leftcolumn h4
+{
+  color:white;
+}
+
+table
+{
+  width: 45%;
+  margin-top: 10px;
+  height: 600px;
+  color: white;
+}
+
+td
+{
+  text-align: center;
+}
+
+ #rightcolumn
+{
+  width: 50%;
+  height: 700;
+  float: right;
+  background-color: rgba(0,0,0,0.6);
+
+}

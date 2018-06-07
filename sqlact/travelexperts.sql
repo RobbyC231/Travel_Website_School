@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2018 at 06:59 PM
+-- Generation Time: Jun 02, 2018 at 06:35 PM
 -- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -527,9 +527,7 @@ CREATE TABLE `customers` (
   `CustEmail` varchar(50) NOT NULL,
   `AgentId` int(11) DEFAULT NULL,
   `CustUsername` varchar(20) NOT NULL,
-  `CustPassword` varchar(100) NOT NULL,
-  `EmailHash` varchar(150) NOT NULL,
-  `Active` tinyint(1) DEFAULT '0',
+  `CustPassword` varchar(20) NOT NULL,
   `CustVerified` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -537,34 +535,33 @@ CREATE TABLE `customers` (
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`CustomerId`, `CustFirstName`, `CustLastName`, `CustAddress`, `CustCity`, `CustProv`, `CustPostal`, `CustCountry`, `CustHomePhone`, `CustBusPhone`, `CustEmail`, `AgentId`, `CustUsername`, `CustPassword`, `EmailHash`, `Active`, `CustVerified`) VALUES
-(104, 'Laetia', 'Enison', '144-61 87th Ave, NE', 'Edmonton', 'AB', 'T2J 6B6', 'Canada', '4032791223', '4032557865', '                                                  ', 4, 'laet104', 'odse206', '', 0, 1),
-(105, 'Angel', 'Moskowitz', '320 John St., NE', 'Calgary', 'AB', 'T2J 7E3', 'Canada', '4032794228', '4036409874', 'amoskowitz@home.com                               ', 3, 'ange105', 'csdg845', '', 0, 0),
-(106, 'Judith', 'Olvsade', '29 Elmwood Ave.,', 'Calgary', 'AB', 'T2Z 3M9', 'Canada', '4032795652', '4036861598', 'jolvsade@aol.com                                  ', 1, 'judi106', 'sdhb613', '', 0, 0),
-(107, 'Catherine', 'Mierzwa', '22-70 41st St.,NW', 'Calgary', 'AB', 'T2Z 2Z9', 'Canada', '4032796878', '4036404563', 'cmierzwa@msn.com                                  ', 4, 'cath107', 'mftw792', '', 0, 1),
-(108, 'Judy', 'Sethi', '63 Stratton Hall, SW', 'Calgary', 'AB', 'T1Y 6N4', 'Canada', '4032795111', '4036204789', 'judysehti@home.com                                ', 7, 'judy108', 'khss791', '', 0, 1),
-(109, 'Larry', 'Walter', '38 Bay 26th ST. #2A, NE', 'Calgary', 'AB', 'T2J 6B6', 'Canada', '4032793254', '4032845588', 'lwalter@aol.com                                   ', 4, 'larr109', 'knbd144', '', 0, 1),
-(114, 'Winsome', 'Laporte', '268 E.3rd St, SW', 'Calgary', 'AB', 'T1Y 6N4', 'Canada', '4032691125', '4032844565', '                                                  ', 8, 'wins', 'lkjb487', '', 0, 0),
-(117, 'Nancy', 'Kuehn', '44-255 9th St., SW', 'Calgary', 'AB', 'T1Y 6N5', 'Canada', '4032693965', '4032843211', '                                                  ', 6, 'nanc117', 'lgdr794', '', 0, 0),
-(118, 'Hiedi', 'Lopez', '168 Rowayton Ave, NW', 'Calgary', 'AB', 'T3A 4ZG', 'Canada', '4032699856', '4035901587', 'hlopez@aol.com                                    ', 4, 'hied118', 'ifsy765', '', 0, 1),
-(119, 'Mardig', 'Abdou', '160-04 32nd Ave., SW', 'Calgary', 'AB', 'T2P 2G7', 'Canada', '4032691429', '4032251952', '                                                  ', 9, 'mard119', 'bdew976', '', 0, 0),
-(120, 'Ralph', 'Alexander', '2054 73rd St, SW', 'Calgary', 'AB', 'T2P 2G7', 'Canada', '4032691634', '4032256547', '                                                  ', 1, 'ralp120', 'ygbc561', '', 0, 1),
-(121, 'Sean', 'Pineda', '3 Salem Rd., NW', 'Calgary', 'AB', 'T2K 3E3', 'Canada', '4032691954', '4036864444', 'spineda@hotmail.com                               ', 3, 'sean121', 'hfgs791', '', 0, 1),
-(122, 'Julita', 'Lippen', '51-76 VanKleeck St., NW', 'Calgary', 'AB', 'T2K 6C5', 'Canada', '4032551956', '4035901478', 'jlippen@cadvision.co                              ', 4, 'juli122', 'udsa654', '', 0, 1),
-(123, 'Pierre', 'Radicola', '322 Atkins Ave., SE', 'Calgary', 'AB', 'T3G 2C6', 'Canada', '', '4036867536', 'pradicola@home.com                                ', 8, 'pier123', 'jhfs557', '', 0, 1),
-(127, 'Gary', 'Aung', '135-32 Louis Blvd, NE', 'Calgary', 'AB', '', 'Canada', '4032807858', '4037501587', '                                                  ', 9, 'gary127', 'bxdw915', '', 0, 0),
-(128, 'Jeff', 'Runyan', '109-15 Queens Blvd., NE', 'Calgary', 'AB', 'T2V 2K6', 'Canada', '4032809635', '4036201122', 'jrunyan@aol.com                                   ', 4, 'jeff128', 'hjex538', '', 0, 1),
-(130, 'Lula', 'Oates', '11A Emory St., NE', 'Calgary', 'AB', 'T3E 3Z4', 'Canada', '4032439653', '4036861587', 'loates@aol.com                                    ', 9, 'lula130', 'uyva421', '', 0, 1),
-(133, 'James', 'Reed', '109-621 96th St, NE', 'Calgary', 'AB', 'T3E 4A1', 'Canada', '4032432358', '4037201155', 'jreed@aol.com                                     ', 2, 'jame133', 'nqwe762', '', 0, 0),
-(135, 'Michellexxxxxxxxxxxxxx', 'Masser', '379 Ovington Ave, NE', 'Calgary', 'AB', 'T2J 2S9', 'Canada', '4032441586', '4035908522', 'mmasser@aol.com                                   ', 6, 'mich135', 'pnda168', '', 0, 1),
-(138, 'John', 'Smith', '45 Plaza St. West #2D, NE', 'Calgary', 'AB', 'T3E 5C7', 'Canada', '4032449653', '4032837896', 'johnSmith@hotmail.co                              ', 7, 'john138', 'shfv167', '', 0, 0),
-(139, 'Angelo', 'Garshman', '82 Western Ave., NE', 'Calgary', 'AB', 'T3E 5C8', 'Canada', '4032259966', '4032696541', '                                                  ', 3, 'ange139', 'syxf416', '', 0, 0),
-(140, 'Derrick', 'Baltazar', '9111 Church Ave. #3N, NE', 'Calgary', 'AB', 'T3E 5C9', 'Canada', '4032255231', '4037502547', '                                                  ', 6, 'derr140', 'onfx389', '', 0, 1),
-(141, 'Robert', 'Boyd', '96-04 57th Ave #12A, NE', 'Calgary', 'AB', 'T3E 5C5', 'Canada', '4032255647', '4037509512', '                                                  ', 3, 'robe141', 'owex476', '', 0, 1),
-(142, 'Monica', 'Waldman', '257 Depot Rd., NE', 'Calgary', 'AB', 'T2J 6P3', 'Canada', '4032255629', '4032844566', 'mwaldman@aol.com                                  ', 2, 'moni142', 'wkip556', '', 0, 0),
-(143, 'Gerard', 'Biers', '205 19th St., NE', 'Calgary', 'AB', 'T2J 6B6', 'Canada', '4032251952', '4037506578', '                                                  ', 8, 'gera143', 'aeqt178', '', 0, 0),
-(144, 'z', 'z', 'z', 'z', 'Z', 'Z1Z1Z1', 'z', '5555555555', '2222222222', 'z@z.zz', 1, 'zzzz144', 'wsdw476', '', 0, 0),
-(145, 'robertc', 'clements', '23235e', 'halifax', 'Ne', 'T3C 0W6', 'Canada', '(432)432-4423', '(432)432-4234', 'clementsro.231@gmail.com', NULL, 'disco234', '$2y$10$DIfXW96JES1/7TTBFvLsy.2BEFofraRfQclqL08p/qNNFW1/q8SoC', '28f0b864598a1291557bed248a998d4e', 0, 0);
+INSERT INTO `customers` (`CustomerId`, `CustFirstName`, `CustLastName`, `CustAddress`, `CustCity`, `CustProv`, `CustPostal`, `CustCountry`, `CustHomePhone`, `CustBusPhone`, `CustEmail`, `AgentId`, `CustUsername`, `CustPassword`, `CustVerified`) VALUES
+(104, 'Laetia', 'Enison', '144-61 87th Ave, NE', 'Edmonton', 'AB', 'T2J 6B6', 'Canada', '4032791223', '4032557865', '                                                  ', 4, 'laet104', 'odse206', 1),
+(105, 'Angel', 'Moskowitz', '320 John St., NE', 'Calgary', 'AB', 'T2J 7E3', 'Canada', '4032794228', '4036409874', 'amoskowitz@home.com                               ', 3, 'ange105', 'csdg845', 0),
+(106, 'Judith', 'Olvsade', '29 Elmwood Ave.,', 'Calgary', 'AB', 'T2Z 3M9', 'Canada', '4032795652', '4036861598', 'jolvsade@aol.com                                  ', 1, 'judi106', 'sdhb613', 0),
+(107, 'Catherine', 'Mierzwa', '22-70 41st St.,NW', 'Calgary', 'AB', 'T2Z 2Z9', 'Canada', '4032796878', '4036404563', 'cmierzwa@msn.com                                  ', 4, 'cath107', 'mftw792', 1),
+(108, 'Judy', 'Sethi', '63 Stratton Hall, SW', 'Calgary', 'AB', 'T1Y 6N4', 'Canada', '4032795111', '4036204789', 'judysehti@home.com                                ', 7, 'judy108', 'khss791', 1),
+(109, 'Larry', 'Walter', '38 Bay 26th ST. #2A, NE', 'Calgary', 'AB', 'T2J 6B6', 'Canada', '4032793254', '4032845588', 'lwalter@aol.com                                   ', 4, 'larr109', 'knbd144', 1),
+(114, 'Winsome', 'Laporte', '268 E.3rd St, SW', 'Calgary', 'AB', 'T1Y 6N4', 'Canada', '4032691125', '4032844565', '                                                  ', 8, 'wins', 'lkjb487', 0),
+(117, 'Nancy', 'Kuehn', '44-255 9th St., SW', 'Calgary', 'AB', 'T1Y 6N5', 'Canada', '4032693965', '4032843211', '                                                  ', 6, 'nanc117', 'lgdr794', 0),
+(118, 'Hiedi', 'Lopez', '168 Rowayton Ave, NW', 'Calgary', 'AB', 'T3A 4ZG', 'Canada', '4032699856', '4035901587', 'hlopez@aol.com                                    ', 4, 'hied118', 'ifsy765', 1),
+(119, 'Mardig', 'Abdou', '160-04 32nd Ave., SW', 'Calgary', 'AB', 'T2P 2G7', 'Canada', '4032691429', '4032251952', '                                                  ', 9, 'mard119', 'bdew976', 0),
+(120, 'Ralph', 'Alexander', '2054 73rd St, SW', 'Calgary', 'AB', 'T2P 2G7', 'Canada', '4032691634', '4032256547', '                                                  ', 1, 'ralp120', 'ygbc561', 1),
+(121, 'Sean', 'Pineda', '3 Salem Rd., NW', 'Calgary', 'AB', 'T2K 3E3', 'Canada', '4032691954', '4036864444', 'spineda@hotmail.com                               ', 3, 'sean121', 'hfgs791', 1),
+(122, 'Julita', 'Lippen', '51-76 VanKleeck St., NW', 'Calgary', 'AB', 'T2K 6C5', 'Canada', '4032551956', '4035901478', 'jlippen@cadvision.co                              ', 4, 'juli122', 'udsa654', 1),
+(123, 'Pierre', 'Radicola', '322 Atkins Ave., SE', 'Calgary', 'AB', 'T3G 2C6', 'Canada', '', '4036867536', 'pradicola@home.com                                ', 8, 'pier123', 'jhfs557', 1),
+(127, 'Gary', 'Aung', '135-32 Louis Blvd, NE', 'Calgary', 'AB', '', 'Canada', '4032807858', '4037501587', '                                                  ', 9, 'gary127', 'bxdw915', 0),
+(128, 'Jeff', 'Runyan', '109-15 Queens Blvd., NE', 'Calgary', 'AB', 'T2V 2K6', 'Canada', '4032809635', '4036201122', 'jrunyan@aol.com                                   ', 4, 'jeff128', 'hjex538', 1),
+(130, 'Lula', 'Oates', '11A Emory St., NE', 'Calgary', 'AB', 'T3E 3Z4', 'Canada', '4032439653', '4036861587', 'loates@aol.com                                    ', 9, 'lula130', 'uyva421', 1),
+(133, 'James', 'Reed', '109-621 96th St, NE', 'Calgary', 'AB', 'T3E 4A1', 'Canada', '4032432358', '4037201155', 'jreed@aol.com                                     ', 2, 'jame133', 'nqwe762', 0),
+(135, 'Michellexxxxxxxxxxxxxx', 'Masser', '379 Ovington Ave, NE', 'Calgary', 'AB', 'T2J 2S9', 'Canada', '4032441586', '4035908522', 'mmasser@aol.com                                   ', 6, 'mich135', 'pnda168', 1),
+(138, 'John', 'Smith', '45 Plaza St. West #2D, NE', 'Calgary', 'AB', 'T3E 5C7', 'Canada', '4032449653', '4032837896', 'johnSmith@hotmail.co                              ', 7, 'john138', 'shfv167', 0),
+(139, 'Angelo', 'Garshman', '82 Western Ave., NE', 'Calgary', 'AB', 'T3E 5C8', 'Canada', '4032259966', '4032696541', '                                                  ', 3, 'ange139', 'syxf416', 0),
+(140, 'Derrick', 'Baltazar', '9111 Church Ave. #3N, NE', 'Calgary', 'AB', 'T3E 5C9', 'Canada', '4032255231', '4037502547', '                                                  ', 6, 'derr140', 'onfx389', 1),
+(141, 'Robert', 'Boyd', '96-04 57th Ave #12A, NE', 'Calgary', 'AB', 'T3E 5C5', 'Canada', '4032255647', '4037509512', '                                                  ', 3, 'robe141', 'owex476', 1),
+(142, 'Monica', 'Waldman', '257 Depot Rd., NE', 'Calgary', 'AB', 'T2J 6P3', 'Canada', '4032255629', '4032844566', 'mwaldman@aol.com                                  ', 2, 'moni142', 'wkip556', 0),
+(143, 'Gerard', 'Biers', '205 19th St., NE', 'Calgary', 'AB', 'T2J 6B6', 'Canada', '4032251952', '4037506578', '                                                  ', 8, 'gera143', 'aeqt178', 0),
+(144, 'z', 'z', 'z', 'z', 'Z', 'Z1Z1Z1', 'z', '5555555555', '2222222222', 'z@z.zz', 1, 'zzzz144', 'wsdw476', 0);
 
 -- --------------------------------------------------------
 
@@ -982,15 +979,7 @@ INSERT INTO `flightstable` (`FlightId`, `FltPlaneNo`, `FltDepart`, `FltReturn`, 
 (40327, 1327, '2018-07-05 00:00:00', '2018-07-08 00:00:00', 'Calgary', 'Moscow, Russia', 'ASIA', '1000.0000'),
 (40328, 1328, '2018-07-08 00:00:00', '2018-07-11 00:00:00', 'Calgary', 'Moscow, Russia', 'ASIA', '1000.0000'),
 (40329, 1329, '2018-07-11 00:00:00', '2018-07-14 00:00:00', 'Calgary', 'Moscow, Russia', 'ASIA', '1000.0000'),
-(40330, 1330, '2018-07-14 00:00:00', '2018-07-17 00:00:00', 'Calgary', 'Moscow, Russia', 'ASIA', '1000.0000'),
-(40331, 1331, '2018-06-11 00:00:00', '2018-06-14 00:00:00', 'Calgary', 'Nassau, Bahamas', 'CAR', '761.0000'),
-(40332, 1332, '2018-06-17 00:00:00', '2018-06-20 00:00:00', 'Calgary', 'Nassau, Bahamas', 'CAR', '761.0000'),
-(40333, 1333, '2018-06-17 00:00:00', '2018-06-20 00:00:00', 'Calgary', 'Honolulu, Hawaii', 'POL', '513.0000'),
-(40334, 1334, '2018-06-23 00:00:00', '2018-06-26 00:00:00', 'Calgary', 'Honolulu, Hawaii', 'POL', '513.0000'),
-(40335, 1335, '2018-06-14 00:00:00', '2018-06-17 00:00:00', 'Calgary', 'Bangkok, China', 'ASIA', '731.0000'),
-(40336, 1336, '2018-06-26 00:00:00', '2018-06-29 00:00:00', 'Calgary', 'Bangkok, China', 'ASIA', '731.0000'),
-(40337, 1337, '2018-06-02 00:00:00', '2018-06-05 00:00:00', 'Calgary', 'London, England', 'EU', '717.0000'),
-(40338, 1338, '2018-06-14 00:00:00', '2018-06-17 00:00:00', 'Calgary', 'London, England', 'EU', '717.0000');
+(40330, 1330, '2018-07-14 00:00:00', '2018-07-17 00:00:00', 'Calgary', 'Moscow, Russia', 'ASIA', '1000.0000');
 
 -- --------------------------------------------------------
 
@@ -1003,7 +992,7 @@ CREATE TABLE `packages` (
   `PkgName` varchar(50) NOT NULL,
   `PkgStartDate` datetime DEFAULT NULL,
   `PkgEndDate` datetime DEFAULT NULL,
-  `PkgDesc` tinytext,
+  `PkgDesc` varchar(50) DEFAULT NULL,
   `PkgBasePrice` decimal(19,4) NOT NULL,
   `PkgAgencyCommission` decimal(19,4) DEFAULT NULL,
   `DeparturePlnId` int(11) DEFAULT NULL,
@@ -1015,10 +1004,10 @@ CREATE TABLE `packages` (
 --
 
 INSERT INTO `packages` (`PackageId`, `PkgName`, `PkgStartDate`, `PkgEndDate`, `PkgDesc`, `PkgBasePrice`, `PkgAgencyCommission`, `DeparturePlnId`, `ReturnPlnId`) VALUES
-(1, 'Caribbean Tour', '2018-06-11 00:00:00', '2018-06-20 00:00:00', 'Cruise the Caribbean & Celebrate the New Year. And sir dare view but over man. So at within mr to simple assure. Mr disposing continued it offending arranging in we. Extremity as if breakfast agreement. Off now mistress provided out horrible opinions. Pre', '4800.0000', '400.0000', 40331, 40332),
-(2, 'Polynesian Paradise', '2018-06-17 00:00:00', '2018-06-26 00:00:00', '9 Day All Inclusive Hawaiian Vacation. It allowance prevailed enjoyment in it. Calling observe for who pressed raising his. Can connection instrument astonished unaffected his motionless preference. Announcing say boy precaution unaffected difficulty alte', '3000.0000', '310.0000', 40333, 40334),
-(3, 'Asian Expedition', '2018-06-14 00:00:00', '2018-06-29 00:00:00', 'Airfaire, Hotel and Eco Tour. Pasture he invited mr company shyness. But when shot real her. Chamber her observe visited removal six sending himself boy. At exquisite existence if an oh dependent excellent. Are gay head need down draw. Misery wonder enabl', '2800.0000', '300.0000', 40335, 40336),
-(4, 'European Vacation', '2018-06-02 00:00:00', '2018-06-17 00:00:00', 'Euro Tour with Rail Pass and Travel Insurance. Cottage out enabled was entered greatly prevent message. No procured unlocked an likewise. Dear but what she been over gay felt body. Six principles advantages and use entreaties decisively. Eat met has dwell', '3000.0000', '280.0000', 40337, 40338);
+(1, 'Caribbean New Year', '2017-12-25 00:00:00', '2017-01-04 00:00:00', 'Cruise the Caribbean & Celebrate the New Year.', '4800.0000', '400.0000', NULL, NULL),
+(2, 'Polynesian Paradise', '2016-12-12 00:00:00', '2016-12-20 00:00:00', '8 Day All Inclusive Hawaiian Vacation', '3000.0000', '310.0000', NULL, NULL),
+(3, 'Asian Expedition', '2016-05-14 00:00:00', '2016-05-28 00:00:00', 'Airfaire, Hotel and Eco Tour.', '2800.0000', '300.0000', NULL, NULL),
+(4, 'European Vacation', '2016-11-01 00:00:00', '2016-11-14 00:00:00', 'Euro Tour with Rail Pass and Travel Insurance', '3000.0000', '280.0000', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1193,7 +1182,6 @@ INSERT INTO `regions` (`RegionId`, `RegionName`) VALUES
 ('AFR', 'Africa                   '),
 ('ANZ', 'Australia & New Zealand  '),
 ('ASIA', 'Asia                     '),
-('CAR', 'Carribean'),
 ('EU', 'Europe & United Kingdom  '),
 ('MEAST', 'Middle East              '),
 ('MED', 'Mediterranean            '),
@@ -1888,13 +1876,13 @@ ALTER TABLE `agents`
 -- AUTO_INCREMENT for table `bookingdetails`
 --
 ALTER TABLE `bookingdetails`
-  MODIFY `BookingDetailId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1312;
+  MODIFY `BookingDetailId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1304;
 
 --
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `BookingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1327;
+  MODIFY `BookingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1304;
 
 --
 -- AUTO_INCREMENT for table `creditcards`
@@ -1906,7 +1894,7 @@ ALTER TABLE `creditcards`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `CustomerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `CustomerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- AUTO_INCREMENT for table `packages`

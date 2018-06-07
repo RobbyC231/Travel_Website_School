@@ -24,6 +24,9 @@ else { // User exists
       $_SESSION['email'] = $user['CustEmail'];
       $_SESSION['first_name'] = $user['CustFirstName'];
       $_SESSION['last_name'] = $user['CustLastName'];
+      $_SESSION['address'] = $user['CustAddress'];
+      $_SESSION['city'] = $user['CustCity'];
+      $_SESSION['phone'] = $user['CustBusPhone'];
       $_SESSION['active'] = $user['Active'];
       $_SESSION['userId'] = $user["CustomerId"];
 

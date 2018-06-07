@@ -4,13 +4,13 @@
   if ($_SERVER['REQUEST_METHOD'] == 'POST')
   {
     if (isset($_POST['login'])) { //user logging in
-      require $_SERVER["DOCUMENT_ROOT"] . '/WebsiteProject/ServerSideRegister/loginVerify.php';
+      require("ServerSideRegister/loginVerify.php");
     }
     elseif (isset($_POST['register'])) { //user registering
       header("location:customer_registration.php");
     }
     elseif (isset($_POST['logout'])){ //user logout
-      require $_SERVER["DOCUMENT_ROOT"] . '/WebsiteProject/ServerSideRegister/logout.php';
+      require $_SERVER["DOCUMENT_ROOT"] . '/Travel_Website/ServerSideRegister/logout.php';
     }
   }
   // var_dump($_SESSION); //used to check if the session is cleared after logged in
