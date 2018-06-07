@@ -77,30 +77,9 @@
   <!-- this is the container holding the address of the company and google maps -->
 
   <!-- this is a row to hold the contact info of each office -->
-  <div class="container">
-    <!-- <div class="row">
-      <div class="col-sm-6">
-        Travel Experts Calgary
-      </div>
-      <div class="col-sm-6">
-        Travel Experts Okotoks
-      </div>
-    </div> -->
-    <div class="d-flex flex-row">
-    <?php include "agenciesContact.php" ?>
-  </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <?php include "calgaryAgents.php" ?>
-      </div>
-      <div class="col-sm-6">
-        <?php include "okotoksAgents.php" ?>
-      </div>
-    </div>
-  </div>
+    <?php include("agenciesContact.php") ?>
     <!-- i inlcude the footer here which is a styled bootstrap footer, i will update that later -->
     <?php include("include/footer.php") ?>
-    <script type="text/javascript" src="js/contactUs.js"></script>
   </body>
 <!-- robert   -->
 </html>
