@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2018 at 06:35 PM
+-- Generation Time: Jun 07, 2018 at 07:00 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -979,7 +979,15 @@ INSERT INTO `flightstable` (`FlightId`, `FltPlaneNo`, `FltDepart`, `FltReturn`, 
 (40327, 1327, '2018-07-05 00:00:00', '2018-07-08 00:00:00', 'Calgary', 'Moscow, Russia', 'ASIA', '1000.0000'),
 (40328, 1328, '2018-07-08 00:00:00', '2018-07-11 00:00:00', 'Calgary', 'Moscow, Russia', 'ASIA', '1000.0000'),
 (40329, 1329, '2018-07-11 00:00:00', '2018-07-14 00:00:00', 'Calgary', 'Moscow, Russia', 'ASIA', '1000.0000'),
-(40330, 1330, '2018-07-14 00:00:00', '2018-07-17 00:00:00', 'Calgary', 'Moscow, Russia', 'ASIA', '1000.0000');
+(40330, 1330, '2018-07-14 00:00:00', '2018-07-17 00:00:00', 'Calgary', 'Moscow, Russia', 'ASIA', '1000.0000'),
+(40331, 1331, '2018-06-11 00:00:00', '2018-06-14 00:00:00', 'Calgary', 'Nassau, Bahamas', 'CAR', '761.0000'),
+(40332, 1332, '2018-06-17 00:00:00', '2018-06-20 00:00:00', 'Calgary', 'Nassau, Bahamas', 'CAR', '761.0000'),
+(40333, 1333, '2018-06-17 00:00:00', '2018-06-20 00:00:00', 'Calgary', 'Honolulu, Hawaii', 'POL', '513.0000'),
+(40334, 1334, '2018-06-23 00:00:00', '2018-06-26 00:00:00', 'Calgary', 'Honolulu, Hawaii', 'POL', '513.0000'),
+(40335, 1335, '2018-06-14 00:00:00', '2018-06-17 00:00:00', 'Calgary', 'Bangkok, China', 'ASIA', '731.0000'),
+(40336, 1336, '2018-06-26 00:00:00', '2018-06-29 00:00:00', 'Calgary', 'Bangkok, China', 'ASIA', '731.0000'),
+(40337, 1337, '2018-06-02 00:00:00', '2018-06-05 00:00:00', 'Calgary', 'London, England', 'EU', '717.0000'),
+(40338, 1338, '2018-06-14 00:00:00', '2018-06-17 00:00:00', 'Calgary', 'London, England', 'EU', '717.0000');
 
 -- --------------------------------------------------------
 
@@ -992,7 +1000,7 @@ CREATE TABLE `packages` (
   `PkgName` varchar(50) NOT NULL,
   `PkgStartDate` datetime DEFAULT NULL,
   `PkgEndDate` datetime DEFAULT NULL,
-  `PkgDesc` varchar(50) DEFAULT NULL,
+  `PkgDesc` tinytext,
   `PkgBasePrice` decimal(19,4) NOT NULL,
   `PkgAgencyCommission` decimal(19,4) DEFAULT NULL,
   `DeparturePlnId` int(11) DEFAULT NULL,
@@ -1004,10 +1012,10 @@ CREATE TABLE `packages` (
 --
 
 INSERT INTO `packages` (`PackageId`, `PkgName`, `PkgStartDate`, `PkgEndDate`, `PkgDesc`, `PkgBasePrice`, `PkgAgencyCommission`, `DeparturePlnId`, `ReturnPlnId`) VALUES
-(1, 'Caribbean New Year', '2017-12-25 00:00:00', '2017-01-04 00:00:00', 'Cruise the Caribbean & Celebrate the New Year.', '4800.0000', '400.0000', NULL, NULL),
-(2, 'Polynesian Paradise', '2016-12-12 00:00:00', '2016-12-20 00:00:00', '8 Day All Inclusive Hawaiian Vacation', '3000.0000', '310.0000', NULL, NULL),
-(3, 'Asian Expedition', '2016-05-14 00:00:00', '2016-05-28 00:00:00', 'Airfaire, Hotel and Eco Tour.', '2800.0000', '300.0000', NULL, NULL),
-(4, 'European Vacation', '2016-11-01 00:00:00', '2016-11-14 00:00:00', 'Euro Tour with Rail Pass and Travel Insurance', '3000.0000', '280.0000', NULL, NULL);
+(1, 'Caribbean Tour', '2018-06-11 00:00:00', '2018-06-20 00:00:00', 'Cruise the Caribbean & Celebrate the New Year. And sir dare view but over man. So at within mr to simple assure. Mr disposing continued it offending arranging in we. Extremity as if breakfast agreement. Off now mistress provided out horrible opinions. Pre', '4800.0000', '400.0000', 40331, 40332),
+(2, 'Polynesian Paradise', '2018-06-17 00:00:00', '2018-06-26 00:00:00', '9 Day All Inclusive Hawaiian Vacation. It allowance prevailed enjoyment in it. Calling observe for who pressed raising his. Can connection instrument astonished unaffected his motionless preference. Announcing say boy precaution unaffected difficulty alte', '3000.0000', '310.0000', 40333, 40334),
+(3, 'Asian Expedition', '2018-06-14 00:00:00', '2018-06-29 00:00:00', 'Airfaire, Hotel and Eco Tour. Pasture he invited mr company shyness. But when shot real her. Chamber her observe visited removal six sending himself boy. At exquisite existence if an oh dependent excellent. Are gay head need down draw. Misery wonder enabl', '2800.0000', '300.0000', 40335, 40336),
+(4, 'European Vacation', '2018-06-02 00:00:00', '2018-06-17 00:00:00', 'Euro Tour with Rail Pass and Travel Insurance. Cottage out enabled was entered greatly prevent message. No procured unlocked an likewise. Dear but what she been over gay felt body. Six principles advantages and use entreaties decisively. Eat met has dwell', '3000.0000', '280.0000', 40337, 40338);
 
 -- --------------------------------------------------------
 
@@ -1182,6 +1190,7 @@ INSERT INTO `regions` (`RegionId`, `RegionName`) VALUES
 ('AFR', 'Africa                   '),
 ('ANZ', 'Australia & New Zealand  '),
 ('ASIA', 'Asia                     '),
+('CAR', 'Carribean'),
 ('EU', 'Europe & United Kingdom  '),
 ('MEAST', 'Middle East              '),
 ('MED', 'Mediterranean            '),
@@ -1876,13 +1885,13 @@ ALTER TABLE `agents`
 -- AUTO_INCREMENT for table `bookingdetails`
 --
 ALTER TABLE `bookingdetails`
-  MODIFY `BookingDetailId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1304;
+  MODIFY `BookingDetailId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1312;
 
 --
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `BookingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1304;
+  MODIFY `BookingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1327;
 
 --
 -- AUTO_INCREMENT for table `creditcards`
