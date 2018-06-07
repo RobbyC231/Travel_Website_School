@@ -79,7 +79,7 @@
   <!-- this is a row to hold the contact info of each office -->
     <?php include("agenciesContact.php") ?>
     <!-- i inlcude the footer here which is a styled bootstrap footer, i will update that later -->
-    <?php include("include/footer.php") ?>
+    <?php include("include/footer.php")  ?>
   </body>
 <!-- robert   -->
 </html>

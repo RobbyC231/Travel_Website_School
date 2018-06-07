@@ -31,11 +31,8 @@
                 </li>
               <?php
               }else{?>
-                <li class='nav-item'>
-                   <a class='nav-link' href='#loginModal.php' onclick='document.getElementById("loginModal").style.display="block"'> LOGIN </a>
-                </li>
+                <li class="nav-item"><a class="nav-link" data-toggle="modal" href="#loginModal"> LOGIN </a></li>
             <?php }?><!--Chris:end-->
-              <li class="nav-item"><a class="nav-link" data-toggle="modal" href="#loginModal"> LOGIN </a></li>
         </ul>
   </div>
 </nav>

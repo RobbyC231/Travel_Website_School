@@ -37,7 +37,7 @@
       if($result = mysqli_query($mysqli, $grabAgents)){
         // print_r($result);//used to see if query worked
         while($row = mysqli_fetch_assoc($result)){
-          echo '<div class="collapse" id="agentview">';
+          // echo '<div class="collapse" id="agentview">';
           if($count%2==1){
             echo '<div class="row">';
           }
