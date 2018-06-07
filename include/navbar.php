@@ -1,10 +1,6 @@
 <!-- robert and brji and Chris -->
 <?php
     session_start();
-    $_SESSION['logged_in']=false; //this should change under loginVerify.php to true if login successful
-    $_x=1;
-    //not sure if we need a include for loginVerify.php
-    //include("ServerSideRegister/loginVerify.php");
 ?>
 <head>
     <!--this css is for styling the login modal-->
