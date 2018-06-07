@@ -7,11 +7,13 @@
 
 
 
+
 #main
 {
 
-  min-height: 300px;
-  background-color: white;
+  min-height: 700px;
+  
+  background-image: url("images/airplane_clouds.jpg")
 
 }
 
@@ -20,7 +22,7 @@
   width: 50%;
   height: 200px;
   float: left;
-  background-color: red;
+  background-color: rgba(0,0,0,0.6);
 }
 
  #rightcolumn
@@ -28,6 +30,6 @@
   width: 50%;
   height: 200px;
   float: right;
-  background-color: yellow;
+  background-color: rgba(0,0,0,0.6);
 
 }
