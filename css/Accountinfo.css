@@ -7,7 +7,11 @@
 
 
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> 8cbe3bd308454c542b1f55a0c7b18a64be6118fb
 #main
 {
 
@@ -22,14 +26,68 @@
   width: 50%;
   height: 200px;
   float: left;
+<<<<<<< HEAD
   background-color: rgba(0,0,0,0.6);
+=======
+  background-color: red;
+=======
+
+
+#main
+{
+
+  min-height: 700px;
+  background-image: url("../images/airplane_clouds.jpg");
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+
+
+
+ #leftcolumn
+{
+  width: 45%;
+  height: 700px;
+  float: left;
+  background-color: rgba(0,0,0,0.6);
+}
+
+#leftcolumn h4
+{
+  color:white;
+}
+
+table
+{
+  width: 45%;
+  margin-top: 10px;
+  height: 600px;
+  color: white;
+}
+
+td
+{
+  text-align: center;
+>>>>>>> BootstrapWebStyle
+>>>>>>> 8cbe3bd308454c542b1f55a0c7b18a64be6118fb
 }
 
  #rightcolumn
 {
   width: 50%;
+<<<<<<< HEAD
   height: 200px;
   float: right;
+<<<<<<< HEAD
   background-color: rgba(0,0,0,0.6);
+=======
+  background-color: yellow;
+=======
+  height: 700;
+  float: right;
+  background-color: rgba(0,0,0,0.6);
+>>>>>>> BootstrapWebStyle
+>>>>>>> 8cbe3bd308454c542b1f55a0c7b18a64be6118fb
 
 }
