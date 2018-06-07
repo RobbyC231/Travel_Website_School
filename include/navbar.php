@@ -2,7 +2,7 @@
 
 <head>
     <!--this css is for styling the login modal-->
-    <link rel="stylesheet" type="text/css" href="../css/modal.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../css/modal.css"> -->
 </head>
 <?php
     //this it the include php for the login modal
@@ -19,7 +19,7 @@
               <li class="nav-item"><a class="nav-link" href="packages.php"> PACKAGE </a></li>
               <li class="nav-item"><a class="nav-link" href="customer_registration.php"> REGISTER </li></a>
               <li class="nav-item"><a class="nav-link" href="contact_us.php"> CONTACT US </a></li>
-              <li class="nav-item"><a class="nav-link" href="#loginModal.php" onclick="document.getElementById('loginModal').style.display='block'"> LOGIN </a></li>
+              <li class="nav-item"><a class="nav-link" data-toggle="modal" href="#loginModal"> LOGIN </a></li>
         </ul>
   </div>
 </nav>
