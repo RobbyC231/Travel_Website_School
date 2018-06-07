@@ -3,12 +3,11 @@
 <head>
 	<title>Travel Experts - Vacation Packages</title>
 	<meta name="viewport" content="width=device-width">
-    <link href="homestyle.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  	<script src="js/jquery-3.3.1.min.js"></script>
+    <link href="home_style.css" rel="stylesheet" type="text/css">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/jquery.redirect.js"></script>
 	<style type="text/css">
 		body{color: white; border-top: 0;
     		margin: 0; padding: 0;clear: both;
@@ -41,9 +40,12 @@
 			width: 95vw;
 		}
 	</style>
+
+  <?php session_start();//if(isset($_SESSION)){session_start();}?>
+
 </head>
 <body>
-	<?php include("include/navbar.php")?>
+	<?php include "include/navbar.php"?>
 	<br/><br/>
 	<section id="packageMenu">
 		<h2 class="sectHead">Our Travel Packages</h2>
@@ -51,30 +53,35 @@
 			$dbinst = mysqli_connect("localhost","root","","travelexperts");
 			if (mysqli_connect_errno()){echo "Failed to connect to MySQL: " . mysqli_connect_error();}
 			$result = mysqli_query($dbinst, "SELECT * FROM packages");
-			while ($row=mysqli_fetch_row($result))
+
+			while ($row=mysqli_fetch_assoc($result)) 
 				{
-					$image = "";
+					$image;
 					//Change image according to package name
-					if($row[1]=="Carribean Tour"){$image="carribean.jpg";}
-					else if($row[1]=="Polynesian Paradise"){$image="polynesia.jpg";}
-					else if($row[1]=="Asian Expedition"){$image="asianhiking.jpg";}
-					else if($row[1]=="European Vacation"){$image="europevac.jpg";}
+					if($row['PkgName']=="Caribbean Tour"){$image="carribean.jpg";}
+					else if($row['PkgName']=="Polynesian Paradise"){$image="polynesia.jpg";}
+					else if($row['PkgName']=="Asian Expedition"){$image="asianhiking.jpg";}
+					else if($row['PkgName']=="European Vacation"){$image="europevac.jpg";}
+          //echo $_SESSION['userId'];
 
 					//Create items for packages
-					echo
-					"<div class='packageStyling' data-toggle='modal' data-target='#packageDisplay' onclick='popupTravel(\"".$image."\",\"".$row[1]."\")'
+					echo 
+					"<div name='packages' class='packageStyling' data-toggle='modal' data-target='#packageDisplay' onclick='popupTravel(\"".$row['PackageId']."\",\"".$row['PkgName']."\",\"".$row['PkgStartDate']."\",\"".$row['PkgEndDate']."\",\"".$row['PkgDesc']."\",\"".$row['PkgBasePrice']."\");'
 					style='background-image:url(\"images/flightpackagepics/".$image."\");'>"
-					.$row[1]."</div>";
+					.$row['PkgName']."</div>";
 					//$row[2].$row[3].$row[4].$row[5]
 				}
+        //verifyUserForPackage(\"".$userId."\");
 		?>
 	</section>
-	<p id="demo"></p>
+	<?php
+      //echo $_SESSION['userId'];
+      include "include/footer.php"; ?>
 
 	<!--Screenpopup-->
 	<div class="modal fade" id="packageDisplay" role="dialog">
     	<div class="modal-dialog modal-lg">
-
+    	
       		<!-- Modal content-->
       		<div class="modal-content" id="popupBox">
         		<div class="modal-header" id="popupHead">
@@ -85,52 +92,62 @@
         	  		<p>(Tourdescription)</p>
         		</div>
         		<div class="modal-footer">
-       	 	  		<h4 class="modal-title" id="popupPrice">(Price)</h4><button type="button" class="btn btn-default">Book</button>
+                <h4 class="modal-title" id="popupPrice">(Price)</h4><button id="book" type="button" class="btn btn-default" >Book</button>
         	</div>
       		</div>
     	</div>
   	</div>
   	<script type="text/javascript">
-  		function popupTravel($packname){
+  		function popupTravel($packageId, $packname, $packstart, $packend, $packdesc, $packprc){
   			//console.log($packname);
-  			if($packname=="carribean.jpg"){
-  				$("#popupBox").css("backgroundImage", "url('images/flightpackagepics/carribean.jpg')");
-  				$("#popupName").html("Caribbean Tour");
-  				$("#popupContent").html(
-  					"2018-06-11<br/>"+
-  					"2018-06-20<br/>"+
-  					"Cruise the Caribbean & Celebrate the New Year.<br/>");
-  				$("#popupPrice").html("4800.00");
-  			}
-  			else if($packname=="polynesia.jpg"){
-  				$("#popupBox").css("backgroundImage", "url('images/flightpackagepics/polynesia.jpg')");
-  				$("#popupName").html("Polynesian Paradise");
-  				$("#popupContent").html(
-  					"2018-06-17<br/>"+
-  					"2018-06-26<br/>"+
-  					"9 Day All Inclusive Hawaiian Vacation.<br/>");
-  				$("#popupPrice").html("3000.00");
-  			}
-  			else if($packname=="asianhiking.jpg"){
-  				$("#popupBox").css("backgroundImage", "url('images/flightpackagepics/asianhiking.jpg')");
-  				$("#popupName").html("Asian Expedition");
-  				$("#popupContent").html(
-  					"2018-06-14<br/>"+
-  					"2018-06-29<br/>"+
-  					"Airfaire, Hotel and Eco Tour.<br/>");
-  				$("#popupPrice").html("2800.00");
-  			}
-  			else if($packname=="europevac.jpg"){
-  				$("#popupBox").css("backgroundImage", "url('images/flightpackagepics/europevac.jpg')");
-  				$("#popupName").html("European Vacation");
-  				$("#popupContent").html(
-  					"2018-06-02<br/>"+
-  					"2018-06-17<br/>"+
-  					"Euro Tour with Rail Pass and Travel Insurance.<br/>");
-  				$("#popupPrice").html("3000.00");
-  			}
+        var $image = "";
+        if($packname=="Caribbean Tour"){$image="carribean.jpg";}
+          else if($packname=="Polynesian Paradise"){$image="polynesia.jpg";}
+          else if($packname=="Asian Expedition"){$image="asianhiking.jpg";}
+          else if($packname=="European Vacation"){$image="europevac.jpg";}
+
+        $("#popupBox").css("backgroundImage", "url('images/flightpackagepics/"+$image+"')");
+        $("#popupName").html($packname);
+        $("#popupContent").html(
+            $packstart+"<br/>"+
+            $packend+"<br/>"+
+            $packdesc);
+        $("#popupPrice").html($packprc);
+        $("#book").click(function(){verifyUserForPackage(
+          /////////pass UserId to verification
+          <?php
+            $userId = "";
+            if($_SESSION){$userId=$_SESSION['userId'];}
+            echo "'".$userId."'";
+          ?>,
+          /////////pass PackageId to verification
+          $packageId
+          );});
   		}
+
+      function verifyUserForPackage($userId, $packageId){
+        //console.log($userId);
+        if($userId!="")
+          { 
+            $("#packageDisplay").modal('hide');
+            //alert("Logged in");
+            //EDIT THIS IF DIRECTORY IS CHANGED
+            $.redirect("confirmOrder.php",
+              {
+                'userId': $userId,
+                'packageId': $packageId
+              }
+              );
+            //window.location.href = "http://localhost/WebsiteProject/sqlact/addbooking.php";
+
+          }
+        else 
+          {
+            $("#packageDisplay").modal('hide');
+            alert("Please log in or register for new user");
+            $("#loginModal").modal('show');
+          }
+      }
   	</script>
-		<?php include("include/footer.php") ?>
 </body>
 </html>
