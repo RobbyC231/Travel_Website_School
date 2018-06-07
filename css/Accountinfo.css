@@ -1,0 +1,33 @@
+*
+{
+  margin: 0px;
+  padding: 0px;
+
+}
+
+
+
+#main
+{
+
+  min-height: 300px;
+  background-color: white;
+
+}
+
+ #leftcolumn
+{
+  width: 50%;
+  height: 200px;
+  float: left;
+  background-color: red;
+}
+
+ #rightcolumn
+{
+  width: 50%;
+  height: 200px;
+  float: right;
+  background-color: yellow;
+
+}
