@@ -413,6 +413,13 @@ function busphone_format(event){
     	}
 
 
+    //so that when the page loads province field and pstal code field already visible
+    province_toggle.style.display="block";
+    state_toggle.style.display="none";
+    pcode_toggle.style.display="block";
+    zip_toggle.style.display="none";
+
+
 	function country_onchange(){
 		var country = document.getElementById("country").value;
 		if(country=="Canada"){
@@ -588,7 +595,7 @@ function busphone_format(event){
 	//Username
 	function username_oninput(){
 		var username = document.getElementById('username').value;
-		if (username.length>5)
+		if (username.length>=5)
 		{
 			document.getElementById("username_pass").src="icons/checked.png";
 			username_pass.style.display="block";

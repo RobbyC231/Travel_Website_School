@@ -4,11 +4,11 @@
 ?>
 <head>
     <!--this css is for styling the login modal-->
-    <link rel="stylesheet" type="text/css" href="../css/modal.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../css/modal.css"> -->
 </head>
 <?php
     //this it the include php for the login modal
-    include('login.php');
+    include 'include/login.php';
 ?>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
   <a class="navbar-brand" href="#">Travel Experts</a>
@@ -21,6 +21,7 @@
               <li class="nav-item"><a class="nav-link" href="packages.php"> PACKAGE </a></li>
               <li class="nav-item"><a class="nav-link" href="customer_registration.php"> REGISTER </li></a>
               <li class="nav-item"><a class="nav-link" href="contact_us.php"> CONTACT US </a></li>
+<<<<<<< HEAD
               <!--Chris-toggle account/login button when logging in-->
               <?php if(isset($_SESSION['logged_in'])){?>
                 <li class='nav-item'>
@@ -35,6 +36,9 @@
                    <a class='nav-link' href='#loginModal.php' onclick='document.getElementById("loginModal").style.display="block"'> LOGIN </a>
                 </li>
             <?php }?><!--Chris:end-->
+=======
+              <li class="nav-item"><a class="nav-link" data-toggle="modal" href="#loginModal"> LOGIN </a></li>
+>>>>>>> BootstrapWebStyle
         </ul>
   </div>
 </nav>
