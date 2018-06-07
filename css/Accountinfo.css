@@ -7,6 +7,7 @@
 
 
 
+<<<<<<< HEAD
 #main
 {
 
@@ -21,13 +22,59 @@
   height: 200px;
   float: left;
   background-color: red;
+=======
+
+
+#main
+{
+
+  min-height: 700px;
+  background-image: url("../images/airplane_clouds.jpg");
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+
+
+
+ #leftcolumn
+{
+  width: 45%;
+  height: 700px;
+  float: left;
+  background-color: rgba(0,0,0,0.6);
+}
+
+#leftcolumn h4
+{
+  color:white;
+}
+
+table
+{
+  width: 45%;
+  margin-top: 10px;
+  height: 600px;
+  color: white;
+}
+
+td
+{
+  text-align: center;
+>>>>>>> BootstrapWebStyle
 }
 
  #rightcolumn
 {
   width: 50%;
+<<<<<<< HEAD
   height: 200px;
   float: right;
   background-color: yellow;
+=======
+  height: 700;
+  float: right;
+  background-color: rgba(0,0,0,0.6);
+>>>>>>> BootstrapWebStyle
 
 }
