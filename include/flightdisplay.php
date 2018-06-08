@@ -17,7 +17,7 @@
 	<?php
 	$dbinst = mysqli_connect("localhost","root","","travelexperts");
 		if (mysqli_connect_errno()){echo "Failed to connect to MySQL: " . mysqli_connect_error();}
-	if(!$_POST)
+	if(empty($_POST['from']) && empty($_POST['destination']) && empty($_POST['date']) &&empty($_POST['number']))
 	{
 		////////////////////////Testing
 		$result = mysqli_query($dbinst, "SELECT * FROM flightstable LIMIT 0,25");
@@ -36,15 +36,21 @@
 		$index = 0;
 		foreach ($_POST as $key => $value) {
 
-			if($index!=0&&$value!="")
+			if($index!=0&&!empty($value))
 				{$querySearchCondition .= " AND ";}
 
-			if($key=='from'){$querySearchCondition .= "FltLocation LIKE '%".$value."%'";}
-			else if($key=='destination'){$querySearchCondition .= "FltDestination LIKE '%".$value."%'";}
+			$formattedDate = "";
+
+			if($key=='from'&&!empty($value)){$querySearchCondition .= "FltLocation LIKE '%".$value."%'";}
+			else if($key=='destination'&&!empty($value)){$querySearchCondition .= "FltDestination LIKE '%".$value."%'";}
+			else if($key=='date'&&!empty($value)){
+			}
+
 			$index++;
 		}
 		//echo $querySearchCondition;
 		$result = mysqli_query($dbinst, "SELECT * FROM flightstable WHERE ".$querySearchCondition." LIMIT 0,25");
+		//echo $querySearchCondition;
 		while ($row=mysqli_fetch_row($result)) {
 			echo "<div class='itemStyling'><a class='descStyling'>".
 			"PlaneNo: ".$row[1]."<br/> ".
