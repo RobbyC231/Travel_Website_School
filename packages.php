@@ -66,11 +66,11 @@
 						<div class="row mb-3">
 							<div class="col bg-light py-2">
 								<?php
-								?> <h5> <?php echo $row['PkgName'] . "<br>" ?> </h5> <?php
+								?> <h4> <?php echo $row['PkgName'] . "<br>" ?> </h4> <?php
 								?>
 									<div class="d-flex">
 										<img class="img-fluid d-none d-md-block" alt="Responsive image"  src="images/flightpackagepics/<?php echo $image ?>"></img>
-										<blockquote class="blockquote">
+										<blockquote class="blockquote align-self-center ml-3">
 											<p class="font-italic">"The water is so blue and the atmosphere is energitic. Jason my agent made sure everything was in place"</p>
 											<footer class="blockquote-footer">Janet</footer>
 										</blockquote>
@@ -89,9 +89,9 @@
 									</div>
 								</div>
 								<div class="d-flex justify-content-between">
-									<div>
+									<h5 class="align-self-center">
 										Price: <i class="fas fa-dollar-sign"></i><?php echo $row['PkgBasePrice']  ?>
-									</div>
+									</h5>
 									<button type="button" id="BookNow" class="btn btn-primary" name="button">Book Now</button>
 								</div>
 							</div>
@@ -129,7 +129,6 @@
         //console.log($userId);
         if($userId!="")
           {
-            $("#packageDisplay").modal('hide');
             //alert("Logged in");
             //EDIT THIS IF DIRECTORY IS CHANGED
             $.redirect("confirmOrder.php",
@@ -143,7 +142,6 @@
           }
         else
           {
-            $("#packageDisplay").modal('hide');
             alert("Please log in or register for new user");
             $("#loginModal").modal('show');
           }
