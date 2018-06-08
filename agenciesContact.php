@@ -9,8 +9,11 @@
     // echo "<div class='row'>";
     if($result = mysqli_query($mysqli, $grabAgency)){
       // print_r($result);//used to see if query worked
+      echo '<div class="row">';
       while($row = mysqli_fetch_assoc($result)){
-        echo "<p>";
+        ?>
+        <div class="col-md-6">
+        <?php
         if($row['AgencyId']==1){
           echo  "<h6>Travel Experts Calgary</h6>";
         }
@@ -23,8 +26,11 @@
           echo '<i class="fas fa-fax"></i>' . $row["Agncyfax"] . "<br>";
           getAgentInfo($row["AgencyId"],$row["AgncyCity"]);
         // print_r ($row); used to see if row is making array for each row
-        echo "</p>";
+        ?>
+        </div>
+        <?php
       }
+      echo "</div>";
       mysqli_free_result($result);
     }
 

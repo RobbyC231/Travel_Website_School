@@ -8,10 +8,11 @@
     <link rel="stylesheet" type="text/css" href="css/default.css" />
     <!-- bootstrap being loading in -->
     <?php require("bootstrap.php"); ?>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/contactUs.css" />
+    <link rel="stylesheet" href="css/footer.css">
   </head>
   <body>
+    <div class="content">
     <?php include("include/navbar.php") ?>
     <!-- jumbotron is holding the image and contact us wordds at top of page -->
       <div class="jumbotron rounded-0">
@@ -80,6 +81,7 @@
   <!-- this is a row to hold the contact info of each office -->
     <?php include("agenciesContact.php") ?>
     <!-- i inlcude the footer here which is a styled bootstrap footer, i will update that later -->
+  </div>
     <?php include("include/footer.php")  ?>
   </body>
 <!-- robert   -->

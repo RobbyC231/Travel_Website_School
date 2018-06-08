@@ -1,19 +1,16 @@
  <html>
 <head>
       <title>Travel Agency</title>
-      <link rel="stylesheet" href="/css/default.css">
+      <link rel="stylesheet" href="css/default.css">
       <?php require("bootstrap.php") ?>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
       <link rel="stylesheet" type="text/css" href="css/home_style.css" />
-
-
+      <link rel="stylesheet" href="css/footer.css">
 </head>
-
-  <?php
-    include("include/navbar.php");
-  ?>
-
   <body>
+    <div class=content>
+    <?php
+      include("include/navbar.php");
+    ?>
     <div class="jumbotron rounded-0">
       <div id="jumboInfo">
         <h1 class="display-4 text-center font-weight-bold">Travel Experts</h1>
@@ -67,6 +64,7 @@
          <span class="sr-only">Next</span>
       </a>
   </div>
+</div>
 </div>
   <footer>
     <?php

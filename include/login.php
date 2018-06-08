@@ -40,7 +40,7 @@
         <br/>
       </div>
         <button class="btn btn-primary" type="submit" name="login">Login</button>
-        <button type="submit" class="btn btn-primary" name="logout">Logout</button>
+        <!-- <button type="submit" class="btn btn-primary" name="logout">Logout</button> -->
         <!--we can remove the remember me later, might be lots of work-->
         <!-- <label>
             <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -51,8 +51,7 @@
             <span class="psw">Forgot <a href="ServerSideRegister\emailFormReset.php">password?</a></span>
     </div>
     <div class="modal-footer">
-        <h5>If you haven't Please Register</h5>
-        <button type="submit" class="btn btn-primary" name="register">Register</button>
+        <button type="submit" class="btn btn-primary" name="register">Sign Up</button>
     </div>
     </form>
 

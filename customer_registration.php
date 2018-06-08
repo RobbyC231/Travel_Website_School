@@ -3,8 +3,9 @@
     <!--this is the customer registration page-->
 	<head>
 		<title>Customer Registration</title>
-  	<link rel="stylesheet" href="/css/default.css">
+  	<link rel="stylesheet" href="css/default.css">
 		<?php require("bootstrap.php") ?>
+		<link rel="stylesheet" href="css/footer.css">
 		<!--I have put in cutomer_registration.css, this is for things that I think may be unique to this page-->
 		<!--this can either be added to the master css or kept in a seperate css-->
 		<!-- <link rel="stylesheet" type="text/css" href="css/customer_registration.css"> -->
@@ -26,6 +27,7 @@
 ?>
 
 	<body>
+		<div class="contents">
 		<?php include "include/navbar.php" ?>
 		<header>
             <?php
@@ -175,11 +177,7 @@
 				<button class="btn btn-primary btn-lg" id="clear" name="reset" value="reset">Reset</button>
 		</form>
 	</div>
-        <!--this will be for the login modal should we decide to go ahead with that-->
-        <!--this div tag and a script tag for a .js will need to be included on every page-->
-        <!--modal css will need to be added to .css file-->
-    	<div id="modal_creator">
-		</div>
+	</div>
 		<?php include "include/footer.php" ?>
 		<!--also put in a modal creator script here-->
 		<script type="text/javascript" src="js/customer_registration.js"></script>
