@@ -1,47 +1,44 @@
 <html>
-    <!--Chris Earle OOSD 5/26/2018-->
+    <!--Chris Earle, Robert did bootstrap styling for this page-->
     <!--this is the customer registration page-->
 	<head>
 		<title>Customer Registration</title>
-        <!--normalize css-->
-				<link rel="stylesheet" href="css/deafault.css">
-				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-				<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-		<!--I have put in cutomer_registration.css, this is for things that I think may be unique to this page-->
-		<!--this can either be added to the master css or kept in a seperate css-->
-		<!-- <link rel="stylesheet" type="text/css" href="css/customer_registration.css"> -->
-		<!--create links to all other .css-->
+        	<!--normalize css-->
+			<link rel="stylesheet" href="css/deafault.css">
+			<?php require("bootstrap.php"); ?>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	</head>
 
 	<?php
-  if ($_SERVER['REQUEST_METHOD'] == 'POST')
-  {
-    if (isset($_POST['submit'])) { //user logging in
-			require("ServerSideRegister/registerSever.php");
-			// require $_SERVER["DOCUMENT_ROOT"] . '/WebsiteProject/ServerSideRegister/registerSever.php';
-    }
-    else{
-
+		//start Robert
+		if ($_SERVER['REQUEST_METHOD'] == 'POST')
+		{
+			if (isset($_POST['submit'])) { //user logging in
+				require("ServerSideRegister/registerSever.php");
+				// require $_SERVER["DOCUMENT_ROOT"] . '/WebsiteProject/ServerSideRegister/registerSever.php';
+			}
+			else{
+			}
 		}
-	}
-  // var_dump($_SESSION); //used to check if the session is cleared after logged in
-?>
+		// var_dump($_SESSION); //used to check if the session is cleared after logged in
+		//end Robert
+	?>
 
+	<!--Chris to end of file except for bootstrap styling-->
+	<!--img tags are for the validation icon that are not displayed by default see customer_registration.js-->
+	<!--all image tags belong to class="checker" for easily reseting the icons on the form-->
+	<!--oninput is for validation onkeypress is for auto formating in the input field see customer_registration.js-->
+	<!--province and state select options created by loop in customer_registration.js-->
 	<body>
-		<?php include "include/navbar.php" ?>
+		<?php include("include/navbar.php") ?>
 		<header>
-            <?php
-                //placeholder for unique page variable to show active page on nav bar
-                $active_num=3;
-                //include .php for nav bar
-                //include .php for banner
-        	?>
+
 		</header>
-		<!--need to get bouncer.php put in for project-->
-		<!--the img here is used for form validation check mark or an x-->
-	<div class="container mt-3">
+
+		<div class="container mt-3">
 		<form id="customer_data" method="post">
 			<div class="row">
 				<div class="form_group col-sm-6">
@@ -71,7 +68,8 @@
 			</div>
 			<div class="row">
 				<div class="form-group col-sm-6">
-					<!--country drop down goes here will change province/state and postalcode/zip, only for US and Canada-->
+					<!--country select, changes province/state and postalcode/zip see customer_registration.js-->
+					<!--only for US and Canada-->
 					<label class="field" for="country">Country:</label>
 					<select id="country" class="form-control" name="country" onchange="country_onchange()">
 						<option value=""></option>
@@ -179,13 +177,13 @@
 				<button class="btn btn-primary btn-lg" id="clear" name="reset" value="reset">Reset</button>
 		</form>
 	</div>
-        <!--this will be for the login modal should we decide to go ahead with that-->
-        <!--this div tag and a script tag for a .js will need to be included on every page-->
-        <!--modal css will need to be added to .css file-->
-    	<div id="modal_creator">
+		<!--likely no longer needed as done in bootstrap now.  Need to test thoroughly before removing-->
+		<div id="modal_creator">
 		</div>
 		<?php include "include/footer.php" ?>
-		<!--also put in a modal creator script here-->
+		<!--also put in a modal creator script here.  nevermind done with bootstrap-->
+		<!--this script handles user side validation, generating select options, submit and reset functionality and autoformatting input fields-->
 		<script type="text/javascript" src="js/customer_registration.js"></script>
 	</body>
+	<!--end Chris-->
 </html>

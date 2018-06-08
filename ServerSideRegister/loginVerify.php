@@ -1,5 +1,6 @@
 <?php
-session_start();
+//session start was running twice do not add back in
+//session_start();
 // robert clements
 /* User login process, checks if user exists and password is correct */
 
@@ -31,9 +32,13 @@ else { // User exists
       $_SESSION['active'] = $user['Active'];
       $_SESSION['userId'] = $user["CustomerId"];
 
-      // This is how we'll know the user is logged in
+      // This is how we'll know the user is logged in -Chris
       $_SESSION['logged_in'] = true;
-      header("location:contact_us.php");
+      //end Chris
+
+      //do not add back in we do not want to redirect to contact
+      //-Chris
+      //header("location:contact_us.php");
 
   }
   else {

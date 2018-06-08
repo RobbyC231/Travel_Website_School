@@ -10,11 +10,18 @@
       header("location:customer_registration.php");
     }
     elseif (isset($_POST['logout'])){ //user logout
-      require $_SERVER["DOCUMENT_ROOT"] . '/Travel_Website/ServerSideRegister/logout.php';
+      require("ServerSideRegister/logout.php");
     }
   }
   // var_dump($_SESSION); //used to check if the session is cleared after logged in
+
+
+
 ?>
+
+
+
+
 <!-- robert clements-->
     <!--Chris Earle- the modal html code along with js to close on click outside modal-->
 <!-- The Modal -->
@@ -32,11 +39,17 @@
       <div class="form-group">
         <!-- <label for="username">Username:</label> -->
         <input type="text" class="form-control" placeholder="Enter Username" name="username">
+
+        <div id="username_msg"></div>
+
         <br/>
       </div>
       <div class="form-group">
         <!-- <label for="password">Password:</label> -->
         <input type="password" class="form-control" placeholder="Enter Password" name="password">
+
+        <div id="password_msg"></div>
+
         <br/>
       </div>
         <button class="btn btn-primary" type="submit" name="login">Login</button>

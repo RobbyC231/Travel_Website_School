@@ -54,7 +54,7 @@
 			if (mysqli_connect_errno()){echo "Failed to connect to MySQL: " . mysqli_connect_error();}
 			$result = mysqli_query($dbinst, "SELECT * FROM packages");
 
-			while ($row=mysqli_fetch_assoc($result)) 
+			while ($row=mysqli_fetch_assoc($result))
 				{
 					$image;
 					//Change image according to package name
@@ -65,7 +65,7 @@
           //echo $_SESSION['userId'];
 
 					//Create items for packages
-					echo 
+					echo
 					"<div name='packages' class='packageStyling' data-toggle='modal' data-target='#packageDisplay' onclick='popupTravel(\"".$row['PackageId']."\",\"".$row['PkgName']."\",\"".$row['PkgStartDate']."\",\"".$row['PkgEndDate']."\",\"".$row['PkgDesc']."\",\"".$row['PkgBasePrice']."\");'
 					style='background-image:url(\"images/flightpackagepics/".$image."\");'>"
 					.$row['PkgName']."</div>";
@@ -81,7 +81,7 @@
 	<!--Screenpopup-->
 	<div class="modal fade" id="packageDisplay" role="dialog">
     	<div class="modal-dialog modal-lg">
-    	
+
       		<!-- Modal content-->
       		<div class="modal-content" id="popupBox">
         		<div class="modal-header" id="popupHead">
@@ -128,7 +128,7 @@
       function verifyUserForPackage($userId, $packageId){
         //console.log($userId);
         if($userId!="")
-          { 
+          {
             $("#packageDisplay").modal('hide');
             //alert("Logged in");
             //EDIT THIS IF DIRECTORY IS CHANGED
@@ -141,7 +141,7 @@
             //window.location.href = "http://localhost/WebsiteProject/sqlact/addbooking.php";
 
           }
-        else 
+        else
           {
             $("#packageDisplay").modal('hide');
             alert("Please log in or register for new user");

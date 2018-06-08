@@ -1,17 +1,11 @@
-//Chris Earle OOSD 6/4/2018
+//Chris Earle
+//for future clarity I would consider breaking up many of these functions into seperate js files, too late now when considering the testing required
+//this script handles user side validation, generating select options, submit and reset functionality and autoformatting input fields
 
 
-//need codes for db create associative arrays for this I think
-//create pass/fail variables for submit
-//Add all new fields to reset and submitted
-//check out type="email"
-//add password checklist
-//comparing to dm make max field lenghts
-//auto fill parenthesis and dashes where needed likely will make easier for php as always same character length
-//complete province select
-//username and password regular expressions
-
+//this onload function is so the user cannot paste password and email into thei confirm fields
 window.onload = function() {
+        //clear_form(); //because we want all fields empty when page is loaded
     var paste_conf_password_block = document.getElementById('conf_password');
     var paste_conf_email_block = document.getElementById('conf_email');
     paste_conf_password_block.onpaste = function(no_password_for_you) {
@@ -22,6 +16,10 @@ window.onload = function() {
     }
 }
 
+
+//these passed vairables are set to false if a passing condition is met they become true
+//the submitscript function will look to see that these variables are true before allowing
+//the form to submit
 var fname_passed=false;
 var lname_passed=false;
 var country_passed=false;
@@ -39,98 +37,37 @@ var username_passed=false;
 var password_passed=false;
 var conf_password_passed=false;
 
-//this is the .js for the userdata form
-//registered expressions used for postal code and bus_phone number formats
-//Chris Earle OOSD 5/26/2018
+
+//registered expressions
 var postal_code_code = /^[a-zA-Z]\d[a-zA-Z] ?\d[a-zA-Z]\d$/;
 var phone_code = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
 var email_code = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 var zip_code_code = /^\d{5}(?:[-\s]\d{4})?$/;
-//at least 8 char long with at least one number, one lowercase letter, one uppercase, one special char
+//password at least 8 char long with at least one number, one lowercase letter, one uppercase, one special char
 var password_code = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*_])[\w!@#$%^&*]{8,}$/;
 
-//	/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-//this array is the acceptable two letter provincial symbols
-//var province_codes = ["AB", "BC", "NL", "PE", "NS", "NB", "QC", "MB", "SK", "YT", "NT", "NU"];
+//array of provices, used to create the select options
 var provinces = ["Alberta", "British Columbia", "Newfoundland and Labrador", "Prince Edward Island", "Nova Scotia", "New Brunswick", "Quebec", "Manatoba", "Saskatchewan", "Yukon", "Nunavut", "Northwest Territories"];
-/*var state_codes = [
-    "AL",
-    "AK",
-    "AS",
-    "AZ",
-    "AR",
-    "CA",
-    "CO",
-    "CT",
-    "DE",
-    "DC",
-    "FM",
-    "FL",
-    "GA",
-    "GU",
-    "HI",
-    "ID",
-    "IL",
-    "IN",
-    "IA",
-    "KS",
-    "KY",
-    "LA",
-    "ME",
-    "MH",
-    "MD",
-    "MA",
-    "MI",
-    "MN",
-    "MS",
-    "MO",
-    "MT",
-    "NE",
-    "NV",
-    "NH",
-    "NJ",
-    "NM",
-    "NY",
-    "NC",
-    "ND",
-    "MP",
-    "OH",
-    "OK",
-    "OR",
-    "PW",
-    "PA",
-    "PR",
-    "RI",
-    "SC",
-    "SD",
-    "TN",
-    "TX",
-    "UT",
-    "VT",
-    "VI",
-    "VA",
-    "WA",
-    "WV",
-    "WI",
-    "WY"
-];*/
 
+//array of states, used to create the select options
 var states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine',
 'Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania',
 'Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
 
+
+//variables of the lengths of the two above arrays, used in the following two loops
 var total_states = states.length;
 var total_provinces = provinces.length;
 
 //	document.getElementById("test").innerHTML = "You selected:"+"<br/>"+
 //    "and more";
-//create all the selection options for the states
+//create all the select options (drop down menu) for the states
 for(var option=0; option<total_states; option++){
     var new_option = document.getElementById('state');
     new_option.insertAdjacentHTML("beforeend", "<option>"+states[option]+"</option>");
 }
-
+//create all the select options (drop down menu) for the provinces
 for(var option=0; option<total_provinces; option++){
     var new_option = document.getElementById('province');
     new_option.insertAdjacentHTML("beforeend", "<option>"+provinces[option]+"</option>");
@@ -140,41 +77,44 @@ for(var option=0; option<total_provinces; option++){
 //when the userdata form is submitted
 var submitScript = document.getElementById('submit');
 submitScript.onclick = function(){
-	//defines variables from the ids from the userdata form, see html code
-	/*var first_name = document.getElementById('first_name').value;
-	var last_name = document.getElementById('last_name').value;
-	var address = document.getElementById('address').value;
-	var city = document.getElementById('city').value;
-	var province = document.getElementById('province').value;
-	var postal_code = document.getElementById('postal_code').value;
-	var phone = document.getElementById('phone').value;
-	var email = document.getElementById('email').value;*/
-
-	//this is the final validation on submit
-    /*first_name.length>0 && last_name.length>0 && address.length>0 && city.length>0 && province.length>0 && postal_code.match(postal_code_code) && phone.match(phone_code)*/
+	//setting passed variables to passed is done individually per field in sperate functions see later in this file
     if (fname_passed && lname_passed && country_passed && (province_passed || state_passed) && city_passed &&(pcode_passed || zip_passed) && address_passed && phone_passed && bus_phone_passed && email_passed && conf_email_passed && username_passed && password_passed && conf_password_passed)
-		{
+    {
 			if (confirm("Are you sure")){
 				document.getElementById('customer_data').submit();
 			}return false; //needed to prevent form submit when conditions are not met
-		}
-		else {
-			alert("Please Fill Out All Feilds");
-		}return false;
+	}else{
+		alert("Please Fill Out All Feilds");
+	}return false;
 }
 
 //when the userdata form is reset
 var resetScript = document.getElementById('clear');
-resetScript.onclick = function(){
+resetScript.onclick = function clear_form(){
 	if(confirm("Are you sure?")){
 		//resets fail-pass icons
         document.getElementsByClassName('checker');
         checker.style.display="none";
-		}return false;
+	}return false;
 }
 
-//This is for data validation
-//look into box shadow for data forms in css
+//so that when the page loads province field and postal code field already visible
+province_toggle.style.display="block";
+state_toggle.style.display="none";
+pcode_toggle.style.display="block";
+zip_toggle.style.display="none";
+
+
+/*The following is for data validation
+blur and focus functions are for displaying special messages when field selected the
+script will toggle the notes to be displayed or not
+
+oninput functions are to check if the input field meets requirement, often checking if the input
+field matched the regular expression requirements and other criteria.  These oninput functions then
+set pass/fail icons to be true or false
+
+on format functions are for auto formatting of the input field
+*/
 	//Postal Code
 	function pcode_focus(){
 		var pcode_note = document.getElementById('pcode_note');
@@ -186,26 +126,21 @@ resetScript.onclick = function(){
 	}
 	function pcode_oninput(){
 		var pcode = document.getElementById('postal_code');
-		var postal_code = document.getElementById('postal_code').value;
 		if (pcode.value.match(postal_code_code))
 		{
 			document.getElementById("pcode_pass").src="icons/checked.png";
 			pcode_pass.style.display="block";
 			pcode_pass.style.display = "inline";
             pcode_passed=true;
-		}
-		else
-		{
+		}else{
 			document.getElementById("pcode_pass").src="icons/fail.png";
 			pcode_pass.style.display="block";
 			pcode_pass.style.display = "inline";
             pcode_passed=false;
         }
 	}
-
     function pcode_format(event){
         var pcode = document.getElementById('postal_code').value;
-        //the above line will not work with converting to uppercase need to drop .value
         var pcodeupper = document.getElementById('postal_code');
         pcodeupper.value = pcodeupper.value.toUpperCase();
             if(pcode.length==3){
@@ -214,20 +149,23 @@ resetScript.onclick = function(){
     }
 
 
-
-
-
+    //Zip Code
+    function zip_code_focus(){
+        var state_note = document.getElementById('state_note');
+        zip_code_note.style.display = "block";
+        zip_code_note.style.display = "inline";
+    }
+    function zip_code_blur(){
+        zip_code_note.style.display = "none";
+    }
 	function zip_code_oninput(){
-	//	var zip_code = document.getElementById('zip_code').value;
 		if (zip_code.value.match(zip_code_code))
 		{
 			document.getElementById("zip_code_pass").src="icons/checked.png";
 			zip_code_pass.style.display="block";
 			zip_code_pass.style.display = "inline";
             zip_passed=true;
-        }
-		else
-		{
+        }else{
 			document.getElementById("zip_code_pass").src="icons/fail.png";
 			zip_code_pass.style.display="block";
 			zip_code_pass.style.display = "inline";
@@ -245,11 +183,8 @@ resetScript.onclick = function(){
 	function phone_blur(){
 		phone_note.style.display = "none";
 	}
-
 	function phone_oninput(){
 		var phone = document.getElementById('phone');
-
-
 		if (phone.value.match(phone_code))
 		{
             document.getElementById("phone_pass").src="icons/checked.png";
@@ -263,8 +198,6 @@ resetScript.onclick = function(){
             phone_passed=false;
         }
 	}
-
-
     function autophone_format(event){
         var phformat = document.getElementById('phone').value;
             if(phformat.length==1){
@@ -275,7 +208,6 @@ resetScript.onclick = function(){
                 document.getElementById('phone').value = phformat+"-";
             }
     }
-
 
 
 	//business phone
@@ -295,29 +227,23 @@ resetScript.onclick = function(){
 			bus_phone_pass.style.display="block";
 			bus_phone_pass.style.display = "inline";
             bus_phone_passed=true;
-    	}
-		else
-		{
+    	}else{
 			document.getElementById("bus_phone_pass").src="icons/fail.png";
 			bus_phone_pass.style.display="block";
 			bus_phone_pass.style.display = "inline";
             bus_phone_passed=false;
         }
 	}
-
-
-
-
-function busphone_format(event){
-    var phformat = document.getElementById('bus_phone').value;
-        if(phformat.length==1){
-            document.getElementById('bus_phone').value = "("+phformat;
-        }else if(phformat.length==4){
-            document.getElementById('bus_phone').value = phformat+")";
-        }else if(phformat.length==8){
-            document.getElementById('bus_phone').value = phformat+"-";
-        }
-}
+    function busphone_format(event){
+        var phformat = document.getElementById('bus_phone').value;
+            if(phformat.length==1){
+                document.getElementById('bus_phone').value = "("+phformat;
+            }else if(phformat.length==4){
+                document.getElementById('bus_phone').value = phformat+")";
+            }else if(phformat.length==8){
+                document.getElementById('bus_phone').value = phformat+"-";
+            }
+    }
 
 
 	//Province
@@ -337,9 +263,7 @@ function busphone_format(event){
 			province_pass.style.display="block";
 			province_pass.style.display = "inline";
             province_passed=true;
-        }
-		else
-		{
+        }else{
 			document.getElementById("province_pass").src="icons/fail.png";
 			province_pass.style.display="block";
 			province_pass.style.display = "inline";
@@ -348,33 +272,7 @@ function busphone_format(event){
 	}
 
 
-/*	function state_oninput(){
-		var state = document.getElementById('state');
-		var state = document.getElementById('state').value;
-		var state = state.toUpperCase();
-		if (state_codes.indexOf(state)>=0)
-		{
-			document.getElementById("state_pass").src="icons/checked.png";
-			state_pass.style.display="block";
-			state_pass.style.display = "inline";
-		}
-		else
-		{
-			document.getElementById("state_pass").src="icons/fail.png";
-			state_pass.style.display="block";
-			state_pass.style.display = "inline";
-		}
-	}
-*/
-
-
-
-	/*function country_onchange() {
-    var e = document.getElementById("country");
-	var strUser = e.options[e].text;
-	document.getElementById("demo").innerHTML = "You selected: " + strUser;
-	}*/
-
+    //State
 	function state_focus(){
 		var state_note = document.getElementById('state_note');
 		state_note.style.display = "block";
@@ -383,50 +281,31 @@ function busphone_format(event){
 	function state_blur(){
 		state_note.style.display = "none";
 	}
-
-
-	function zip_code_focus(){
-		var state_note = document.getElementById('state_note');
-		zip_code_note.style.display = "block";
-		zip_code_note.style.display = "inline";
-	}
-	function zip_code_blur(){
-		zip_code_note.style.display = "none";
-	}
-
     function state_onchange(){
-    		var state = document.getElementById('state').value;
-    		if (states.indexOf(state)>=0)
-    		{
-    			document.getElementById("state_pass").src="icons/checked.png";
-    			state_pass.style.display="block";
-    			state_pass.style.display = "inline";
-                state_passed=true;
-            }
-    		else
-    		{
-    			document.getElementById("state_pass").src="icons/fail.png";
-    			state_pass.style.display="block";
-    			state_pass.style.display = "inline";
-                state_passed=false;
-            }
-    	}
+		var state = document.getElementById('state').value;
+		if (states.indexOf(state)>=0)
+		{
+			document.getElementById("state_pass").src="icons/checked.png";
+			state_pass.style.display="block";
+			state_pass.style.display = "inline";
+            state_passed=true;
+        }else{
+			document.getElementById("state_pass").src="icons/fail.png";
+			state_pass.style.display="block";
+			state_pass.style.display = "inline";
+            state_passed=false;
+        }
+	}
 
 
-    //so that when the page loads province field and pstal code field already visible
-    province_toggle.style.display="block";
-    state_toggle.style.display="none";
-    pcode_toggle.style.display="block";
-    zip_toggle.style.display="none";
-
-
+    /*Country note this onchange function is a lot more different from the others because
+    it toggles the display as block/none for province/state field and postal/zip code field*/
 	function country_onchange(){
 		var country = document.getElementById("country").value;
 		if(country=="Canada"){
 			document.getElementById("country_pass").src="icons/checked.png";
 			country_pass.style.display="block";
 			country_pass.style.display="inline";
-			//document.getElementById("province").setAttribute("id", "paad");
 			var province_toggle = document.getElementById("province_toggle");
 			var state_toggle = document.getElementById("state_toggle");
 			province_toggle.style.display="block";
@@ -436,18 +315,10 @@ function busphone_format(event){
 			pcode_toggle.style.display="block";
 			zip_toggle.style.display="none";
             country_passed=true;
-
-		/*	prov_or_state.innerHTML =
-				'<label class="field" for="province">Province:</label>'+
-				'<input id="province" type="text" name="province" oninput="province_oninput()" onfocus="province_focus()" onblur="province_blur()"/>'+
-				'<img id="province_pass"  style="display:none" src="icons/checked.png">'+
-				'<div id="province_note" style="display:inline;display:none">please enter the two letter province symbol</div>';*/
-
 		}else if(country=="United States"){
 			document.getElementById("country_pass").src="icons/checked.png";
 			country_pass.style.display="block";
 			country_pass.style.display="inline";
-			//var prov_or_state = document.getElementById("prov_or_state");
 			var province_toggle = document.getElementById("province_toggle");
 			var state_toggle = document.getElementById("state_toggle");
 			province_toggle.style.display="none";
@@ -457,12 +328,6 @@ function busphone_format(event){
 			pcode_toggle.style.display="none";
 			zip_toggle.style.display="block";
             country_passed=true;
-
-		/*	prov_or_state.innerHTML =
-				'<label class="field" for="state">State:</label>'+
-				'<input id="state" type="text" name="state" oninput="state_oninput()" onfocus="state_focus()" onblur="state_blur()"/>'+
-				'<img id="state_pass"  style="display:none" src="icons/checked.png">'+
-				'<div id="province_note" style="display:inline;display:none">please enter the two letter state symbol</div>';*/
 		}else{
 			document.getElementById("country_pass").src="icons/fail.png";
 			country_pass.style.display="block";
@@ -481,9 +346,7 @@ function busphone_format(event){
 			fname_pass.style.display="block";
 			fname_pass.style.display = "inline";
             fname_passed=true;
-		}
-		else
-		{
+		}else{
 			document.getElementById("fname_pass").src="icons/fail.png";
 			fname_pass.style.display="block";
 			fname_pass.style.display = "inline";
@@ -491,9 +354,9 @@ function busphone_format(event){
         }
 	}
 
+
 	//Last Name
 	function lname_oninput(){
-		var lname = document.getElementById('last_name');
 		var lname = document.getElementById('last_name').value;
 		if (lname.length>0)
 		{
@@ -501,9 +364,7 @@ function busphone_format(event){
 			lname_pass.style.display="block";
 			lname_pass.style.display = "inline";
             lname_passed=true;
-        }
-		else
-		{
+        }else{
 			document.getElementById("lname_pass").src="icons/fail.png";
 			lname_pass.style.display="block";
 			lname_pass.style.display = "inline";
@@ -511,9 +372,9 @@ function busphone_format(event){
         }
 	}
 
+
 	//Address
 	function address_oninput(){
-		var address = document.getElementById('address');
 		var address = document.getElementById('address').value;
 		if (address.length>0)
 		{
@@ -521,15 +382,14 @@ function busphone_format(event){
 			address_pass.style.display="block";
 			address_pass.style.display = "inline";
             address_passed=true;
-        }
-		else
-		{
+        }else{
 			document.getElementById("address_pass").src="icons/fail.png";
 			address_pass.style.display="block";
 			address_pass.style.display = "inline";
             address_passed=false;
         }
 	}
+
 
 	//City
 	function city_oninput(){
@@ -540,15 +400,14 @@ function busphone_format(event){
 			city_pass.style.display="block";
 			city_pass.style.display = "inline";
             city_passed=true;
-		}
-		else
-		{
+		}else{
 			document.getElementById("city_pass").src="icons/fail.png";
 			city_pass.style.display="block";
 			city_pass.style.display = "inline";
             city_passed=false;
         }
 	}
+
 
 	//email
 	function email_oninput(){
@@ -559,31 +418,28 @@ function busphone_format(event){
 			email_pass.style.display="block";
 			email_pass.style.display = "inline";
             email_passed=true;
-		}
-		else
-		{
+		}else{
 			document.getElementById("email_pass").src="icons/fail.png";
 			email_pass.style.display="block";
 			email_pass.style.display = "inline";
             email_passed=false;
         }
-	//calling the confirm email so if this field changes so does confirm email validation
-
-	//confirm email
-	conf_email_oninput()
+	//calling the confirm email function so if this field changes so does confirm email validation
+    conf_email_oninput()
 	}
 
+
+    //confirm email
 	function conf_email_oninput(){
 		var conf_email = document.getElementById('conf_email').value;
-		if (conf_email.length>0 && conf_email==document.getElementById('email').value)
+        //conf_email must be more than 0 characters and equal to email and match email regular expression
+        if (conf_email.length>0 && conf_email==document.getElementById('email').value && conf_email.match(email_code))
 		{
 			document.getElementById("conf_email_pass").src="icons/checked.png";
 			conf_email_pass.style.display="block";
 			conf_email_pass.style.display = "inline";
             conf_email_passed=true;
-		}
-		else
-		{
+		}else{
 			document.getElementById("conf_email_pass").src="icons/fail.png";
 			conf_email_pass.style.display="block";
 			conf_email_pass.style.display = "inline";
@@ -601,9 +457,7 @@ function busphone_format(event){
 			username_pass.style.display="block";
 			username_pass.style.display = "inline";
             username_passed=true;
-        }
-		else
-		{
+        }else{
 			document.getElementById("username_pass").src="icons/fail.png";
 			username_pass.style.display="block";
 			username_pass.style.display = "inline";
@@ -612,7 +466,7 @@ function busphone_format(event){
 	}
 
 
-
+    //Password
     function password_focus(){
         var password_checklist = document.getElementById('password_checklist');
         password_checklist.style.display = "block";
@@ -621,8 +475,8 @@ function busphone_format(event){
     function password_blur(){
         password_checklist.style.display = "none";
     }
-
-
+    /*the following functions are for the various password requirements as a password
+    checklist uses these*/
     function hasLowerCase(str) {
         return (/[a-z]/.test(str));
     }
@@ -635,12 +489,11 @@ function busphone_format(event){
     function hasSpecial(str) {
         return (/[!@#$%^&*_]/.test(str));
     }
-
-
-	//password
+    //Password validation
 	function password_oninput(){
 		var password = document.getElementById('password').value;
-		if (password.match(password_code))
+        //this first if statement is for password validation of all requirements see regular expression
+        if (password.match(password_code))
 		{
 			document.getElementById("password_pass").src="icons/checked.png";
 			password_pass.style.display="block";
@@ -653,6 +506,8 @@ function busphone_format(event){
             password_passed=false;
         }
 
+        //the rest of the if statements under password_oninput() are for individual
+        //requirements and toggling the pass/fail icon in the password checklist
         if(password.length>=8){
             document.getElementById("eightchar_pass").src="icons/checked.png";
             eightchar_pass.style.display="block";
@@ -661,6 +516,8 @@ function busphone_format(event){
             eightchar_pass.style.display="none";
         }
 
+        //the rest of the if statements under password_oninput() call the previously defined
+        //functions above
         if(hasLowerCase(password)){
             document.getElementById("lower_pass").src="icons/checked.png";
             lower_pass.style.display="block";
@@ -671,7 +528,6 @@ function busphone_format(event){
             lower_pass.style.display = "inline";
         }
 
-
         if(hasUpperCase(password)){
             document.getElementById("upper_pass").src="icons/checked.png";
             upper_pass.style.display="block";
@@ -681,7 +537,6 @@ function busphone_format(event){
             upper_pass.style.display="block";
             upper_pass.style.display = "inline";
         }
-
 
         if(hasNumber(password)){
             document.getElementById("num_pass").src="icons/checked.png";
@@ -702,8 +557,7 @@ function busphone_format(event){
             special_pass.style.display="block";
             special_pass.style.display = "inline";
         }
-
-	//calling the confirm password so if this field changes so does confirm password validation
+	//calling the confirm password function so if this field changes so does confirm password validation
 	conf_password_oninput()
 	}
 
@@ -720,6 +574,7 @@ function busphone_format(event){
     //confirm password
 	function conf_password_oninput(){
 		var conf_password = document.getElementById('conf_password').value;
+        //conf_password must be more than 0 characters and equal to password and match password regular expression
         if (conf_password.match(password_code) && conf_password==document.getElementById('password').value)
 		{
 			document.getElementById("conf_password_pass").src="icons/checked.png";
@@ -735,27 +590,3 @@ function busphone_format(event){
             conf_password_passed=false;
         }
 	}
-
-
-/*    function username_unique(str){
-        var xhttp;
-        if (str.length == 0) {
-            document.getElementById("username_note").innerHTML = "";
-            return;
-        }
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("username_note").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("get","username_validate.php",true);
-        xhttp.send();
-    }
-
-
-	/*function country_onchange() {
-    var e = document.getElementById("country");
-	var strUser = e.options[e].text;
-	document.getElementById("demo").innerHTML = "You selected: " + strUser;
-	}*/
