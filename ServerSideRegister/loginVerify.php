@@ -20,7 +20,7 @@ if ( $result->num_rows == 0 ){ // User doesn't exist
 }
 else { // User exists
   $user = $result->fetch_assoc();
-  $purchase= $mysqli->query("SELECT * FROM bookings WHERE CustEmail='$users'");
+
 
 
   // print_r($user); //used to see results of array
