@@ -10,7 +10,7 @@ $result = $mysqli->query("SELECT * FROM customers WHERE CustEmail='$email'");
 
 
 // echo $email;
-// print_r($result); //use this to see what user email doesnt exist message wasnt coming up. it is beucase some customers dont have emails
+// print_r($result); //use this to see what user email doesnt exist message wasnt coming up. it is because some customers dont have emails
 
 if ( $result->num_rows == 0 ){ // User doesn't exist
   $_SESSION['message'] = "User with that email doesn't exist!";
@@ -19,6 +19,9 @@ if ( $result->num_rows == 0 ){ // User doesn't exist
 }
 else { // User exists
   $user = $result->fetch_assoc();
+  $purchase= $mysqli->query("SELECT * FROM bookings WHERE CustEmail='$users'");
+
+
   // print_r($user); //used to see results of array
   if ( password_verify($_POST['password'], $user['CustPassword']) ) {
 
@@ -31,6 +34,9 @@ else { // User exists
       $_SESSION['active'] = $user['Active'];
       $_SESSION['userId'] = $user["CustomerId"];
 
+      // store purchase history
+
+
       // This is how we'll know the user is logged in
       $_SESSION['logged_in'] = true;
       header("location:contact_us.php");
@@ -41,6 +47,7 @@ else { // User exists
       // echo $_SESSION['message'];
       header("location: ServerSideRegister/error.php");
   }
+
 }
 // robert clements
 ?>
