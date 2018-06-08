@@ -92,7 +92,16 @@
 									<h5 class="align-self-center">
 										Price: <i class="fas fa-dollar-sign"></i><?php echo $row['PkgBasePrice']  ?>
 									</h5>
-									<button type="button" id="BookNow" class="btn btn-primary" name="button">Book Now</button>
+									<button type="button" id="BookNow" class="btn btn-primary" name="button" onclick="
+										verifyUserForPackage(
+										<?php
+											$userId="";
+											if($_SESSION){$userId=$_SESSION['userId'];}
+											echo "'".$userId."'";
+										?>,
+										<?php echo "'".$row['PackageId']."'"; ?>
+										);
+									">Book Now</button>
 								</div>
 							</div>
 						</div>
@@ -113,18 +122,6 @@
       include "include/footer.php"; ?>
 
   	<script type="text/javascript">
-			$("#BookNow").click(function(){
-				verifyUserForPackage(
-					<?php
-						$userId="";
-						if($_SESSION){$userId=$_SESSION['userId'];}
-						echo "'".$userId."'";
-					?>,
-					<?php
-						echo "'".$row['PackageId']."'";
-					?>
-				);
-			});
       function verifyUserForPackage($userId, $packageId){
         //console.log($userId);
         if($userId!="")
