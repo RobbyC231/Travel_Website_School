@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-  </head>
-  <body>
-
+<!-- Robert Clements  -->
 <!-- Footer -->
-<footer class="page-footer font-small bg-dark pt-2">
+<footer class="footer font-small bg-dark pt-2">
 
   <!-- Footer Links -->
   <div class="container-fluid">
@@ -47,7 +39,3 @@
   <!-- Copyright -->
 
 </footer>
-<!-- Footer -->
-
-  </body>
-</html>

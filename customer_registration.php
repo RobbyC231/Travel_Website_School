@@ -3,13 +3,10 @@
     <!--this is the customer registration page-->
 	<head>
 		<title>Customer Registration</title>
-        	<!--normalize css-->
-			<link rel="stylesheet" href="css/deafault.css">
-			<?php require("bootstrap.php"); ?>
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  	<link rel="stylesheet" href="css/default.css">
+		<?php require("bootstrap.php") ?>
+		<link rel="stylesheet" href="css/footer.css">
+
 	</head>
 
 	<?php
@@ -33,6 +30,7 @@
 	<!--oninput is for validation onkeypress is for auto formating in the input field see customer_registration.js-->
 	<!--province and state select options created by loop in customer_registration.js-->
 	<body>
+		<div class="contents">
 		<?php include("include/navbar.php") ?>
 		<header>
 
@@ -177,9 +175,7 @@
 				<button class="btn btn-primary btn-lg" id="clear" name="reset" value="reset">Reset</button>
 		</form>
 	</div>
-		<!--likely no longer needed as done in bootstrap now.  Need to test thoroughly before removing-->
-		<div id="modal_creator">
-		</div>
+	</div>
 		<?php include "include/footer.php" ?>
 		<!--also put in a modal creator script here.  nevermind done with bootstrap-->
 		<!--this script handles user side validation, generating select options, submit and reset functionality and autoformatting input fields-->

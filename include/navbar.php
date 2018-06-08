@@ -1,4 +1,4 @@
-<!-- robert and brji and Chris -->
+<!-- robert and brij and Chris -->
 <?php
     session_start();
     /*$activepage checks if the active page is account info if it is

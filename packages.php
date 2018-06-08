@@ -3,18 +3,17 @@
 <head>
 	<title>Travel Experts - Vacation Packages</title>
 	<meta name="viewport" content="width=device-width">
-    <link href="home_style.css" rel="stylesheet" type="text/css">
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <?php require("bootstrap.php") ?>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/jquery.redirect.js"></script>
+		<link rel="stylesheet" href="css/footer.css">
 	<style type="text/css">
-		body{color: white; border-top: 0;
+		/* body{color: white; border-top: 0;
     		margin: 0; padding: 0;clear: both;
     		font-family: 'Montserrat', sans-serif;
     		background-image: url("images/bora_bora2.jpeg");
-    	}
-		li a {
+    	} */
+		/* li a {
 			display: block;
 			color: white;
 			text-align: center;
@@ -26,110 +25,107 @@
 			background-color:#242424;
 			margin: 3vw;
 			opacity: 0.90;
-		}
-		.sectHead{margin: 1vw;width: 100vw}
+		} */
+		/* .sectHead{margin: 1vw;width: 100vw}
 		.packageStyling{
 			color: black; font-size: 250%;
 			text-align: left;
 			width: 40vw; height: 45vh;
 			margin: 1vw; float: left;
 			background-color:#3F3F3F;
-		}
-		#packageDisplay{
+		} */
+		/* #packageDisplay{
 			color: black;
 			width: 95vw;
-		}
+		} */
 	</style>
-
-  <?php session_start();//if(isset($_SESSION)){session_start();}?>
-
 </head>
 <body>
+	<div class="content">
 	<?php include "include/navbar.php"?>
-	<br/><br/>
 	<section id="packageMenu">
-		<h2 class="sectHead">Our Travel Packages</h2>
+		<h1 class="display-4">Our Travel Packages</h1>
 		<?php
 			$dbinst = mysqli_connect("localhost","root","","travelexperts");
 			if (mysqli_connect_errno()){echo "Failed to connect to MySQL: " . mysqli_connect_error();}
 			$result = mysqli_query($dbinst, "SELECT * FROM packages");
+			?>
+				<div class="container-fluid">
+			<?php
 
 			while ($row=mysqli_fetch_assoc($result))
 				{
-					$image;
+					// print_r($row); // used to see array for each package
 					//Change image according to package name
-					if($row['PkgName']=="Caribbean Tour"){$image="carribean.jpg";}
-					else if($row['PkgName']=="Polynesian Paradise"){$image="polynesia.jpg";}
-					else if($row['PkgName']=="Asian Expedition"){$image="asianhiking.jpg";}
-					else if($row['PkgName']=="European Vacation"){$image="europevac.jpg";}
+					if($row['PkgName']=="Caribbean Tour"){$image="carribean.jpeg";}
+					else if($row['PkgName']=="Polynesian Paradise"){$image="polynesia.jpeg";}
+					else if($row['PkgName']=="Asian Expedition"){$image="asianhiking.jpeg";}
+					else if($row['PkgName']=="European Vacation"){$image="europevac.jpeg";}
           //echo $_SESSION['userId'];
+					?>
+						<div class="row mb-3">
+							<div class="col bg-light py-2">
+								<?php
+								?> <h4> <?php echo $row['PkgName'] . "<br>" ?> </h4> <?php
+								?>
+									<div class="d-flex">
+										<img class="img-fluid d-none d-md-block" alt="Responsive image"  src="images/flightpackagepics/<?php echo $image ?>"></img>
+										<blockquote class="blockquote align-self-center ml-3">
+											<p class="font-italic">"The water is so blue and the atmosphere is energitic. Jason my agent made sure everything was in place"</p>
+											<footer class="blockquote-footer">Janet</footer>
+										</blockquote>
+									</div>
+								<?php
+								?> <p class="lead"> <?php echo $row['PkgDesc'] . "<br>"; ?> </p> <?php
+								?>
+								<div class="d-flex">
+									<div class="">
+										Start Date: <?php  $formatDate = date_create($row['PkgStartDate']);
+										echo $row['PkgStartDate']= date_format($formatDate, "Y-m-d") ?>
+									</div>
+									<div class="ml-4">
+										End Date: <?php $formatDate = date_create($row['PkgEndDate']);
+										echo $row['PkgEndDate']= date_format($formatDate, "Y-m-d"); ?>
+									</div>
+								</div>
+								<div class="d-flex justify-content-between">
+									<h5 class="align-self-center">
+										Price: <i class="fas fa-dollar-sign"></i><?php echo $row['PkgBasePrice']  ?>
+									</h5>
+									<button type="button" id="BookNow" class="btn btn-primary" name="button" onclick="
+										verifyUserForPackage(
+										<?php
+											$userId="";
+											if($_SESSION){$userId=$_SESSION['userId'];}
+											echo "'".$userId."'";
+										?>,
+										<?php echo "'".$row['PackageId']."'"; ?>
+										);
+									">Book Now</button>
+								</div>
+							</div>
+						</div>
+					<?php
 
 					//Create items for packages
-					echo
-					"<div name='packages' class='packageStyling' data-toggle='modal' data-target='#packageDisplay' onclick='popupTravel(\"".$row['PackageId']."\",\"".$row['PkgName']."\",\"".$row['PkgStartDate']."\",\"".$row['PkgEndDate']."\",\"".$row['PkgDesc']."\",\"".$row['PkgBasePrice']."\");'
-					style='background-image:url(\"images/flightpackagepics/".$image."\");'>"
-					.$row['PkgName']."</div>";
+					// echo
+					// "<div name='packages' class='packageStyling' data-toggle='modal' data-target='#packageDisplay'</div>";
 					//$row[2].$row[3].$row[4].$row[5]
 				}
         //verifyUserForPackage(\"".$userId."\");
 		?>
+		</div>
 	</section>
+</div>
 	<?php
       //echo $_SESSION['userId'];
       include "include/footer.php"; ?>
 
-	<!--Screenpopup-->
-	<div class="modal fade" id="packageDisplay" role="dialog">
-    	<div class="modal-dialog modal-lg">
-
-      		<!-- Modal content-->
-      		<div class="modal-content" id="popupBox">
-        		<div class="modal-header" id="popupHead">
-        	  	<button type="button" class="close" data-dismiss="modal">&times;</button>
-        	  		<h4 class="modal-title" id="popupName">(Tourname)</h4>
-        		</div>
-        		<div class="modal-body" id="popupContent">
-        	  		<p>(Tourdescription)</p>
-        		</div>
-        		<div class="modal-footer">
-                <h4 class="modal-title" id="popupPrice">(Price)</h4><button id="book" type="button" class="btn btn-default" >Book</button>
-        	</div>
-      		</div>
-    	</div>
-  	</div>
   	<script type="text/javascript">
-  		function popupTravel($packageId, $packname, $packstart, $packend, $packdesc, $packprc){
-  			//console.log($packname);
-        var $image = "";
-        if($packname=="Caribbean Tour"){$image="carribean.jpg";}
-          else if($packname=="Polynesian Paradise"){$image="polynesia.jpg";}
-          else if($packname=="Asian Expedition"){$image="asianhiking.jpg";}
-          else if($packname=="European Vacation"){$image="europevac.jpg";}
-
-        $("#popupBox").css("backgroundImage", "url('images/flightpackagepics/"+$image+"')");
-        $("#popupName").html($packname);
-        $("#popupContent").html(
-            $packstart+"<br/>"+
-            $packend+"<br/>"+
-            $packdesc);
-        $("#popupPrice").html($packprc);
-        $("#book").click(function(){verifyUserForPackage(
-          /////////pass UserId to verification
-          <?php
-            $userId = "";
-            if($_SESSION){$userId=$_SESSION['userId'];}
-            echo "'".$userId."'";
-          ?>,
-          /////////pass PackageId to verification
-          $packageId
-          );});
-  		}
-
       function verifyUserForPackage($userId, $packageId){
         //console.log($userId);
         if($userId!="")
           {
-            $("#packageDisplay").modal('hide');
             //alert("Logged in");
             //EDIT THIS IF DIRECTORY IS CHANGED
             $.redirect("confirmOrder.php",
@@ -143,7 +139,6 @@
           }
         else
           {
-            $("#packageDisplay").modal('hide');
             alert("Please log in or register for new user");
             $("#loginModal").modal('show');
           }

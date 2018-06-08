@@ -1,19 +1,16 @@
  <html>
 <head>
       <title>Travel Agency</title>
-      <link rel="stylesheet" href="/css/default.css">
+      <link rel="stylesheet" href="css/default.css">
       <?php require("bootstrap.php") ?>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
       <link rel="stylesheet" type="text/css" href="css/home_style.css" />
-
-
+      <link rel="stylesheet" href="css/footer.css">
 </head>
-
-  <?php
-    include("include/navbar.php");
-  ?>
-
   <body>
+    <div class=content>
+    <?php
+      include("include/navbar.php");
+    ?>
     <div class="jumbotron rounded-0">
       <div id="jumboInfo">
         <h1 class="display-4 text-center font-weight-bold">Travel Experts</h1>
@@ -27,7 +24,7 @@
     <!-- <video id="video-bg" preload="auto" autoplay="true" loop="loop" muted="muted"  >
     <source src="video/background.mp4" type="video/mp4" >
     video not supported</video> -->
-  <div class="container mb-3 w-50">
+  <div class="container mb-3 w-50">  <!-- Brijesh  -->
     <h4 class="text-center">Popular Packages</h4>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
@@ -68,10 +65,11 @@
       </a>
   </div>
 </div>
+</div>
   <footer>
     <?php
       include("include/footer.php");
     ?>
   </footer>
 </body>
-</html>
+</html>  <!-- /Brijesh -->
