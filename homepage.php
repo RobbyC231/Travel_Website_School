@@ -27,7 +27,7 @@
     <!-- <video id="video-bg" preload="auto" autoplay="true" loop="loop" muted="muted"  >
     <source src="video/background.mp4" type="video/mp4" >
     video not supported</video> -->
-  <div class="container mb-3 w-50">
+  <div class="container mb-3 w-50">  <!-- Brijesh  -->
     <h4 class="text-center">Popular Packages</h4>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
@@ -74,4 +74,4 @@
     ?>
   </footer>
 </body>
-</html>
+</html>  <!-- /Brijesh -->
