@@ -52,9 +52,9 @@
 		<div id="searchBar">
 			<form action="include/flightdisplay.php" target="displayPort" method="post">
 				<label>From:
-					<input type="text" id="from" name="from" required="true" size="30vw"></label>
+					<input type="text" id="from" name="from" size="30vw"></label>
 				<label>Destination:
-					<input type="text" id="destination" name="destination" required="true" size="30vw">
+					<input type="text" id="destination" name="destination" size="30vw">
 				</label>
 				<label>When:
 					<input type="date" name="date">
