@@ -1,59 +1,3 @@
-<<<<<<< HEAD
-<html>
-<head>
-      <title>Travel Agency</title>
-      <link href="css/Accountinfo.css" rel="stylesheet" type="text/css">
-          <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script type="text/javascript">
-      </script>
-
-</head>
-<body>
-
-          <div class="bgimage" >
-
-                  <header>
-                    <?php
-                         include_once 'include/navbar.php';
-
-                    ?>
-                   </header>
-
-
-                   <div id="main">
-
-                          <div id="leftcolumn">
-
-                                <h2> Personal Details </h2>
-                          </div>
-
-                          <div id="rightcolumn">
-
-                                <h2> Packages Purchased </h2>
-
-                          </div>
-
-
-                   </div>
-
-                   <footer  class="footer">
-                     <?php
-                          include_once 'include/footer.php';
-                     ?>
-
-                   </footer>
-          </div>
-</body>
-=======
-<?php
-			session_start();
-
-
-?>
 <html>
     <!--Chris Earle OOSD 5/26/2018-->
     <!--this is the customer registration page-->
@@ -75,22 +19,17 @@
 	<body>
 		<?php include "include/navbar.php" ?>
 		<header>
-            <!-- <?php
-                //placeholder for unique page variable to show active page on nav bar
-                $active_num=3;
-                //include .php for nav bar
-                //include .php for banner
-        	?> -->
+
 		</header>
 
   	<div id="main">
 
-      <div id="leftcolumn">
-				<center><h4> Personal Details </h4></center>
+     <div id="leftcolumn">
+				<center><h4> Personal Details </h4>
 
 				<div id="table">
 
-						<table height="200px" width=50% border="1">
+						<table height="600px" width=50% border="1">
 
 									<tr>
 												<td> First Name : </td>
@@ -112,21 +51,97 @@
 									</tr>
 									<tr>
 												<td> Cell Phone : </td>
-												<td>				</td>
+												<td><?php echo $_SESSION['phone']; ?></td>
 									</tr>
 									<tr>
 												<td> Email : </td>
-												<td>				</td>
+												<td><?php echo $_SESSION['email']; ?></td>
 									</tr>
 
 						</table>
 
-				</div>
+				   </div>
 
 
-			</div>
+		    </div>
 
       <div id="rightcolumn">
+
+         <?php
+                    //fetch purchased packaged data according to user
+                    require "ServerSideRegister/dbconnect.php"; //connect to database
+                    $result= $mysqli->query("SELECT * FROM bookings  WHERE CustomerId='".$_SESSION['userId']."' ")  ;  //select booking data according to logged in user by userId
+                    if (!$result)
+                     {
+                      printf("Error:" );
+                      exit();
+                    }
+
+                    while ($row=mysqli_fetch_array($result))
+                    {
+                        $BookingId=$row[0];
+                        $BookingDate=$row[1];
+                        $BookingNo=$row[2];
+                        $BookingTravelCount=$row[3];
+
+
+                    }
+
+
+
+
+          ?>
+          <center><h4> Purchased Packages Details </h4>
+
+  				<div id="table">
+
+            <?php
+
+                    $PackageDetail= $mysqli->query("SELECT * FROM bookingdetails  WHERE BookingId='".$BookingId."' ")  ; //select package data according to bookingId
+
+                    while ($row=mysqli_fetch_array($PackageDetail))
+                    {
+                        $BookingDec=$row[4];
+                        $Destination=$row[5];
+                        $BasePrice= $row[6];
+                        $total=$BasePrice * $BasePrice;
+
+                        //  displaying purchased packaged details
+                        echo "<table height='600px'  width=50% border='10px'>" ;
+
+                              echo "<tr>";
+                                    echo "<td> Booking No: </td>";
+                                    echo "<td>{$BookingNo}</td>";
+                              echo "</tr>";
+                              echo "<tr>";
+                                    echo "<td> Booking Date & Time : </td>";
+                                    echo "<td> {$BookingDate} </td>";
+                              echo "</tr>";
+
+                              echo "<tr>";
+                                    echo "<td> Total Traveler: </td>";
+                                    echo "<td>{$BookingTravelCount}</td>";
+                              echo "</tr>";
+                              echo "<tr>";
+                                    echo "<td> Description : </td>";
+                                    echo "<td>{$BookingDec}</td>";
+                              echo "</tr>";
+                              echo "<tr>";
+                                    echo "  <td> Destination : </td>";
+                                    echo "<td>{$Destination}</td>";
+                              echo "</tr>";
+                              echo "<tr>";
+                                    echo "<td> Price : </td>";
+                                    echo " <td>{$total}</td>";
+                              echo "</tr>";
+
+                      echo  "</table></center>";
+
+                    }
+
+            ?>
+
+            </div>
 
       </div>
 
@@ -136,5 +151,5 @@
 		<!--also put in a modal creator script here-->
 		<script type="text/javascript" src="js/customer_registration.js"></script>
 	</body>
->>>>>>> BootstrapWebStyle
+
 </html>

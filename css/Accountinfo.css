@@ -7,39 +7,19 @@
 
 #main
 {
-  min-height: 700px;
-  background-image: url("images/airplane_clouds.jpg")
+  width:100%;
+  height: 700px;
+ background-image: url("images/wakatobi_tile.jpg");
 
 }
 
  #leftcolumn
 {
   width: 50%;
-  height: 200px;
-  float: left;
-  background-color: rgba(0,0,0,0.6);
-  background-color: red;
-
-
-
-#main
-{
-
-  min-height: 700px;
-  background-image: url("../images/airplane_clouds.jpg");
-  background-repeat: no-repeat;
-  background-position: right top;
-}
-
-
-
-
- #leftcolumn
-{
-  width: 45%;
   height: 700px;
   float: left;
   background-color: rgba(0,0,0,0.6);
+
 }
 
 #leftcolumn h4
@@ -63,10 +43,19 @@ td
  #rightcolumn
 {
   width: 50%;
-  height: 200px;
+  height: 700px;
   float: right;
   background-color: rgba(0,0,0,0.6);
   height: 700;
   float: right;
-  background-color: rgba(0,0,0,0.6);
+
+}
+
+#rightcolumn table
+{
+  height: 400px;
+}
+#rightcolumn h4
+{
+    color:white;
 }

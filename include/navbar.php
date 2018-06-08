@@ -24,7 +24,7 @@
               <!--Chris-toggle account/login button when logging in-->
               <?php if(isset($_SESSION['logged_in'])){?>
                 <li class='nav-item'>
-                   <a class='nav-link' href='accountinfo.php'> ACCOUNT </a>
+                   <a class='nav-link' href='accountinfo.php'> ACCOUNT </a>                   
                 </li>
                 <li class='nav-item'>
                    <a class='nav-link' href='ServerSideRegister/logout.php'> LOGOUT </a>
