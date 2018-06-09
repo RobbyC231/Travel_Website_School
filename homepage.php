@@ -23,33 +23,27 @@
     </div>
 
     <br>
+    <div class="container w-50">
+
     <h2 class="text-center">Popular Packages</h2>
 
-  <div id="package_container" class="container mb-3 w-150 ">  <!-- Brijesh  start-->
+ <!-- Brijesh  start-->
 
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide mb-3" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
       </ol>
-    <div class="carousel-inner">
+    <div class="carousel-inner" role="listbox">
       <div class="carousel-item active">
-        <img class="d-block w-100" src="images\flightpackagepics\carribean.jpeg" alt="First slide">
+        <img class="d-block img-fluid w-100" src="images\flightpackagepics\CarribeanMed.jpeg" alt="First slide">
           <div class="carousel-caption d-none d-sm-block">
             <h3> Caribbean Tour </h3>
             <h4> 8 Night 9 days... only $4800 </4>
           </div>
       </div>
-     <div class="carousel-item">
-          <img class="d-block w-100" src="images\flightpackagepics\polynesia.jpeg" alt="Second slide">
-        <div class="carousel-caption d-none d-sm-block">
-          <h3> Polynesian Paradise </h3>
-          <h4> 8 Night 9 days... only $3000 </4>
-        </div>
-    </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="images\flightpackagepics\asianhiking.jpeg" alt="Third slide">
+      <img class="d-block img-fluid w-100" src="images\flightpackagepics\euroMed.jpeg" alt="Third slide">
          <div class="carousel-caption d-none d-sm-block">
             <h3> Asian Expedition </h3>
             <h4> 14 Night 15 days... only $2800 </4>
