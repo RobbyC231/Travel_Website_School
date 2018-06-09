@@ -77,7 +77,8 @@
     	while ($row=mysqli_fetch_array($result))
 				// print_r($row); //to see array
         {
-          $BookingDate=$row['BookingDate'];
+          $formatDate = date_create($row['BookingDate']);
+          $BookingDate= date_format($formatDate, "Y-m-d");
           $BookingNo=$row['BookingNo'];
           $BookingTravelCount=$row['TravelerCount'];
 					$package=$row['PackageId'];
