@@ -25,26 +25,34 @@
 	shuffle($seed);
 	$rand = '';
 	foreach (array_rand($seed, 5) as $k){$rand.=$seed[$k];}
-	$columns .= "BookingNo, ";
-	$values .= "'".$rand."', ";
+	$columns .= "BookingNo";
+	$values .= "'".$rand."'";
 
 	//TravelCount
-	$columns .= "TravelerCount, ";
-	$values .= "'".$_POST['TravelerCount']."', ";
+	$columns .= ", TravelerCount";
+	$values .= ", '".$_POST['TravelerCount']."'";
 
 	//CustomerId
-	$columns .= "CustomerId, ";
-	$values .= "'".$_POST['userId']."', ";
+	$columns .= ", CustomerId";
+	$values .= ", '".$_POST['userId']."'";
 
 	//TripTypeId
-	$columns .= "TripTypeId, ";
-	if($_POST['ClassId']=='BSN'){$values .= "'B', ";}
-	else if($_POST['TravelerCount']==1){$values .= "'L', ";}
-	else if($_POST['TravelerCount']>=2){$values .= "'G', ";}
+	$columns .= ", TripTypeId";
+	if($_POST['ClassId']=='BSN'){$values .= ", 'B'";}
+	else if($_POST['TravelerCount']==1){$values .= ", 'L'";}
+	else if($_POST['TravelerCount']>=2){$values .= ", 'G'";}
 
 	//PackageId
-	$columns .= "PackageId)";
-	$values .= "'".$_POST['packageId']."')";
+	if(!empty($_POST['packageId']))
+	{
+		$columns .= ", PackageId)";
+		$values .= ", '".$_POST['packageId']."')";
+	}
+	else
+	{
+		$columns .= ")";
+		$values .= ")";
+	}
 
 	/////////Construct SQL Statement
 	$sqlcommand .= $columns.$values;
@@ -70,65 +78,89 @@
 	shuffle($seed);
 	$rand = '';
 	foreach (array_rand($seed, 5) as $k){$rand.=$seed[$k];}
-	$columns .= "ItineraryNo, ";
-	$values .= "'".$rand."', ";
+	$columns .= "ItineraryNo";
+	$values .= "'".$rand."'";
 
 	//TripStart
-	$columns .= "TripStart, ";
-	$values .= "'".$departPlanRow['FltDepart']."', ";
+	$columns .= ", TripStart";
+	$values .= ", '".$departPlanRow['FltDepart']."'";
 
 	//TripEnd
-	$columns .= "TripEnd, ";
-	$values .= "'".$returnPlanRow['FltReturn']."', ";
+	$columns .= ", TripEnd";
+	$values .= ", '".$returnPlanRow['FltReturn']."'";
 
 	//Description
-	$columns .= "Description, ";
+	$columns .= ", Description";
 	$explodedDest =  explode(",", $departPlanRow['FltDestination']);
-	$values .= "'".$departPlanRow['FltLocation']."/".$explodedDest[0]."/".$returnPlanRow['FltLocation']."', ";
+	$values .= ", '".$departPlanRow['FltLocation']."/".$explodedDest[0]."/".$returnPlanRow['FltLocation']."'";
 
 	//Destination
-	$columns .= "Destination, ";
-	$values .= "'".$departPlanRow['FltDestination']."', ";
+	$columns .= ", Destination";
+	$values .= ", '".$departPlanRow['FltDestination']."'";
 
-	//BasePrice SUBJECT TO CHANGE IF FLIGHT SEARCH WORKING
-	$columns .= "BasePrice, ";
-	$values .= "'".$packageRow['PkgBasePrice']."', ";
+	//BasePrice
+	if(!empty($_POST['packageId']))
+	{
+		$columns .= ", BasePrice";
+		$values .= ", '".$packageRow['PkgBasePrice']."'";
+	}
+	else
+	{
+		$columns .= ", BasePrice";
+		$values .= ", '".($departPlanRow['FltTicketPrice']+$returnPlanRow['FltTicketPrice'])."'";
+	}
 
-	//AgencyCommission SUBJECT TO CHANGE IF FLIGHT SEARCH WORKING
-	$columns .= "AgencyCommission, ";
-	$values .= "'".$packageRow['PkgAgencyCommission']."', ";
+	//AgencyCommission
+	if(!empty($_POST['packageId']))
+	{
+		$columns .= ", AgencyCommission";
+		$values .= ", '".$packageRow['PkgAgencyCommission']."'";
+	}
+	else
+	{
+		$columns .= ", AgencyCommission";
+		$values .= ", '".($departPlanRow['FltTicketPrice']+$returnPlanRow['FltTicketPrice'])*0.05."'";
+	}
 
 	//BookingId
-	$columns .= "BookingId, ";
-	$values .= "'".$bookingRow['BookingId']."', ";
+	$columns .= ", BookingId";
+	$values .= ", '".$bookingRow['BookingId']."'";
 
 	//RegionId
-	$columns .= "RegionId, ";
-	$values .= "'".$departPlanRow['RegionId']."', ";
+	$columns .= ", RegionId";
+	$values .= ", '".$departPlanRow['RegionId']."'";
 
 	//ClassId
-	$columns .= "ClassId, ";
-	$values .= "'".$_POST['ClassId']."', ";
+	$columns .= ", ClassId";
+	$values .= ", '".$_POST['ClassId']."'";
 
 	//FeeId
-	$columns .= "FeeId, ";
-	if($_POST['TravelerCount']==1){$values .= "'BK', ";}
-	else if($_POST['TravelerCount']>=2){$values .= "'GR', ";}
+	$columns .= ", FeeId";
+	if($_POST['TravelerCount']==1){$values .= ", 'BK'";}
+	else if($_POST['TravelerCount']>=2){$values .= ", 'GR'";}
 	
 
-	//ProductSupplierId SUBJECT TO CHANGE IF WORKING ON FLIGHT SEARCH
-	$columns .= "ProductSupplierId, ";
-	$supplierRow = mysqli_fetch_assoc(mysqli_query($dbinst, "SELECT * FROM packages_products_suppliers WHERE PackageId='".$bookingRow['PackageId']."'"));
-	$values .= "'".$supplierRow['ProductSupplierId']."', ";
+	//ProductSupplierId SUBJECT TO CHANGE
+	if(!empty($_POST['packageId']))
+	{
+		$columns .= ", ProductSupplierId";
+		$supplierRow = mysqli_fetch_assoc(mysqli_query($dbinst, "SELECT * FROM packages_products_suppliers WHERE PackageId='".$bookingRow['PackageId']."'"));
+		$values .= ", '".$supplierRow['ProductSupplierId']."'";
+	}
+	else
+	{
+		$columns .= ", ProductSupplierId";
+		$values .= ", '3'";
+	}
 	//print_r($supplierRow);echo "<br/><br/>";
 	
 	//DeparturePlnId
-	$columns .= "DeparturePlnId, ";
-	$values .= "'".$departPlanRow['FlightId']."', ";
+	$columns .= ", DeparturePlnId";
+	$values .= ", '".$departPlanRow['FlightId']."'";
 
 	//ReturnPlnId
-	$columns .= "ReturnPlnId)";
-	$values .= "'".$returnPlanRow['FlightId']."')";
+	$columns .= ", ReturnPlnId)";
+	$values .= ", '".$returnPlanRow['FlightId']."')";
 
 	//Compiling and return to packages 
 	$sqlcommand .= $columns.$values;

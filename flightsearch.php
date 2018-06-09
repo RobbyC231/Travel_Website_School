@@ -7,6 +7,7 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   	<script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery.redirect.js"></script>
 	<style type="text/css">
 		body{color: white; border-top: 0;
     		margin: 0; padding: 0;clear: both;
@@ -57,7 +58,7 @@
 					<input type="text" id="destination" name="destination" size="30vw">
 				</label>
 				<label>When:
-					<input type="date" name="date">
+					<input type="date" id="date" name="date">
 				</label>
 				<label>Days
 					<input type="number" name="days">
@@ -68,5 +69,41 @@
 		<iframe name="displayPort" id="displayPackages" src="include/flightdisplay.php"></iframe>
 	</section>
 	<?php include "include/footer.php"; ?>
+	<script type="text/javascript">
+		var dateControl = document.querySelector('input[type="date"]');
+		var dateNow = new Date();
+
+		var YearNow = dateNow.getFullYear();
+		var MonthNow = dateNow.getMonth()+1;
+		var DateNow = dateNow.getDate();
+
+		if(MonthNow<10){MonthNow='0'+MonthNow;}
+		if(DateNow<10){DateNow='0'+DateNow;}
+
+		dateControl.value = YearNow+"-"+MonthNow+"-"+DateNow;
+
+      	function verifyUserForBook($userId, $departPlnId, $returnPlnId){
+    	    //console.log($userId);
+        	if($userId!="")
+          	{
+          	  //alert("Logged in");
+           	 	//EDIT THIS IF DIRECTORY IS CHANGED
+           	 	//console.log($userId+" : "+$departPlnId+" : "+$returnPlnId);
+           	 	$.redirect("confirmOrder.php",
+           	   	{
+            	    'userId': $userId,
+            	    'departPlnId': $departPlnId,
+            	    'returnPlnId': $returnPlnId
+              	}
+              	);
+            	//window.location.href = "http://localhost/WebsiteProject/sqlact/addbooking.php";
+          	}
+        	else
+          	{
+            	alert("Please log in or register for new user");
+            	$("#loginModal").modal('show');
+          	}
+        }
+	</script>
 </body>
 </html>
