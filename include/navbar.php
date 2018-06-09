@@ -1,6 +1,10 @@
 <!-- robert and brij and Chris -->
 <?php
-    session_start();
+    //this is only to start the session if not yet started
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
     /*$activepage checks if the active page is account info if it is
     then a session variable is created as this was required to
     get this info into the logout.php via href='ServerSideRegister/logout.php'
@@ -15,14 +19,14 @@
 <head>
 </head>
 <script type="text/javascript">
-    window.onload = function(){
-            unset($email,$result);
+    window.onbeforeunload = function(){
+            <?php /*unset($_POST);*/ ?>
     }
 </script>
 
 <?php
     //this it the include php for the login modal
-    include 'include/login.php';
+    include('include/login.php');
 ?>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
   <a class="navbar-brand" href="#">Travel Experts</a>
@@ -51,7 +55,16 @@
                         <a class="nav-link" data-toggle="modal" href="#loginModal"> LOGIN </a>
 
                     </li>
-                <?php }?><!--Chris:end-->
+                <?php }
+
+                if(isset($_SESSION['message'])){?><script type="text/text/javascript">
+                document.getElementById('password_msg').innerHTML = "<?php $_SESSION['message'];?>";
+                </script><?php
+                }
+                ?>
+
+
+                <!--Chris:end-->
         </ul>
   </div>
 </nav>
