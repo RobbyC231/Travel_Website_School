@@ -1,3 +1,4 @@
+/* Brijesh   */
 .jumbotron{
   /* background-image: url("../images/airplane_clouds.jpg"); */
   background-image: url("../images/plane.jpg");
@@ -12,4 +13,10 @@
 
 #jumboInfo{
   color: black;
+}
+
+#text-center
+{
+  font-family:Comic Sans MS, Comic Sans, cursive ;
+  color:green;
 }
