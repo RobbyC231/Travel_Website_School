@@ -10,7 +10,6 @@ if(!isset($_SESSION))
 //end Chris
 
 // print_r($_POST); //used to see reuslts of $_POST
-echo "<br>";
 
 $_SESSION['email'] = $_POST['email'];
 $_SESSION['firstname'] = $_POST['first_name'];
