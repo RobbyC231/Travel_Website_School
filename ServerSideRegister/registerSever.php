@@ -1,7 +1,14 @@
 <?php
 // robert clements
 require 'dbconnect.php'; //connecting to database
-session_start();
+
+//this is only to start the session if not yet started -Chris
+if(!isset($_SESSION))
+{
+    session_start();
+}
+//end Chris
+
 // print_r($_POST); //used to see reuslts of $_POST
 echo "<br>";
 
@@ -36,8 +43,9 @@ $result = $mysqli->query("SELECT * FROM customers WHERE CustEmail='$email'") or 
 if ( $result->num_rows > 0 ) {
 
     $_SESSION['message'] = 'User with this email already exists! register error';
-    header("location:ServerSideRegister/error.php");
-
+    //header("location:ServerSideRegister/error.php");
+    //include("ServerSideRegister/error.php");
+    header("customer_registration.php");
 }
 else { // Email doesn't already exist in a database, proceed...
   //making keys corrisponding with column headings in database
@@ -59,11 +67,11 @@ else { // Email doesn't already exist in a database, proceed...
         Please click this link to activate your account:
         http://localhost/websiteproject/serversideregister/verifyUser.php?email='.$email.'&hash='.$hash;
         mail( $to, $subject, $message_body);
-        header("location:contact_us.php");
+        header("customer_registration.php"); //changed this from contact_us -Chris
         }
         else {
           $_SESSION['message'] = 'Registration failed!';
-          header("location:ServerSideRegister/error.php");
+          header("customer_registration.php"); //changed this - Chris
         }
       }
 // robert clements

@@ -31,7 +31,7 @@
 	<!--province and state select options created by loop in customer_registration.js-->
 	<body>
 		<div class="contents">
-		<?php include("include/navbar.php") ?>
+		<?php include("include/navbar.php"); ?>
 		<header>
 
 		</header>
@@ -173,6 +173,21 @@
 			<br/>
 				<button class="btn btn-primary btn-lg" id="submit" name="submit" value="submit">Submit</button>
 				<button class="btn btn-primary btn-lg" id="clear" name="reset" value="reset">Reset</button>
+				<div>
+					<?php
+						//need to check that it is set because it's always being set
+						if(isset($_SESSION['message'])){
+							echo $_SESSION['message'];
+							?>
+								<script type="text/javascript">
+									//load at the bottom of the page if a message needs to be displayed
+									document.body.scrollTop = document.body.scrollHeight;
+								</script>
+							<?php
+						}else{
+						}unset($_SESSION['message']); //so the session variable will not reappear when reloading page
+					?>
+				</div>
 		</form>
 	</div>
 	</div>

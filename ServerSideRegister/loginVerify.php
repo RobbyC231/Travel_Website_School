@@ -35,7 +35,7 @@ else { // User exists
       $_SESSION['active'] = $user['Active'];
       $_SESSION['userId'] = $user["CustomerId"];
 
-      // This is how we'll know the user is logged in -Chris
+      // This is how we'll know the user is logged in see under navbar.php -Chris
       $_SESSION['logged_in'] = true;
       //end Chris
 
@@ -47,7 +47,13 @@ else { // User exists
   else {
       $_SESSION['message'] = "You have entered wrong password, try again!";
       // echo $_SESSION['message'];
+      $_SESSION['failed_password'] = "You have entered wrong password, try again!";
+      //header('Location: ' . $_SERVER['HTTP_REFERER']);
       header("location: ServerSideRegister/error.php");
+
+
+
+
   }
 
 }
