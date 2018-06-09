@@ -39,7 +39,9 @@
               <li class="nav-item"><a class="nav-link" href="packages.php"> PACKAGE </a></li>
               <li class="nav-item"><a class="nav-link" href="contact_us.php"> CONTACT US </a></li>
                 <!--Chris-toggle account/login button when logging in-->
-                <?php if(isset($_SESSION['logged_in'])){?>
+                <?php
+                if(isset($_SESSION['active']) && $_SESSION['active']==1){
+                ?>
                     <li class='nav-item'>
                         <!--when logged in the user will see ACCOUNT in the navbar-->
                         <a class='nav-link' href='accountinfo.php'> ACCOUNT </a>

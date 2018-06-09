@@ -32,10 +32,7 @@
 	<body>
 		<div class="contents">
 		<?php include("include/navbar.php"); ?>
-		<header>
-
-		</header>
-
+		
 		<div class="container mt-3">
 		<form id="customer_data" method="post">
 			<div class="row">
