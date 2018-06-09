@@ -66,7 +66,7 @@ else { // Email doesn't already exist in a database, proceed...
         Thank you for signing up!
         Please click this link to activate your account:
         http://localhost/websiteproject/serversideregister/verifyUser.php?email='.$email.'&hash='.$hash;
-        mail( $to, $subject, $message_body);
+        mail($to, $subject, $message_body);
         header("customer_registration.php"); //changed this from contact_us -Chris
         }
         else {
