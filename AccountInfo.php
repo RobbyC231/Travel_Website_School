@@ -63,9 +63,9 @@
       }
 
 			?>
-
+			<h4>Purchase History</h4>
 			<table class="table">
-				<thead class="thead-dark">
+				<thead class="thead">
 					<tr>
 						<th scope="col">Package</th>
 						<th scope="col">Booking Code</th>

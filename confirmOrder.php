@@ -7,7 +7,7 @@
 		<?php require("bootstrap.php") ?>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/jquery.redirect.js"></script>
-	<style type="text/css">
+	<!-- <style type="text/css">
 		body{color: white; border-top: 0;
     		margin: 0; padding: 0;clear: both;
     		font-family: 'Montserrat', sans-serif;
@@ -70,66 +70,104 @@
 		input[type=number]{
     		width: 5vw;
 		}
-	</style>
+	</style> -->
 
 </head>
 <body>
+	<div class="content">
 	<?php include "include/navbar.php"?>
 	<?php
 			$dbinst = mysqli_connect("localhost","root","","travelexperts");
 			if (mysqli_connect_errno()){echo "Failed to connect to MySQL: " . mysqli_connect_error();}
 	?>
-	<section class="displayBookingInfo">
-		<h2 class="sectHead">Confirm your booking:</h2>
+	<section class="container">
+		<h2 class="sectHead">Confirm your booking</h2>
 		<!--ENCAPSULATE THIS IN A PHP TAG FOR INTERACTION-->
 		<div name="packageInfo" class="packageStyling">
 			<?php
 				$result = mysqli_query($dbinst, "SELECT * FROM packages WHERE PackageId='".$_POST['packageId']."'");
 				$row = mysqli_fetch_assoc($result);
-				echo "Package Name: ".$row['PkgName']."<br/>";
-				echo "Starting Date: ".$row['PkgStartDate']."<br/>";
-				echo "Ending Date: ".$row['PkgEndDate']."<br/>";
-				echo "Price breakdown: <br/>";
-				echo "Base Price: ".$row['PkgBasePrice']."<br/>";
-				echo "Agency Commission: ".$row['PkgAgencyCommission']."<br/>";
+				?>
+					<table class="table">
+						<tbody>
+							<tr>
+								<th scope="row">Package</th>
+								<td><?php echo $row['PkgName'] ?></td>
+							</tr>
+							<tr>
+								<th scope="row">Start Date</th>
+								<td><?php echo $row['PkgStartDate'] ?></td>
+							</tr>
+							<tr>
+								<th scope="row">End Date</th>
+								<td><?php echo $row['PkgEndDate'] ?></td>
+							</tr>
+							<tr>
+								<th scope="row">Price</th>
+								<td><i class="fas fa-dollar-sign"></i> <?php echo $row['PkgBasePrice'] ?></td>
+							</tr>
+						</tbody>
+					</table>
+				<?php
 				$departPlnId = $row['DeparturePlnId'];
 				$returnPlnId = $row['ReturnPlnId'];
 			?>
 		</div>
 		<!--ENCAPSULATE THIS IN A PHP TAG FOR INTERACTION-->
-		<div name="DepartPlaneInfo" class="flightStyling">
 			<?php
+			// query for departure flgiht info
 				$result = mysqli_query($dbinst, "SELECT * FROM flightstable WHERE FlightId='".$departPlnId."'");
-				$row = mysqli_fetch_assoc($result);
-				echo "Plane information for departure:<br/>";
-				echo "Plane No: ".$row['FltPlaneNo']."<br/>";
-				echo "Departure date: ".$row['FltDepart']."<br/>";
-				echo "Flight path: ".$row['FltLocation'].">".$row['FltDestination']."<br/>";
-				echo "Region: ".$row['RegionId']."<br/>";
-				echo "Ticket Price: ".$row['FltTicketPrice']."<br/>";
-			?>
-		</div>
-		<div name="ReturnPlaneInfo" class="flightStyling">
-			<?php
+				$rowDeparture = mysqli_fetch_assoc($result);
+			// query for return flight info
 				$result = mysqli_query($dbinst, "SELECT * FROM flightstable WHERE FlightId='".$returnPlnId."'");
-				$row = mysqli_fetch_assoc($result);
-				echo "Plane information for return:<br/>";
-				echo "Plane No: ".$row['FltPlaneNo']."<br/>";
-				echo "Departure date: ".$row['FltReturn']."<br/>";
-				echo "Flight path: ".$row['FltDestination'].">".$row['FltLocation']."<br/>";
-				echo "Region: ".$row['RegionId']."<br/>";
-				echo "Ticket Price: ".$row['FltTicketPrice']."<br/>";
+				$rowReturn = mysqli_fetch_assoc($result);
 			?>
-		</div>
-	</section>
+		<h2>Flight Information</h2>
+		<table class="table">
+			<thead>
+				<th scope="col"></th>
+				<th scope="col">Departure Information</th>
+				<th scope="col">Return Information</th>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">Plane No</th>
+					<td><?php echo $rowDeparture['FltPlaneNo'] ?></td>
+					<td><?php echo $rowReturn['FltPlaneNo'] ?></td>
+				</tr>
+				<tr>
+					<th scope="row">Departure/Retrun Date</th>
+					<td><?php echo $rowDeparture['FltReturn'] ?></td>
+					<td><?php echo $rowReturn['FltReturn'] ?></td>
+				</tr>
+				<tr>
+					<th scope="row">Flight Path</th>
+					<td><?php echo  $rowDeparture['FltLocation'] . " - " . $rowDeparture['FltDestination'] ?></td>
+					<td><?php echo  $rowDeparture['FltDestination'] . " - " . $rowDeparture['FltLocation'] ?></td>
+				</tr>
+				<tr>
+					<th scope="row">Departure/Retrun Date</th>
+					<td><i class="fas fa-dollar-sign"></i> <?php echo $rowDeparture['FltTicketPrice'] ?></td>
+					<td><i class="fas fa-dollar-sign"></i> <?php echo $rowReturn['FltTicketPrice'] ?></td>
+				</tr>
+			</tbody>
+		</table>
 	<article class="bookingModifiers">
-		<h3 class="onerow">Fill in required additional info:</h3>
+		<h3 class="onerow">Options</h3>
 		<div class="bookingModifiersForm">
-			<label>How many people:
-				<input type="number" id="TravelerCount" name="TravelerCount" value="1" min="1" cols="1"></label>
+			<div class="d-flex flex-row">
+				<div class="align-self-center">
+					<label class="mr-3 lead">How Many People</label>
+				</div>
+				<div class="input-group w-25">
+					<input class="form-control" type="number" id="TravelerCount" name="TravelerCount" value="1" min="1" cols="1">
+				</div>
+			</div>
 			<br/>
-			Class:<br/>
-			<table>
+			<div class="lead">
+				Class
+			</div>
+			<table class="table">
 				<tr>
 					<td><label><input type="radio" class="classCk" name="class" value="DLX" onchange="classSelected('DLX')">Delux</input></label></td>
 					<td><label><input type="radio" class="classCk" name="class" value="ECN" onchange="classSelected('ECN')">Economy</input></label></td>
@@ -148,15 +186,17 @@
 		</div>
 		<div class="bookingClass">
 			<p id="classInfo"></p>
-			<input type="button" class="submitbutton" id="finishbooking" name="finishbooking" value="Finish Booking"
+			<input type="button" class="btn btn-success mb-3" id="finishbooking" name="finishbooking" value="Finish Booking"
 			onclick="sendToAddBooking(
 				`<?php echo $_POST['userId'];?>`,
 				`<?php echo $_POST['packageId'];?>`,
 				`<?php echo $departPlnId;?>`,
 				`<?php echo $returnPlnId?>`
-			)" hidden>
+			)" >
 		</div>
+	</section>
 	</article>
+</div>
 	<?php include "include/footer.php"; ?>
 	<script type="text/javascript">
   		function sendToAddBooking($userId, $packageId, $DeparturePlnId, $ReturnPlnId){
