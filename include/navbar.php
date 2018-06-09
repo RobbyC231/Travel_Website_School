@@ -33,7 +33,6 @@
         <ul class="navbar-nav">
               <li class="nav-item"><a class="nav-link" href="homepage.php"> HOME <span class="sr-only">(current)</span></a></li>
               <li class="nav-item"><a class="nav-link" href="packages.php"> PACKAGE </a></li>
-              <li class="nav-item"><a class="nav-link" href="customer_registration.php"> REGISTER </li></a>
               <li class="nav-item"><a class="nav-link" href="contact_us.php"> CONTACT US </a></li>
                 <!--Chris-toggle account/login button when logging in-->
                 <?php if(isset($_SESSION['logged_in'])){?>
@@ -48,7 +47,9 @@
                 <?php }else{?>
                     <li class="nav-item">
                         <!--when not logged in the user will see LOGIN in the navbar-->
+                        <li class="nav-item"><a class="nav-link" href="customer_registration.php"> REGISTER </li></a>
                         <a class="nav-link" data-toggle="modal" href="#loginModal"> LOGIN </a>
+
                     </li>
                 <?php }?><!--Chris:end-->
         </ul>
