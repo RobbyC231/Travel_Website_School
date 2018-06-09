@@ -79,7 +79,9 @@
   <!-- this is the container holding the address of the company and google maps -->
 
   <!-- this is a row to hold the contact info of each office -->
+  <div class="container-fluid">
     <?php include("agenciesContact.php") ?>
+  </div>  
     <!-- i inlcude the footer here which is a styled bootstrap footer, i will update that later -->
   </div>
     <?php include("include/footer.php")  ?>

@@ -7,38 +7,6 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/jquery.redirect.js"></script>
 		<link rel="stylesheet" href="css/footer.css">
-	<style type="text/css">
-		/* body{color: white; border-top: 0;
-    		margin: 0; padding: 0;clear: both;
-    		font-family: 'Montserrat', sans-serif;
-    		background-image: url("images/bora_bora2.jpeg");
-    	} */
-		/* li a {
-			display: block;
-			color: white;
-			text-align: center;
-			padding: 14px 16px;
-			text-decoration: none;
-			}
-		#packageMenu {
-			display: flex; flex-wrap: wrap;
-			background-color:#242424;
-			margin: 3vw;
-			opacity: 0.90;
-		} */
-		/* .sectHead{margin: 1vw;width: 100vw}
-		.packageStyling{
-			color: black; font-size: 250%;
-			text-align: left;
-			width: 40vw; height: 45vh;
-			margin: 1vw; float: left;
-			background-color:#3F3F3F;
-		} */
-		/* #packageDisplay{
-			color: black;
-			width: 95vw;
-		} */
-	</style>
 </head>
 <body>
 	<div class="content">
@@ -70,10 +38,38 @@
 								?>
 									<div class="d-flex">
 										<img class="img-fluid d-none d-md-block" alt="Responsive image"  src="images/flightpackagepics/<?php echo $image ?>"></img>
-										<blockquote class="blockquote align-self-center ml-3">
-											<p class="font-italic">"The water is so blue and the atmosphere is energitic. Jason my agent made sure everything was in place"</p>
-											<footer class="blockquote-footer">Janet</footer>
-										</blockquote>
+										<?php if($row['PkgName']=="Caribbean Tour"){
+											?>
+											<blockquote class="blockquote align-self-center ml-3">
+												<p class="font-italic">"The water is so blue and the atmosphere is energitic. Jason my agent made sure everything was in place"</p>
+												<footer class="blockquote-footer">Janet</footer>
+											</blockquote>
+											<?php
+										}
+										else if($row['PkgName']=="Polynesian Paradise"){
+												?>
+												<blockquote class="blockquote align-self-center ml-3">
+													<p class="font-italic">"The agents at Travel Expert are so freindly. They put together a really great package"</p>
+													<footer class="blockquote-footer">Bill</footer>
+												</blockquote>
+												<?php
+										}
+										else if($row['PkgName']=="Asian Expedition"){
+											?>
+											<blockquote class="blockquote align-self-center ml-3">
+												<p class="font-italic">"I would book with Travel Experts again and again. By far the best vacation I have ever done "</p>
+												<footer class="blockquote-footer">Neil</footer>
+											</blockquote>
+											<?php
+										}
+										else if($row['PkgName']=="European Vacation"){
+											?>
+											<blockquote class="blockquote align-self-center ml-3">
+												<p class="font-italic">"So much history in ever city. I learnt so much from the tours. Thanks Travel Experts. Give Dennis he is the best"</p>
+												<footer class="blockquote-footer">Cindy</footer>
+											</blockquote>
+											<?php
+										} ?>
 									</div>
 								<?php
 								?> <p class="lead"> <?php echo $row['PkgDesc'] . "<br>"; ?> </p> <?php
