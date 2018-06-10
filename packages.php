@@ -2,11 +2,10 @@
 <html>
 <head>
 	<title>Travel Experts - Vacation Packages</title>
-	<meta name="viewport" content="width=device-width">
-  <?php require("bootstrap.php") ?>
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  	<?php require("bootstrap.php") ?>
     <script src="js/jquery.redirect.js"></script>
-		<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
 	<div class="content">
@@ -92,7 +91,7 @@
 										verifyUserForPackage(
 										<?php
 											$userId="";
-											if($_SESSION){$userId=$_SESSION['userId'];}
+											if($_SESSION && isset($_SESSION['userId'])){$userId=$_SESSION['userId'];}
 											echo "'".$userId."'";
 										?>,
 										<?php echo "'".$row['PackageId']."'"; ?>
@@ -130,12 +129,14 @@
                 'packageId': $packageId
               }
               );
-            //window.location.href = "http://localhost/WebsiteProject/sqlact/addbooking.php";
+            	//window.location.href = "http://localhost/WebsiteProject/sqlact/addbooking.php";
 
           }
         else
           {
-            alert("Please log in or register for new user");
+            document.cookie = "lastViewedBooking="+$packageId;
+            var cookie = document.cookie;
+            alert("Please log in or register for new user "+cookie);
             $("#loginModal").modal('show');
           }
       }

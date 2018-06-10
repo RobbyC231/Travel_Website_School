@@ -1,6 +1,7 @@
  <html>
 <head>
       <title>Travel Agency</title>
+      <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="css/default.css">
       <?php require("bootstrap.php") ?>
       <link rel="stylesheet" type="text/css" href="css/home_style.css" />

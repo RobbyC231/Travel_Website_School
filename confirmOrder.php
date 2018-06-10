@@ -2,76 +2,11 @@
 <html>
 <head>
 	<title>Travel Experts - Confirm Order</title>
-	<meta name="viewport" content="width=device-width">
-    <link href="home_style.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/home_style.css" rel="stylesheet" type="text/css">
 		<?php require("bootstrap.php") ?>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/jquery.redirect.js"></script>
-	<!-- <style type="text/css">
-		body{color: white; border-top: 0;
-    		margin: 0; padding: 0;clear: both;
-    		font-family: 'Montserrat', sans-serif;
-    		background-image: url("images/bora_bora2.jpeg");
-    	}
-		li a {
-			display: block;
-			color: white;
-			text-align: center;
-			padding: 14px 16px;
-			text-decoration: none;
-			}
-		.displayBookingInfo {
-			display: flex; flex-wrap: wrap;
-			background-color:#242424;
-			margin: 3vw;
-			margin-bottom: 0vw;
-			opacity: 0.90;
-		}
-		.packageStyling{
-			font-size: 150%;
-			text-align: center;
-			width: 90vw; display: inline-block;
-			margin: 1vw; float: left;
-			background-color:#3F3F3F;
-		}
-		.flightStyling{
-			font-size: 150%;
-			text-align: left;
-			width: 44vw; display: inline-block;
-			margin: 1vw; float: left;
-			background-color:#3F3F3F;
-		}
-		.bookingModifiers
-		{
-			display: flex; flex-wrap: wrap;
-			background-color:#242424;
-			margin: 3vw;
-			margin-top: 0;
-			opacity: 0.90;
-		}
-		.bookingModifiersForm
-		{
-			font-size: 150%;color: black;
-			text-align: left;
-			width: 35vw;
-			margin: 1vw;margin-right: 0;
-			float: left;background-color:#BBBBBB;
-		}
-		.bookingClass
-		{
-			font-size: 150%;color: black;
-			text-align: left;
-			width: 55vw;position:relative;
-			margin: 1vw;margin-left: 0;
-			float: left;background-color:#BBBBBB;
-		}
-		.onerow{width: 90vw;}
-		.submitbutton{position: absolute;right: 0;bottom: 0;}
-		input[type=number]{
-    		width: 5vw;
-		}
-	</style> -->
-
 </head>
 <body>
 	<div class="content">
@@ -81,11 +16,14 @@
 			if (mysqli_connect_errno()){echo "Failed to connect to MySQL: " . mysqli_connect_error();}
 	?>
 	<section class="container">
-		<h2 class="sectHead">Confirm your booking</h2>
+		<h2 class="sectHead">Confirm your Booking</h2>
 		<!--ENCAPSULATE THIS IN A PHP TAG FOR INTERACTION-->
 		<div name="packageInfo" class="packageStyling">
-			<?php
-				$result = mysqli_query($dbinst, "SELECT * FROM packages WHERE PackageId='".$_POST['packageId']."'");
+		<?php
+			$currentPackage="";
+			if(isset($_POST['packageId'])){
+				$currentPackage =$_POST['packageId'];
+				$result = mysqli_query($dbinst, "SELECT * FROM packages WHERE PackageId='".$currentPackage."'");
 				$row = mysqli_fetch_assoc($result);
 				?>
 					<table class="table">
@@ -111,7 +49,11 @@
 				<?php
 				$departPlnId = $row['DeparturePlnId'];
 				$returnPlnId = $row['ReturnPlnId'];
-			?>
+			}else{
+				$departPlnId = $_POST['departPlnId'];
+				$returnPlnId = $_POST['returnPlnId'];
+			}
+		?>
 		</div>
 		<!--ENCAPSULATE THIS IN A PHP TAG FOR INTERACTION-->
 			<?php
@@ -180,7 +122,7 @@
 				</tr>
 				<tr>
 					<td><label><input type="radio" class="classCk" name="class" value="INT" onchange="classSelected('INT')">Interior</input></label></td>
-					<td><label><input type="radio" class="classCk" name="class" value="OCNV" onchange="classSelected('INT')">Ocean View</input></label></td>
+					<td><label><input type="radio" class="classCk" name="class" value="OCNV" onchange="classSelected('OCNV')">Ocean View</input></label></td>
 				</tr>
 			</table>
 		</div>
@@ -189,7 +131,7 @@
 			<input type="button" class="btn btn-success mb-3" id="finishbooking" name="finishbooking" value="Finish Booking"
 			onclick="sendToAddBooking(
 				`<?php echo $_POST['userId'];?>`,
-				`<?php echo $_POST['packageId'];?>`,
+				`<?php echo $currentPackage;?>`,
 				`<?php echo $departPlnId;?>`,
 				`<?php echo $returnPlnId?>`
 			)" >

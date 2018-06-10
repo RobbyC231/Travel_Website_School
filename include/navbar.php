@@ -37,6 +37,7 @@
         <ul class="navbar-nav">
               <li class="nav-item"><a class="nav-link" href="homepage.php"> HOME <span class="sr-only">(current)</span></a></li>
               <li class="nav-item"><a class="nav-link" href="packages.php"> PACKAGE </a></li>
+              <li class="nav-item"><a class="nav-link" href="flightsearch.php"> FLIGHTS </a></li>
               <li class="nav-item"><a class="nav-link" href="contact_us.php"> CONTACT US </a></li>
                 <!--Chris-toggle account/login button when logging in-->
                 <?php

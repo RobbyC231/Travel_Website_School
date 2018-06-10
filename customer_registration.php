@@ -6,7 +6,7 @@
   	<link rel="stylesheet" href="css/default.css">
 		<?php require("bootstrap.php") ?>
 		<link rel="stylesheet" href="css/footer.css">
-
+    	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 
 	<?php
