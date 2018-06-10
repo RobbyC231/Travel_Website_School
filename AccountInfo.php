@@ -26,7 +26,8 @@
 		?>
 	<div class="content">
 		<?php include("include/navbar.php") ?>
-			<h4> Personal Details </h4>
+		<div class="container">
+			<h4 class="mt-2"> Personal Details </h4>
 				<table class="table">
 					<tbody>
 						<tr>
@@ -101,6 +102,7 @@
           }
 					?></table>
 		</div>
+	</div>
 		<?php include "include/footer.php" ?>
 		<!--also put in a modal creator script here-->
 		<script type="text/javascript" src="js/customer_registration.js"></script>
