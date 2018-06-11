@@ -449,6 +449,14 @@ on format functions are for auto formatting of the input field
 
 
 	//Username
+    function username_focus(){
+		var username_note = document.getElementById('username_note');
+		username_note.style.display = "block";
+		username_note.style.display = "inline";
+	}
+	function username_blur(){
+		username_note.style.display = "none";
+	}
 	function username_oninput(){
 		var username = document.getElementById('username').value;
 		if (username.length>=5)

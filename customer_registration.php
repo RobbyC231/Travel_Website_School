@@ -32,7 +32,7 @@
 	<body>
 		<div class="contents">
 		<?php include("include/navbar.php"); ?>
-		
+
 		<div class="container mt-3">
 		<form id="customer_data" method="post">
 			<div class="row">
@@ -111,6 +111,7 @@
 					<label class="field" for="username">Username:</label>
 					<input class="form-control" id="username" type="text" name="username" maxlength="20" oninput="username_oninput()" onkeyup="username_unique(this)" onfocus="username_focus()" onblur="username_blur()"/>
 					<img class="checker" id="username_pass"  style="display:none" src="icons/checked.png">
+					<div id="username_note" style="display:inline;display:none">please enter a username at least five characters long</div>
 				</div>
 			</div>
 			<div class="row">
