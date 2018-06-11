@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Travel Experts - Confirm Order</title>
+	<title>Confirm Order</title>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/home_style.css" rel="stylesheet" type="text/css">
 		<?php require("bootstrap.php") ?>
@@ -16,7 +16,7 @@
 			if (mysqli_connect_errno()){echo "Failed to connect to MySQL: " . mysqli_connect_error();}
 	?>
 	<section class="container">
-		<h2 class="sectHead">Confirm your Booking</h2>
+		<h2 class="sectHead mt-2">Confirm your Booking</h2>
 		<!--ENCAPSULATE THIS IN A PHP TAG FOR INTERACTION-->
 		<div name="packageInfo" class="packageStyling">
 		<?php
@@ -88,7 +88,7 @@
 					<td><?php echo  $rowDeparture['FltDestination'] . " - " . $rowDeparture['FltLocation'] ?></td>
 				</tr>
 				<tr>
-					<th scope="row">Departure/Retrun Date</th>
+					<th scope="row">Price</th>
 					<td><i class="fas fa-dollar-sign"></i> <?php echo $rowDeparture['FltTicketPrice'] ?></td>
 					<td><i class="fas fa-dollar-sign"></i> <?php echo $rowReturn['FltTicketPrice'] ?></td>
 				</tr>

@@ -16,11 +16,11 @@ session_start();
     if( isset($_SESSION['message']) AND !empty($_SESSION['message']) ):
         echo $_SESSION['message'];
     else:
-        header( "location: ../contact_us.php" );
+        header( "location: ../homepage.php" );
     endif;
     ?>
     </p>
-    <a href="../contact_us.php"><button class="button button-block"/>Home</button></a>
+    <a href="../homepage.php"><button class="button button-block"/>Home</button></a>
   <!-- robert clements   -->
 </div>
 </body>

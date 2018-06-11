@@ -38,7 +38,7 @@
     <div class="modal-body">
       <div class="form-group">
         <!-- <label for="username">Username:</label> -->
-        <input type="text" class="form-control" placeholder="Enter Username" name="username">
+        <input type="text" class="form-control" placeholder="Enter Email" name="username">
 
         <div id="username_msg"></div>
 

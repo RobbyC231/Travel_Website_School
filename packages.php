@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Travel Experts - Vacation Packages</title>
+	<title>Vacation Packages</title>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
   	<?php require("bootstrap.php") ?>
     <script src="js/jquery.redirect.js"></script>
@@ -85,7 +85,7 @@
 								</div>
 								<div class="d-flex justify-content-between">
 									<h5 class="align-self-center">
-										Price: <i class="fas fa-dollar-sign"></i><?php echo $row['PkgBasePrice']  ?>
+										Price: <i class="fas fa-dollar-sign"></i> <?php echo $row['PkgBasePrice']  ?>
 									</h5>
 									<button type="button" id="BookNow" class="btn btn-primary" name="button" onclick="
 										verifyUserForPackage(

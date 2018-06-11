@@ -7,7 +7,7 @@
   <body>
     <form class="" action="forgot.php" method="post">
       <label for="email">Email Assosated with your account</label>
-      <input type="email" name="email" value="clementsro.231@gmail.com">
+      <input type="email" name="email">
       <input type="submit" name="submit" value="Submit">
     </form>
   </body>

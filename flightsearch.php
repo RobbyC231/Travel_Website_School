@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Travel Experts - Book a fight</title>
+	<title>Book a fight</title>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
      <?php require("bootstrap.php") ?>
     <script src="js/jquery.redirect.js"></script>
