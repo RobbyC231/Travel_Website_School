@@ -11,7 +11,7 @@
 	<div class="content">
 	<?php include "include/navbar.php"?>
 	<section id="packageMenu">
-		<h1 class="display-4">Our Travel Packages</h1>
+		<h1 class="display-4 ml-2">Our Travel Packages</h1>
 		<?php
 			$dbinst = mysqli_connect("localhost","root","","travelexperts");
 			if (mysqli_connect_errno()){echo "Failed to connect to MySQL: " . mysqli_connect_error();}
