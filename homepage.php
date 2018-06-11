@@ -37,17 +37,17 @@
       </ol>
     <div class="carousel-inner" role="listbox">
       <div class="carousel-item active">
-        <img class="d-block img-fluid w-100" src="images\flightpackagepics\CarribeanMed.jpeg" alt="First slide">
+        <img class="d-block img-fluid w-100" src="images\flightpackagepics\boraboraMed.jpeg" alt="First slide">
           <div class="carousel-caption d-none d-sm-block">
-            <h3> Caribbean Tour </h3>
-            <h4> 8 Night 9 days... only $4800 </4>
+            <h3> Polynesian Paradise </h3>
+            <h4> 8 Night 9 days... only $3000 </4>
           </div>
       </div>
     <div class="carousel-item">
       <img class="d-block img-fluid w-100" src="images\flightpackagepics\euroMed.jpeg" alt="Third slide">
          <div class="carousel-caption d-none d-sm-block">
-            <h3> Asian Expedition </h3>
-            <h4> 14 Night 15 days... only $2800 </4>
+            <h3> European Vacation </h3>
+            <h4> 14 Night 15 days... only $3000 </4>
           </div>
     </div>
    </div>
