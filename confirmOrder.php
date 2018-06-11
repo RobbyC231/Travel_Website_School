@@ -262,4 +262,3 @@
   	</script>
 </body>
 </html>
-<?php if(!empty($_SESSION['userId'])){header("location: homepage.php");} ?>
