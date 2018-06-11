@@ -1,3 +1,8 @@
+<!--
+	Module name: addbooking
+	Author: Neil
+	Description: This function is a required feature. Main function of this page is to compile all of the booking details required to creating a booking row and bookingdetails row and structures them into a SQL statement that executes them into the database 
+-->
 <?php
 	$dbinst = mysqli_connect("localhost","root","","travelexperts");
 			if (mysqli_connect_errno()){echo "Failed to connect to MySQL: " . mysqli_connect_error();}

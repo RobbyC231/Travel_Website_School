@@ -24,7 +24,6 @@
 	$dbinst = mysqli_connect("localhost","root","","travelexperts");
 		if (mysqli_connect_errno()){echo "Failed to connect to MySQL: " . mysqli_connect_error();}
 ?>
-
 	<table class="table">
 		<thead id="heads" class="thead">
 			<tr>
@@ -157,6 +156,7 @@
 	}
 ?>
 	</table>
+	<!--This hide header acccording to screen size: intended is if higher than tablet resolution it shows column legend outside the display-->
 	<script type="text/javascript">
         if(window.outerHeight>=575){if(window.outerWidth>425){$("#heads").hide();}}
         $(window).resize(function(){
