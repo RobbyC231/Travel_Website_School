@@ -51,14 +51,14 @@
                         <!--when logged in the user will see lOGOUT in the navbar-->
                         <a class='nav-link' href='ServerSideRegister/logout.php'> LOGOUT </a>
                     </li>
-                <?php }else{?>
+                <?php }else{?>           /*  Brijesh start  */
                     <li class="nav-item">
                         <!--when not logged in the user will see LOGIN in the navbar-->
                         <li class="nav-item"><a class="nav-link" href="customer_registration.php"> REGISTER </li></a>
                         <a class="nav-link" data-toggle="modal" href="#loginModal"> LOGIN </a>
 
                     </li>
-                <?php }
+                <?php }             /* Brijesh start */
 
                 if(isset($_SESSION['message'])){?><script type="text/text/javascript">
                 document.getElementById('password_msg').innerHTML = "<?php $_SESSION['message'];?>";
