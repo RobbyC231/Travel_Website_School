@@ -20,7 +20,7 @@
     </div>
     <div class="container-fluid">
       <h4>Who we are</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
 
     <br>
@@ -39,8 +39,8 @@
       <div class="carousel-item active">
         <img class="d-block img-fluid w-100" src="images\flightpackagepics\boraboraMed.jpeg" alt="First slide">
           <div class="carousel-caption d-none d-sm-block">
-            <h3> Polynesian Paradise </h3>
-            <h4> 8 Night 9 days... only $3000 </4>
+            <h3 class="text-dark font-weight-bold"> Polynesian Paradise </h3>
+            <h4 class="text-dark font-weight-bold"> 8 Night 9 days... only $3000 </4>
           </div>
       </div>
     <div class="carousel-item">
