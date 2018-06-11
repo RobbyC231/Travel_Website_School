@@ -1,16 +1,21 @@
+<!--
+	Module name: confirmOrder
+	Author: Neil
+	Description: The main function of this page is all required information for a booking and also presents additional options that is required to fully input the booking inside the DB 
+-->
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Confirm Order</title>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/home_style.css" rel="stylesheet" type="text/css">
-		<?php require("bootstrap.php") ?>
+		<?php require("bootstrap.php")?>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/jquery.redirect.js"></script>
 </head>
 <body>
 	<div class="content">
-	<?php include "include/navbar.php"?>
+	<?php include "include/navbar.php"; ?>
 	<?php
 			$dbinst = mysqli_connect("localhost","root","","travelexperts");
 			if (mysqli_connect_errno()){echo "Failed to connect to MySQL: " . mysqli_connect_error();}
@@ -141,7 +146,10 @@
 </div>
 	<?php include "include/footer.php"; ?>
 	<script type="text/javascript">
-  		function sendToAddBooking($userId, $packageId, $DeparturePlnId, $ReturnPlnId){
+    	document.cookie = "lastViewedBooking=;";
+    	document.cookie = "departPlnId=;";
+    	document.cookie = "returnPlnId=;";
+    	function sendToAddBooking($userId, $packageId, $DeparturePlnId, $ReturnPlnId){
   			var TravelerCount = $('#TravelerCount').val();
   			var ClassId = $(".classCk:checked").val();
   			//alert($userId+"\n"+$packageId+"\n"+$DeparturePlnId+"\n"+
@@ -236,6 +244,22 @@
 
   			$('#classInfo').html($constructClassDesc);
   		}
+  	function getCookie(cname) {
+    	var name = cname + "=";
+    	var decodedCookie = decodeURIComponent(document.cookie);
+    	var ca = decodedCookie.split(';');
+    	for(var i = 0; i <ca.length; i++) {
+          	var c = ca[i];
+          	while (c.charAt(0) == ' ') {
+             	c = c.substring(1);
+          	}
+          	if (c.indexOf(name) == 0) {
+             	return c.substring(name.length, c.length);
+          	}
+       	}
+      	return "";
+    }
   	</script>
 </body>
 </html>
+<?php if(!empty($_SESSION['userId'])){header("location: homepage.php");} ?>

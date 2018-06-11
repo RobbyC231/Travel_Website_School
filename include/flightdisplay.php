@@ -1,3 +1,8 @@
+<!--
+	Module name: Flightdisplay
+	Author: Neil
+	Description: This function is needed for the flightsearch functions. Gets the search values passed by the parent's search bar and will send an SQL query to get result. 
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,9 +39,9 @@
 			</tr>
 		</thead>
 <?php
+	//If no search values are recieved it will show all available FlightBookings available (LIMIT 25)
 	if(empty($_POST['from']) && empty($_POST['destination']) &&empty($_POST['days']))
 	{
-		////////////////////////Testing
 		$result = mysqli_query($dbinst, "SELECT * FROM flightstable LIMIT 0,25");
 		while ($row=mysqli_fetch_assoc($result)) {
 ?>
@@ -54,7 +59,7 @@
           			$BookingDate= date_format($formatDate, "Y-m-d");
 					echo $BookingDate;?></td>
 			<td><i class="fas fa-dollar-sign"></i>
-				<?php echo $row['FltTicketPrice'];?></td>
+				<?php echo number_format($row['FltTicketPrice'], 2);?></td>
 			<td>
 				<input type='button' class='p-2 bg-info btn btn-primary' 
 				id='book' name='book' value='Book' 
@@ -66,8 +71,10 @@
 <?php
 		}
 	}
+	//If search values are recieved it will then go search the database with a constructed SQL command and will display all results
 	else
 	{
+		//Searches the database for flight information according to departDate will be paired up with the second search result
 		$querySearchCondition = "";
 		foreach ($_POST as $key => $value) {
 
@@ -79,6 +86,8 @@
 			if($key=='from'&&!empty($value)){$querySearchCondition .= "FltLocation LIKE '%".$value."%'";}
 			else if($key=='destination'&&!empty($value)){$querySearchCondition .= "FltDestination LIKE '%".$value."%'";}
 			else if($key=='date'&&!empty($value)){
+				//Formatting date so it matches and works with the database date format specified
+				//Also uses proximity to the date specified in the search bar instead of just exact search
 				$FProximityStart=date("Y-m-d H:i:s",strtotime($value."-3 days"));
 				$FProximityEnd=date("Y-m-d H:i:s",strtotime($value."+3 days"));
 				$querySearchCondition.="(FltDepart BETWEEN '".$FProximityStart."' AND '".$FProximityEnd."')";
@@ -90,6 +99,7 @@
 		//echo "SELECT * FROM flightstable WHERE ".$querySearchCondition." LIMIT 0,25<br/><br/>";
 		$resultFirst = mysqli_query($dbinst, "SELECT * FROM flightstable WHERE ".$querySearchCondition." LIMIT 0,25");
 
+		//Searches the database for flight information according to returnDate will be paired up with the first search result
 		$querySearchCondition = "";
 		foreach ($_POST as $key => $value) {
 			if(!empty($querySearchCondition)&&!empty($value)&&$key!='date')
@@ -101,6 +111,8 @@
 			else if($key=='destination'&&!empty($value)){$querySearchCondition .= "FltDestination LIKE '%".$value."%'";}
 			else if($key=='date'&&!empty($value)){$currentDate = $value;}
 			else if($key=='days'&&!empty($value)){
+				//Formatting date so it matches and works with the database date format specified
+				//Also uses proximity to the date specified in the search bar instead of just exact search
 				$forwardedDate = date("Y-m-d H:i:s",strtotime($currentDate."+".$value." days"));
 				$FProximityStart=date("Y-m-d H:i:s",strtotime($forwardedDate."-3 days"));
 				$FProximityEnd=date("Y-m-d H:i:s",strtotime($forwardedDate."+3 days"));
@@ -108,7 +120,10 @@
 			}
 		}
 		//echo "SELECT * FROM flightstable WHERE ".$querySearchCondition." LIMIT 0,25<br/><br/>";
+
+		//Searches the database for flight information according to returnDate will be paired up with the first search result
 		$resultSecond = mysqli_query($dbinst, "SELECT * FROM flightstable WHERE ".$querySearchCondition." LIMIT 0,25");
+		//This will pair up the first to the second search result to display all possible flight path that a user can book for
 		while ($rowDepart=mysqli_fetch_assoc($resultFirst)) {
 			while($rowReturn=mysqli_fetch_assoc($resultSecond)){
 ?>
@@ -126,7 +141,7 @@
           				$BookingDate= date_format($formatDate, "Y-m-d");
 						echo $BookingDate;?></td>
 					<td><i class="fas fa-dollar-sign"></i>
-						<?php echo $rowDepart['FltTicketPrice']+$rowReturn['FltTicketPrice'];?></td>
+						<?php echo number_format($rowDepart['FltTicketPrice']+$rowReturn['FltTicketPrice'], 2);?></td>
 					<td>
 						<input type='button' class='p-2 bg-info btn btn-primary' 
 						id='book' name='book' value='Book' 

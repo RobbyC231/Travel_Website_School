@@ -1,3 +1,20 @@
+<script type="text/javascript">
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+          }
+       }
+      return "";
+    }
+</script>
 <?php
 //session start was running twice do not add back in
 //session_start();
@@ -38,7 +55,33 @@ else { // User exists
       // This is how we'll know the user is logged in see under navbar.php -Chris
       $_SESSION['logged_in'] = true;
       //end Chris
-
+?>
+      <script type="text/javascript">
+        var package = getCookie('lastViewedBooking');
+        var departPlnId = getCookie('departPlnId');
+        var returnPlnId = getCookie('returnPlnId');
+        if(package!=""){
+          $.redirect("confirmOrder.php",
+            {
+              'userId': <?php echo $_SESSION['userId'];?>,
+              'packageId': getCookie('lastViewedBooking')
+            }
+            );
+        }
+        else if(departPlnId!="" &&
+          returnPlnId!="")
+        {
+          $.redirect("confirmOrder.php",
+            {
+              'userId': <?php echo $_SESSION['userId'];?>,
+              'departPlnId': departPlnId,
+              'returnPlnId': returnPlnId
+            }
+            );
+        }
+        
+      </script>
+<?php
       //do not add back in we do not want to redirect to contact
       //-Chris
       //header("location:contact_us.php");

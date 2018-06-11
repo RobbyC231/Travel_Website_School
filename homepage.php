@@ -6,6 +6,7 @@
       <?php require("bootstrap.php") ?>
       <link rel="stylesheet" type="text/css" href="css/home_style.css" />
       <link rel="stylesheet" href="css/footer.css">
+    <script src="js/jquery.redirect.js"></script>
 </head>
   <body>
     <div class=content>
@@ -36,14 +37,32 @@
         <li data-target="#myCarousel" data-slide-to="2"></li>
       </ol>
     <div class="carousel-inner" role="listbox">
-      <div class="carousel-item active">
+      <div class="carousel-item active" onclick="
+                    verifyUserForPackage(
+                    <?php
+                      $userId="";
+                      if($_SESSION && isset($_SESSION['userId'])){$userId=$_SESSION['userId'];}
+                      echo "'".$userId."'";
+                    ?>,
+                    <?php echo "'2'"; ?>
+                    );
+                  ">
         <img class="d-block img-fluid w-100" src="images\flightpackagepics\boraboraMed.jpeg" alt="First slide">
           <div class="carousel-caption d-none d-sm-block">
             <h3 class="text-dark font-weight-bold"> Polynesian Paradise </h3>
             <h4 class="text-dark font-weight-bold"> 8 Night 9 days... only $3000 </4>
           </div>
       </div>
-    <div class="carousel-item">
+    <div class="carousel-item" onclick="
+                    verifyUserForPackage(
+                    <?php
+                      $userId="";
+                      if($_SESSION && isset($_SESSION['userId'])){$userId=$_SESSION['userId'];}
+                      echo "'".$userId."'";
+                    ?>,
+                    <?php echo "'4'"; ?>
+                    );
+                  ">
       <img class="d-block img-fluid w-100" src="images\flightpackagepics\euroMed.jpeg" alt="Third slide">
          <div class="carousel-caption d-none d-sm-block">
             <h3> European Vacation </h3>
@@ -67,5 +86,37 @@
       include("include/footer.php");
     ?>
   </footer>
+
+  <script type="text/javascript">
+      function verifyUserForPackage($userId, $packageId){
+        //console.log($userId);
+        if($userId!="")
+          {
+            //alert("Logged in");
+            //EDIT THIS IF DIRECTORY IS CHANGED
+            $.redirect("confirmOrder.php",
+              {
+                'userId': $userId,
+                'packageId': $packageId
+              }
+              );
+              //window.location.href = "http://localhost/WebsiteProject/sqlact/addbooking.php";
+
+          }
+        else
+          {
+            clearLastViewProduct()
+            document.cookie = "lastViewedBooking="+$packageId;
+            alert("Please log in or register for new user");
+            $("#loginModal").modal('show');
+          }
+      }
+      function clearLastViewProduct(){
+      document.cookie = "lastViewedBooking=;";
+        document.cookie = "departPlnId=;";
+        document.cookie = "returnPlnId=;";
+        }
+    </script>
+
 </body>
 </html>  <!-- /Brijesh end -->

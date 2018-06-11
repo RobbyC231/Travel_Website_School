@@ -68,7 +68,7 @@
 			<table class="table">
 				<thead class="thead">
 					<tr>
-						<th scope="col">Package</th>
+						<th scope="col">Booking Info</th>
 						<th scope="col">Booking Code</th>
 						<th scope="col">Date Booked</th>
 						<th scope="col">People</th>
@@ -84,11 +84,20 @@
           $BookingTravelCount=$row['TravelerCount'];
 					$package=$row['PackageId'];
 
+
+        if($package!=""){
         	$PackageDetail= $mysqli->query("SELECT PkgName FROM packages WHERE PackageId='".$package."' ")  ; //select package data according to bookingId
-				$row=mysqli_fetch_array($PackageDetail);
+        	$row=mysqli_fetch_array($PackageDetail);
 					// print_r($row); //too see array
-          	$packageName=$row['PkgName'];
-          //  displaying purchased packaged details
+          	$packageName=$row['PkgName']." Package";
+          	//  displaying purchased packaged details
+        }else{
+        	$PackageDetail= $mysqli->query("SELECT Destination FROM bookingdetails WHERE BookingId='".$row['BookingId']."' ")  ; //select package data according to bookingId
+        	$row=mysqli_fetch_array($PackageDetail);
+					// print_r($row); //too see array
+          	$packageName=$row['Destination']." Ticket";
+          	//  displaying purchased packaged details
+        }
             ?>
 								<tbody>
 									<tr>
@@ -105,7 +114,7 @@
 	</div>
 		<?php include "include/footer.php" ?>
 		<!--also put in a modal creator script here-->
-		<script type="text/javascript" src="js/customer_registration.js"></script>
+		<!--<script type="text/javascript" src="js/customer_registration.js"></script>-->
 	</body>
 
 </html>
