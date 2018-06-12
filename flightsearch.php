@@ -36,6 +36,7 @@
 			</form>
 			</div>
 			<table id="heads" name="heads" class="table">
+				<!--Create headers for items-->
 				<thead class="thead">
 					<tr class="d-flex">
 						<th style="width: 20vw;">Destination</th>
@@ -102,7 +103,7 @@
     		document.cookie = "departPlnId=;";
     		document.cookie = "returnPlnId=;";
         }
-        //Hides table headers according to screen size and shows it inside the display
+        //This hide header acccording to screen size: intended is if higher than tablet resolution it shows column legend outside the display
         if(window.outerHeight<=575){if(window.outerWidth<=425){$("#heads").hide();}}
         $(window).resize(function(){
         	if(window.outerHeight<=575){if(window.outerWidth<=425){$("#heads").hide();}}

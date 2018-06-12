@@ -1,6 +1,6 @@
 <!--
 	Module name: confirmOrder
-	Author: Neil
+	Author: Neil, Styling: Robert
 	Description: The main function of this page is all required information for a booking and also presents additional options that is required to fully input the booking inside the DB 
 -->
 <!DOCTYPE html>
