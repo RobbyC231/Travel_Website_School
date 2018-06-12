@@ -1,5 +1,5 @@
 <?php
-// robert code
+// robert clements code
   require("ServerSideRegister\dbconnect.php");//database connection page
 
     //query to grab items from database
@@ -10,6 +10,7 @@
     if($result = mysqli_query($mysqli, $grabAgency)){
       // print_r($result);//used to see if query worked
       echo '<div class="row">';
+      // while to print the data for each agency
       while($row = mysqli_fetch_assoc($result)){
         ?>
         <div class="col-md-6">
@@ -33,7 +34,7 @@
       echo "</div>";
       mysqli_free_result($result);
     }
-
+    // this is the function that is used to print the info for the agents of the corrisponding agencys
     function getAgentInfo($agencyId,$agencyCity){
 
       require("ServerSideRegister\dbconnect.php");
@@ -44,6 +45,7 @@
 
       if($result = mysqli_query($mysqli, $grabAgents)){
         ?>
+          <!-- button to display agetns -->
               <button type="button" class="btn btn-primary my-2" data-toggle="collapse" data-target="#collapse<?php echo $agencyId ?>" aria-expanded="true" aria-controls="collapse<?php echo $agencyId ?>">
                 List of <?php echo $agencyCity ?> Agents <i class="fas fa-caret-down"></i>
               </button>
@@ -51,6 +53,7 @@
             <div class="card-body">
         <?php
         // print_r($result);//used to see if query worked
+        // while loop to print each agents using a count to print 2 in a row
         while($row = mysqli_fetch_assoc($result)){
           if($count%2==1){
             echo '<div class="row">';

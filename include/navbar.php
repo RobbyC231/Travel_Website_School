@@ -51,7 +51,7 @@
                         <!--when logged in the user will see lOGOUT in the navbar-->
                         <a class='nav-link' href='ServerSideRegister/logout.php'> LOGOUT </a>
                     </li>
-                <?php }else{?>           /*  Brijesh start  */
+                <?php }else{?>
                     <li class="nav-item">
                         <!--when not logged in the user will see LOGIN in the navbar-->
                         <li class="nav-item"><a class="nav-link" href="customer_registration.php"> REGISTER </li></a>

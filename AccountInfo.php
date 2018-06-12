@@ -4,8 +4,6 @@
 	<head>
     	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 		<title>Account Info</title>
-        <!--normalize css-->
-				<!-- <link rel="stylesheet" type="text/css" href="css/Accountinfo.css"> -->
 		<?php require("bootstrap.php") ?>
 		<link rel="stylesheet" href="css/footer.css">
 		<!--I have put in cutomer_registration.css, this is for things that I think may be unique to this page-->
@@ -25,8 +23,9 @@
 		/*Chris end*/
 		?>
 	<div class="content">
-		<?php include("include/navbar.php") ?>
+		<?php include("include/navbar.php") //for navbar?>
 		<div class="container">
+			<!-- this is used to dispaly user account info - robert -->
 			<h4 class="mt-2"> Personal Details </h4>
 				<table class="table">
 					<tbody>
@@ -64,6 +63,7 @@
       }
 
 			?>
+			<!-- purchase history for the cuser of there flights and packages - robert -->
 			<h4>Purchase History</h4>
 			<table class="table">
 				<thead class="thead">

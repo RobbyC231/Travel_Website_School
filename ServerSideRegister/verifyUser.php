@@ -1,5 +1,6 @@
 <?php
 // Robert Clements
+// used to verift the user
   require "dbconnect.php";
   session_start();
 

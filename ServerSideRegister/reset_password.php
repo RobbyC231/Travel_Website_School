@@ -1,4 +1,5 @@
 <?php
+// robert clements made this page
 /* Password reset process, updates database with new user password */
 require 'dbconnect.php';
 session_start();

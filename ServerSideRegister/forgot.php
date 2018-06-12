@@ -1,4 +1,6 @@
 <?php
+// robert clements made this page
+// this is used to allow user to forget passwrod and reset it with a link being sent via email
 /* Reset your password form, sends reset.php password link */
 require 'dbconnect.php';
 session_start();

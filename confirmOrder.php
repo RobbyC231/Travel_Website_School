@@ -1,7 +1,7 @@
 <!--
 	Module name: confirmOrder
 	Author: Neil, Styling: Robert
-	Description: The main function of this page is all required information for a booking and also presents additional options that is required to fully input the booking inside the DB 
+	Description: The main function of this page is all required information for a booking and also presents additional options that is required to fully input the booking inside the DB
 -->
 <!DOCTYPE html>
 <html>
@@ -14,6 +14,7 @@
     <script src="js/jquery.redirect.js"></script>
 </head>
 <body>
+	<?php $activepage="accountinfo" ?>
 	<div class="content">
 	<?php include "include/navbar.php"; ?>
 	<?php
