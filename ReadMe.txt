@@ -1,6 +1,4 @@
-Robert did all of the styling with bootstrap.
-Robert made the login verification with email and the registration verification. Robert also made the email link that is
-sent out when someone registers or changes there password.
+School project for the Object Oriented Software Development Certificate at SAIT 
 
-Chris client side registration
-Chris navbar handling for login
+This was a group project were we built a website for a travel agency. 
+We utilized PHP, JavaScript, HTML, CSS, Bootstrap
